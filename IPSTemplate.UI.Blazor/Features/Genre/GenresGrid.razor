@@ -1,0 +1,29 @@
+﻿@namespace IPSTemplate.UI.Blazor.Features.Genre
+
+@using Core.Library.Base
+@using Csla.Core
+@using IPSTemplate.BusinessLibrary.BO.Genre
+@using Telerik.Blazor
+@using Telerik.Blazor.Components
+@using IPSTemplate.BusinessLibrary.StandardCollections
+@using IPSTemplate.Dal.Models
+@using Telerik.DataSource
+
+
+@inherits GridView<GenresGrid,
+                   TEGenreInfo,
+                   TEGenreGridInfo,
+                   TEGenreRL,
+                   TEGenre>
+
+<IPSGrid Id="GenresGrid" ShowHeader=true
+         OnRead=ReadData TItem=TEGenreInfo
+         Context="author" Width="350px">
+    <GridColumns>
+        <IPSGridColumn Id="Id" Field=@nameof(TEGenreInfo.Id) Visible=false  />
+        <IPSGridColumn Id="Name" Field=@nameof(TEGenreInfo.Name)  />
+        <IPSGridCommandColumn>
+            <IPSButton OnClick=@(() => EditClicked.InvokeAsync((TEGenreInfo)context)) Icon=Icon.Pencil />
+        </IPSGridCommandColumn>
+    </GridColumns>
+</IPSGrid>

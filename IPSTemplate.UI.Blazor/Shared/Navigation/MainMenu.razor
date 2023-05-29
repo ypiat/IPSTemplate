@@ -1,0 +1,10 @@
+﻿@inject IStringLocalizer<Resources> Localizer
+
+<IPSNavMenu>
+    <IPSNavMenuLink Link="/" IconClass="fa-solid fa-clipboard">@Localizer["Izposoje"]</IPSNavMenuLink>
+    <hr />
+    <IPSNavMenuLink Link="/book" IconClass="fa-solid fa-book">Knjige</IPSNavMenuLink>
+    <IPSNavMenuLink Link="/author" IconClass="fa-solid fa-user">Avtorje</IPSNavMenuLink>
+    <IPSNavMenuLink Link="/publisher" IconClass="fa-solid fa-house">Založbe</IPSNavMenuLink>
+    <IPSNavMenuLink Link="/genre" IconClass="fa-solid fa-palette">Žanre</IPSNavMenuLink>
+</IPSNavMenu>

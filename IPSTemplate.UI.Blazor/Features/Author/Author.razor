@@ -1,0 +1,52 @@
+﻿@page "/author"
+@using IPSTemplate.BusinessLibrary.BO.Author;
+
+<IPSPageTop Title="Avtorje">
+    <ActionsContent>
+        <IPSButton IconClass="fas fa-plus" Color="Color.Primary" OnClick=@(() => OpenEditView(null))>Add author</IPSButton>
+    </ActionsContent>
+</IPSPageTop>
+
+<AuthorsGrid EditClicked=OpenEditView @ref=_grid />
+
+<IPSWindow Title=@_editViewTitle
+           Size="WindowSize.Medium"
+           ConfirmCloseWhen=@(() => _editView.ViewModel.Model.IsDirty)
+           @bind-Visible=@windowVisible>
+    <WindowContent>
+        <AuthorEdit ItemId=@_selectedItemId ItemSaved=CloseEditView @ref=_editView />
+    </WindowContent>
+</IPSWindow>
+
+@code{
+    string? _selectedItemId;
+    string? _editViewTitle;
+    bool windowVisible;
+    AuthorsGrid _grid = default!;
+    AuthorEdit _editView = default!;
+
+    private AuthorEdit _authorEdit = default!;
+
+    protected void OpenEditView(TEAuthorInfo? selectedItem)
+    {
+        if (selectedItem is null)
+        {
+            _editViewTitle = "Dodaj novega avtorja";
+            _selectedItemId = null;
+        }
+        else
+        {
+            _editViewTitle = $"Uredi avtorja - {selectedItem.ShowAs}";
+            _selectedItemId = selectedItem.Id.ToString();
+        }
+
+        windowVisible = true;
+    }
+
+    private void CloseEditView()
+    {
+        windowVisible = false;
+        _selectedItemId = null;
+        _grid.Refresh();
+    }
+}

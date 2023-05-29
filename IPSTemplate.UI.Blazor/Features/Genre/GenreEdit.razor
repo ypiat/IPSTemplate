@@ -1,0 +1,26 @@
+﻿
+@using BusinessLibrary.BO.Genre
+@using Dal.Models
+
+@inherits EditView<TEGenreBO, TEGenre>
+
+@if (ViewModel?.Model is null)
+{
+    <IPSLoader />
+    return;
+}
+
+@if (Error is not null)
+{
+    @Error
+    return;
+}
+
+<IPSForm Model=ViewModel OnSaved=@(() => ItemSaved.InvokeAsync())>
+    <FormFields>
+        <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.Name) />
+    </FormFields>
+    <FormButtons>
+        <IPSFormSaveButton />
+    </FormButtons>
+</IPSForm>

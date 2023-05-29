@@ -1,0 +1,28 @@
+﻿
+@using BusinessLibrary.BO.Publisher
+@using Dal.Models
+
+@inherits EditView<TEPublisherBO, TEPublisher>
+
+@if (ViewModel?.Model is null)
+{
+    <IPSLoader />
+    return;
+}
+
+@if (Error is not null)
+{
+    @Error
+    return;
+}
+
+<IPSForm Model=ViewModel OnSaved=@(() => ItemSaved.InvokeAsync())>
+    <FormFields>
+        <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.Name) />
+        <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.Email) />
+        <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.Address) />
+    </FormFields>
+    <FormButtons>
+        <IPSFormSaveButton />
+    </FormButtons>
+</IPSForm>

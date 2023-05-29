@@ -1,0 +1,32 @@
+﻿@namespace IPSTemplate.UI.Blazor.Features.Author
+
+@using Core.Library.Base
+@using Csla.Core
+@using IPSTemplate.BusinessLibrary.BO.Author
+@using Telerik.Blazor
+@using Telerik.Blazor.Components
+@using IPSTemplate.BusinessLibrary.StandardCollections
+@using IPSTemplate.Dal.Models
+@using Telerik.DataSource
+
+
+@inherits GridView<AuthorsGrid,
+                   TEAuthorInfo,
+                   TEAuthorGridInfo,
+                   TEAuthorRL,
+                   TEAuthor>
+
+<IPSGrid Id="AuthorsGrid" ShowHeader=true
+         OnRead=ReadData TItem=TEAuthorInfo
+         Context="author">
+    <GridColumns>
+        <IPSGridColumn Id="Id" Field=@nameof(TEAuthorInfo.Id) Visible=false />
+        <IPSGridColumn Id="FirstName" Field=@nameof(TEAuthorInfo.FirstName) />
+        <IPSGridColumn Id="LastName" Field=@nameof(TEAuthorInfo.LastName) />
+        <IPSGridColumn Id="LifeYears" Title="Leta življenja" Field=@nameof(TEAuthorInfo.LifeYears) />
+        <IPSGridColumn Id="Country" Field=@nameof(TEAuthorInfo.Country) />
+        <IPSGridCommandColumn>
+            <IPSButton OnClick=@(() => EditClicked.InvokeAsync((TEAuthorInfo)context)) Icon=Icon.Pencil />
+        </IPSGridCommandColumn>
+    </GridColumns>
+</IPSGrid>

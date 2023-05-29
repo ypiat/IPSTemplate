@@ -1,0 +1,39 @@
+﻿@using BusinessLibrary.BO.Author
+@using Dal.Models
+
+@inherits EditView<TEAuthorBO, TEAuthor>
+
+@if (ViewModel?.Model is null)
+{
+    <IPSLoader />
+    return;
+}
+
+@if (Error is not null)
+{
+    @Error
+    return;
+}
+
+<IPSForm Model=ViewModel OnSaved=@(() => ItemSaved.InvokeAsync()) >
+    <FormFields>
+        <IPSRow>
+            <IPSColumn>
+                <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.FirstName) />
+                <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.BirthYear) />
+                <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.Country) />
+            </IPSColumn>
+            <IPSColumn>
+                <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.LastName) />
+                <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.DeathYear) />    
+            </IPSColumn>
+        </IPSRow>       
+    </FormFields>
+    <FormButtons>
+        <IPSFormSaveButton />
+    </FormButtons>
+</IPSForm>
+
+
+
+ 

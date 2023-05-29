@@ -1,0 +1,68 @@
+﻿@page "/book/edit/{ItemId?}"
+
+@using BusinessLibrary.BO.Book
+@using Dal.Models
+@using IPSTemplate.BusinessLibrary.BO.Author;
+@using IPSTemplate.BusinessLibrary.BO.Genre;
+
+
+@using IPSTemplate.UI.Blazor.Features.Author
+
+@inherits EditView<TEBookBO, TEBook>
+
+@if (ViewModel?.Model is null)
+{
+    <IPSLoader />
+    return;
+}
+
+@if (Error is not null)
+{
+    @Error
+    return;
+}
+
+
+<IPSForm Model=ViewModel OnSaved=@(() => ItemSaved.InvokeAsync())>
+    <FormFields>
+        <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.Name) />
+        <IPSMultiSelect Property=@ViewModel.GetProperty(() => ViewModel.Model.AuthorIds) OnRead="GetAuthors"
+                            TItem="TEAuthorInfo" TValue="Guid" TextField="ShowAs" ValueField="Id" />
+        <IPSButton Icon=Icon.Add Color="Color.Secondary" OnClick="(() => windowVisible = true)">Add new author</IPSButton>
+        
+        @*<IPSComboBox @ref=cbxPublisher Label="Publisher" TItem=TEPublisherInfo TValue=Guid?
+                    TextField=@nameof(TEPublisherInfo.Name)
+                    ValueField=@nameof(TEPublisherInfo.Id)
+                    Property=@ViewModel.GetProperty(() => ViewModel.Model.PublisherID)
+                    OnRead="GetPublishers"
+                    Placeholder="Publisher" />*@
+        <IPSRow>
+            <IPSComboBox @ref=cbxGenre TItem=TEGenreInfo TValue=Guid?
+                         TextField=@nameof(TEGenreInfo.Name)
+                         ValueField=@nameof(TEGenreInfo.Id)
+                         Property=@ViewModel.GetProperty(() => ViewModel.Model.GenreID)
+                         OnRead="GetGenres" ColumnWidth="6" />
+            <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.Language) ColumnWidth="6" />
+            
+        </IPSRow>
+        <IPSNumericTextBox Property=@ViewModel.GetProperty(() => ViewModel.Model.PageAmount) ColumnWidth="6" />
+    </FormFields>
+    <FormButtons>
+        <IPSFormSaveButton />
+    </FormButtons>
+</IPSForm>
+
+<IPSWindow Title="Add new avtor"
+           Size="WindowSize.Medium"
+           ConfirmCloseWhen=@(() => _authorEditView.ViewModel.Model.IsDirty)
+            @bind-Visible=@windowVisible>
+    <WindowContent>
+        <AuthorEdit ItemSaved=CloseEditView @ref=_authorEditView />
+    </WindowContent>
+</IPSWindow>
+
+
+
+
+
+
