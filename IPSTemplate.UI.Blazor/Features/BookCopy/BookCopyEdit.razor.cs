@@ -2,9 +2,11 @@
 using IPSBlazor.Extensions;
 using IPSTemplate.BusinessLibrary.BO.Book;
 using IPSTemplate.BusinessLibrary.BO.BookCopy;
+using IPSTemplate.BusinessLibrary.BO.Genre;
 using IPSTemplate.BusinessLibrary.BO.Publisher;
 using IPSTemplate.Dal.Models;
 using IPSTemplate.UI.Blazor.Base;
+using IPSTemplate.UI.Blazor.Features.Publisher;
 using Telerik.Blazor.Components;
 
 namespace IPSTemplate.UI.Blazor.Features.BookCopy
@@ -14,19 +16,29 @@ namespace IPSTemplate.UI.Blazor.Features.BookCopy
         [Parameter] public EventCallback ItemSaved { get; set; }
 
         [Parameter] public Guid BookId { get; set; }
+        [Parameter] public int BookCopyNumber { get; set; }
 
-        //[Inject] NavigationManager NavigationManager { get; set; } = default!;
+        bool windowVisible;
+        PublisherEdit _publisherEditView = default!;
 
         [Inject] protected IDataPortalFactory DataPortalFactory { get; set; } = default!;
 
         protected IPSComboBox<Guid?, TEBookInfo>? cbxBook = default!;
-        protected IPSComboBox<Guid?, TEPublisherInfo>? cbxPublisher= default!;
+        protected IPSComboBox<Guid?, TEPublisherInfo> cbxPublisher= default!;
 
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
 
             ViewModel.Model.BookID = BookId;
+            ViewModel.Model.BookCopyNumber = BookCopyNumber;
+        }
+
+        async Task CloseEditView()
+        {
+            await Task.Delay(1000);
+            windowVisible = false;
+            cbxPublisher.Rebind();
         }
 
         //protected async Task GetAuthors(ReadEventArgs args)
@@ -55,18 +67,18 @@ namespace IPSTemplate.UI.Blazor.Features.BookCopy
             args.Total = publishers.Count;
         }
 
-        protected async Task GetBooks(ReadEventArgs args)
-        {
-            string? filter = args.Request.GetSingleFilter();
-            //var selectedIds = new List<Guid>();
-            //if (ViewModel.Model.GenreID.HasValue)
-            //{
-            //    selectedIds.Add(ViewModel.Model.GenreID.Value);
-            //}
-            var books = await TEBookRL.GetFilteredList(filter ?? "", DataPortalFactory);
-            args.Data = books;
-            args.Total = books.Count;
-        }
+        //protected async Task GetBooks(ReadEventArgs args)
+        //{
+        //    string? filter = args.Request.GetSingleFilter();
+        //    //var selectedIds = new List<Guid>();
+        //    //if (ViewModel.Model.GenreID.HasValue)
+        //    //{
+        //    //    selectedIds.Add(ViewModel.Model.GenreID.Value);
+        //    //}
+        //    var books = await TEBookRL.GetFilteredList(filter ?? "", DataPortalFactory);
+        //    args.Data = books;
+        //    args.Total = books.Count;
+        //}
 
     }
 }

@@ -6,7 +6,7 @@
 @using IPSTemplate.BusinessLibrary.BO.Publisher;
 
 
-@using IPSTemplate.UI.Blazor.Features.Author
+@using IPSTemplate.UI.Blazor.Features.Publisher
 
 @inherits EditView<TEBookCopyBO, TEBookCopy>
 
@@ -25,24 +25,14 @@
 
 <IPSForm Model=ViewModel OnSaved=@(() => ItemSaved.InvokeAsync())>
     <FormFields>
-        @*<IPSGridColumn Id="Id" Field=@nameof(ViewModel.Model.BookID) Visible=false />*@
-       @*<IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.BookID) />*@
-        @*<IPSFormField  Property=@TEBookCopyInfo.BookName) />*@
-        @*<IPSMultiSelect Property=@ViewModel.GetProperty(() => ViewModel.Model.AuthorIds) OnRead="GetAuthors"
-                        TItem="TEAuthorInfo" TValue="Guid" TextField="ShowAs" ValueField="Id" />*@
-        @*<IPSButton Color="Color.Secondary" OnClick="(() => windowVisible = true)">Add new author</IPSButton>*@
+        <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.BookCopyNumber) />
         <IPSComboBox @ref=cbxPublisher Label="Založba"  TItem=TEPublisherInfo TValue=Guid?
                      TextField=@nameof(TEPublisherInfo.Name)
                      ValueField=@nameof(TEPublisherInfo.Id)
                      Property=@ViewModel.GetProperty(() => ViewModel.Model.PublisherID)
                      OnRead="GetPublishers" />
+        <IPSButton Icon=Icon.Add Color="Color.Secondary" OnClick="(() => windowVisible = true)">Dodaj založbo</IPSButton>
 
-        @*<IPSComboBox @ref=cbxBook Label="Book" TItem=TEBookInfo TValue=Guid?
-                     TextField=@nameof(TEBookInfo.Name)
-                     ValueField=@nameof(TEBookInfo.Id)
-                     Property=@ViewModel.GetProperty(() => ViewModel.Model.DookID)
-                     OnRead="GetBooks"
-                     Placeholder="Žanr" />*@
         <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.PublishedYear) />
     </FormFields>
     <FormButtons>
@@ -50,6 +40,15 @@
     </FormButtons>
 </IPSForm>
 
+
+<IPSWindow Title="Dodaj novo založbo"
+           Size="WindowSize.Small"
+           ConfirmCloseWhen=@(() => _publisherEditView.ViewModel.Model.IsDirty)
+           @bind-Visible=@windowVisible>
+    <WindowContent>
+        <PublisherEdit ItemSaved=CloseEditView @ref=_publisherEditView />
+    </WindowContent>
+</IPSWindow>
 
 
 

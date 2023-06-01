@@ -18,13 +18,13 @@
 
 <IPSGrid Id="AuthorsGrid" ShowHeader=true
          OnRead=ReadData TItem=TEAuthorInfo
-         Context="author">
+         Context="author" @ref=_author>
     <GridColumns>
         <IPSGridColumn Id="Id" Field=@nameof(TEAuthorInfo.Id) Visible=false />
         <IPSGridColumn Id="FirstName" Field=@nameof(TEAuthorInfo.FirstName) />
         <IPSGridColumn Id="LastName" Field=@nameof(TEAuthorInfo.LastName) />
         <IPSGridColumn Id="LifeYears" Title="Leta življenja" Field=@nameof(TEAuthorInfo.LifeYears) />
-        <IPSGridColumn Id="Country" Field=@nameof(TEAuthorInfo.Country) />
+        <IPSGridColumn Id="Country" Title="Država" Field=@nameof(TEAuthorInfo.UserFriendlyCountryName) />
         <IPSGridCommandColumn>
             <IPSButton OnClick=@(() => EditClicked.InvokeAsync((TEAuthorInfo)context)) Icon=Icon.Pencil />
         </IPSGridCommandColumn>

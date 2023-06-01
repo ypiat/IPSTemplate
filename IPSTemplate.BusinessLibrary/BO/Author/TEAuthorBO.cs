@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Core.Library.Base;
 using Csla;
+using Csla.Rules;
 using IPSTemplate.Dal.Models;
 
 namespace IPSTemplate.BusinessLibrary.BO.Author
@@ -56,13 +57,39 @@ namespace IPSTemplate.BusinessLibrary.BO.Author
             set => SetProperty(CountryProperty, value);
         }
 
-
-
         #endregion
 
         #region Validation rules
 
         public async Task CheckRulesAsync() => await BusinessRules.CheckRulesAsync();
+
+        protected override void AddBusinessRules()
+        {
+            BusinessRules.AddRule(new IsYearNotMoreThanActual(DeathYearProperty));
+            base.AddBusinessRules();
+        }
+
+        private class IsYearNotMoreThanActual : BusinessRule
+        {
+            public IsYearNotMoreThanActual(Csla.Core.IPropertyInfo deathYearProperty) : base(deathYearProperty)
+            {
+                InputProperties.Add(PrimaryProperty);
+            }
+
+            protected override void Execute(IRuleContext context)
+            {
+                int? deathYear = null;
+                if (!context.TryGetInputValue(PrimaryProperty, ref deathYear))
+                {
+                    return;
+                }
+
+                if ( deathYear > DateTime.Now.Year)
+                {
+                    context.AddErrorResult($"Year can't be greater than {DateTime.Now.Year.ToString()}");
+                }
+            }
+        }
 
         #endregion
 

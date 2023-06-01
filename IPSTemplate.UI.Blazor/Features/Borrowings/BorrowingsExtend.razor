@@ -1,0 +1,31 @@
+﻿
+@using BusinessLibrary.BO.Borrowings
+@using Dal.Models
+@using IPSTemplate.BusinessLibrary.BO.User;
+
+@inherits EditView<TEBorrowingsBO, TEBorrowings>
+
+@if (ViewModel?.Model is null)
+{
+    <IPSLoader />
+    return;
+}
+
+@if (Error is not null)
+{
+    @Error
+    return;
+}
+
+<IPSForm Model=ViewModel OnSaved=@(() => ItemSaved.InvokeAsync())>
+    <FormFields>
+        <h3>Želiš podaljšati izposojo knjigi - @BookName?</h3>
+        <br/>
+        <p>Začetek izposoji: @ViewModel.Model.StartBorrowing</p>
+        <p>Konec izposoji: @ViewModel.Model.EndBorrowing</p>
+        <p>Podaljšaj do: @ViewModel.Model.ExtendEndBorrowing</p>
+    </FormFields>
+    <FormButtons>
+        <IPSButton Color="Color.Warning" Type="IPSBlazor.Components.ButtonType.Submit" OnClick="HandleSave">Podaljšaj</IPSButton>
+    </FormButtons>
+</IPSForm>

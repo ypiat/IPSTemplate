@@ -1,5 +1,6 @@
 ﻿using Core.Library.Base;
 using Csla;
+using IPSTemplate.BusinessLibrary.StandardCollections;
 using IPSTemplate.Dal.Models;
 using System;
 using System.Collections.Generic;
@@ -59,6 +60,11 @@ namespace IPSTemplate.BusinessLibrary.BO.Author
         {
             get => GetProperty(CountryProperty);
             set => LoadProperty(CountryProperty, value);
+        }
+
+        public string UserFriendlyCountryName
+        {
+            get => TECountries.GetUserFriendlyName(Country);
         }
 
 

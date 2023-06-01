@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Core.Library.Base;
 using Csla;
+using Csla.Rules;
 using IPSTemplate.BusinessLibrary.BO.BookAuthor;
 using IPSTemplate.BusinessLibrary.BO.BookCopy;
 using IPSTemplate.Dal.Models;
@@ -60,7 +61,7 @@ namespace IPSTemplate.BusinessLibrary.BO.Book
             return TEBookAuthorEL.GetByBookId(Id, factory);
         }
 
-        
+        public static readonly PropertyInfo<List<Guid>> AuthorIdsProperty = RegisterProperty<List<Guid>>(p => p.AuthorIds);
         [Display(Name = "Avtorji")]
         public List<Guid> AuthorIds
         {
@@ -74,10 +75,12 @@ namespace IPSTemplate.BusinessLibrary.BO.Book
                     author.AuthorID = authorId;
                     Authors.Add(author);
                     MarkDirty();
+                    PropertyHasChanged(AuthorsProperty);
                 }
                 foreach (var item in Authors.Where(p => !value.Contains(p.AuthorID)).ToList()) { 
                     Authors.Remove(item);
                     MarkDirty();
+                    PropertyHasChanged(AuthorsProperty);
                 }
             }
         }
@@ -90,6 +93,35 @@ namespace IPSTemplate.BusinessLibrary.BO.Book
         #region Validation rules
 
         public async Task CheckRulesAsync() => await BusinessRules.CheckRulesAsync();
+
+        protected override void AddBusinessRules()
+        {
+            BusinessRules.AddRule(new HasAtLeastOneAuthorRule(AuthorIdsProperty));
+            base.AddBusinessRules();
+        }
+
+        private class HasAtLeastOneAuthorRule : BusinessRule
+        {
+            public HasAtLeastOneAuthorRule(Csla.Core.IPropertyInfo authorIdsProperty) : base(authorIdsProperty)
+            {
+                InputProperties.Add(PrimaryProperty);
+                InputProperties.Add(AuthorsProperty);
+            }
+
+            protected override void Execute(IRuleContext context)
+            {
+                TEBookAuthorEL? authors = null;
+                if (!context.TryGetInputValue(AuthorsProperty, ref authors))
+                {
+                    return;
+                }
+
+                if (authors is null || authors.Count < 1)
+                {
+                    context.AddErrorResult("At least one author is required.");
+                }
+            }
+        }
 
         #endregion
 

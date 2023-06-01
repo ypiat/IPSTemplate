@@ -1,0 +1,32 @@
+﻿
+@using BusinessLibrary.BO.Borrowings
+@using Dal.Models
+@using IPSTemplate.BusinessLibrary.BO.User;
+
+@inherits EditView<TEBorrowingsBO, TEBorrowings>
+
+@if (ViewModel?.Model is null)
+{
+    <IPSLoader />
+    return;
+}
+
+@if (Error is not null)
+{
+    @Error
+    return;
+}
+
+<IPSForm Model=ViewModel OnSaved=@(() => ItemSaved.InvokeAsync())>
+    <FormFields>
+        <IPSComboBox @ref=cbxUser TItem=TEUserInfo TValue=Guid
+                     TextField=@nameof(TEUserInfo.ShowFullName)
+                     ValueField=@nameof(TEUserInfo.Id)
+                     Property=@ViewModel.GetProperty(() => ViewModel.Model.UserID)
+                     OnRead="GetUsers" Label=""/>
+    </FormFields>
+    <FormButtons>
+        @*<IPSFormSaveButton />*@
+        <IPSButton Color="Color.Success" Type="IPSBlazor.Components.ButtonType.Submit" OnClick="HandleSave">Izposodi</IPSButton>
+    </FormButtons>
+</IPSForm>

@@ -17,7 +17,7 @@ namespace IPSTemplate.BusinessLibrary.BO.Genre
     {
         #region Properties
         public static readonly PropertyInfo<string> NameProperty = RegisterProperty<string>(p => p.Name);
-        [Display(Name = "Ime")]
+        [Display(Name = "Žanr")]
         public string Name
         {
             get => GetProperty(NameProperty);

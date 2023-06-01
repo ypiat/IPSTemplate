@@ -43,10 +43,11 @@
         windowVisible = true;
     }
 
-    private void CloseEditView()
+    async Task CloseEditView()
     {
+        await Task.Delay(1000);
         windowVisible = false;
         _selectedItemId = null;
-        _grid.Refresh();
+        _grid.Rebind();
     }
 }

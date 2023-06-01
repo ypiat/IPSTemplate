@@ -20,19 +20,19 @@ namespace IPSTemplate.BusinessLibrary.BO.Publisher
             set => SetProperty(NameProperty, value);
         }
 
-        public static readonly PropertyInfo<string> AddressProperty = RegisterProperty<string>(p => p.Address);
-        [Required]
-        [LocalizedStringLength(100, 2)]
+        public static readonly PropertyInfo<string?> AddressProperty = RegisterProperty<string?>(p => p.Address);
+        [LocalizedStringLength(100, 0)]
         [Display(Name = "Naslov")]
-        public string Address
+        public string? Address
         {
             get => GetProperty(AddressProperty);
             set => SetProperty(AddressProperty, value);
         }
 
-        public static readonly PropertyInfo<string> EmailProperty = RegisterProperty<string>(p => p.Email);
+        public static readonly PropertyInfo<string?> EmailProperty = RegisterProperty<string?>(p => p.Email);
+        [RegularExpression(@"^[\w-\.]+@([\w -]+\.)+[\w-]{2,4}$", ErrorMessage = "Neveljaven e-poštni vzorec (example@example.com")]
         [Display(Name = "Email")]
-        public string Email
+        public string? Email
         {
             get => GetProperty(EmailProperty);
             set => SetProperty(EmailProperty, value);

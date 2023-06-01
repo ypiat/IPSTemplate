@@ -21,6 +21,8 @@ namespace IPSTemplate.BusinessLibrary.BO.BookCopy
         //    return await dataPortalFactory.GetPortal<TEBookCopyRL>().FetchAsync(filter);
         //}
 
+        
+
         public static TEBookCopyRL GetListByIds(IEnumerable<Guid> ids, IDataPortalFactory dataPortalFactory)
         {
             return dataPortalFactory.GetPortal<TEBookCopyRL>().Fetch(new MobileList<Guid>(ids));
@@ -34,9 +36,9 @@ namespace IPSTemplate.BusinessLibrary.BO.BookCopy
 
         #region Server-side methods
         //[Fetch]
-        //protected async Task FetchFilteredList(string? filter, [Inject] IRepository<TEBookCopy, TEBookCopy> repository, [Inject] IChildDataPortalFactory childFactory)
+        //protected async Task FetchFilteredList( [Inject] IRepository<TEBookCopy, TEBookCopy> repository, [Inject] IChildDataPortalFactory childFactory)
         //{
-        //        Fetch(repository, childFactory);
+        //    Fetch(repository, childFactory);
         //}
 
         [Fetch]

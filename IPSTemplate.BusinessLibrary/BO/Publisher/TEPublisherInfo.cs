@@ -25,17 +25,17 @@ namespace IPSTemplate.BusinessLibrary.BO.Publisher
             set => LoadProperty(NameProperty, value);
         }
 
-        public static readonly PropertyInfo<string> AddressProperty = RegisterProperty<string>(p => p.Address);
+        public static readonly PropertyInfo<string?> AddressProperty = RegisterProperty<string?>(p => p.Address);
         [Display(Name = "Naslov")]
-        public string Address
+        public string? Address
         {
             get => GetProperty(AddressProperty);
             set => LoadProperty(AddressProperty, value);
         }
 
-        public static readonly PropertyInfo<string> EmailProperty = RegisterProperty<string>(p => p.Email);
+        public static readonly PropertyInfo<string?> EmailProperty = RegisterProperty<string?>(p => p.Email);
         [Display(Name = "Email")]
-        public string Email
+        public string? Email
         {
             get => GetProperty(EmailProperty);
             set => LoadProperty(EmailProperty, value);

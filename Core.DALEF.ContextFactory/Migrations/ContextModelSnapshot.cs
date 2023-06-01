@@ -250,8 +250,10 @@ namespace Core.DALEF.ContextFactory.Migrations
                     b.Property<bool>("Active")
                         .HasColumnType("bit");
 
-                    b.Property<Guid?>("BookID")
-                        .IsRequired()
+                    b.Property<int>("BookCopyNumber")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("BookID")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DateChanged")
@@ -288,6 +290,56 @@ namespace Core.DALEF.ContextFactory.Migrations
                     b.HasIndex("PublisherID");
 
                     b.ToTable("TEBookCopy", (string)null);
+                });
+
+            modelBuilder.Entity("IPSTemplate.Dal.Models.TEBorrowings", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid>("BookCopyID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateChanged")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("EndBorrowing")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsReturned")
+                        .HasColumnType("bit");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<DateTime>("StartBorrowing")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UserChangedID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserCreatedID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookCopyID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("TEBorrowings", (string)null);
                 });
 
             modelBuilder.Entity("IPSTemplate.Dal.Models.TEEntity", b =>
@@ -426,6 +478,54 @@ namespace Core.DALEF.ContextFactory.Migrations
                     b.ToTable("TEPublisher", (string)null);
                 });
 
+            modelBuilder.Entity("IPSTemplate.Dal.Models.TEUser", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("DateChanged")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateOfBirth")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<Guid>("UserChangedID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserCreatedID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TEUser", (string)null);
+                });
+
             modelBuilder.Entity("IPSTemplate.Dal.Models.TEBook", b =>
                 {
                     b.HasOne("IPSTemplate.Dal.Models.TEGenre", "Genre")
@@ -473,6 +573,25 @@ namespace Core.DALEF.ContextFactory.Migrations
                     b.Navigation("Book");
 
                     b.Navigation("Publisher");
+                });
+
+            modelBuilder.Entity("IPSTemplate.Dal.Models.TEBorrowings", b =>
+                {
+                    b.HasOne("IPSTemplate.Dal.Models.TEBookCopy", "BookCopy")
+                        .WithMany()
+                        .HasForeignKey("BookCopyID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("IPSTemplate.Dal.Models.TEUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("BookCopy");
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

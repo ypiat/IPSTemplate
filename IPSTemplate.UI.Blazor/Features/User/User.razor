@@ -1,0 +1,51 @@
+﻿@page "/user"
+@using IPSTemplate.BusinessLibrary.BO.User;
+
+<IPSPageTop Title="Uporabniki" >
+    <ActionsContent>
+        <IPSButton IconClass="fas fa-plus" Color="Color.Primary" OnClick=@(() => OpenEditView(null))>Dodaj userja</IPSButton>
+    </ActionsContent>
+</IPSPageTop>
+
+<UsersGrid EditClicked=OpenEditView @ref=_grid />
+
+<IPSWindow Title=@_editViewTitle
+           Size="WindowSize.Medium"
+           ConfirmCloseWhen=@(() => _editView.ViewModel.Model.IsDirty)
+            @bind-Visible=@windowVisible>
+    <WindowContent>
+        <UserEdit ItemId=@_selectedItemId ItemSaved=CloseEditView @ref=_editView />
+    </WindowContent>
+</IPSWindow>
+
+@code {
+    string? _selectedItemId;
+    string? _editViewTitle;
+    bool windowVisible;
+    UsersGrid _grid = default!; 
+    UserEdit _editView = default!;
+
+    protected void OpenEditView(TEUserInfo? selectedItem)
+    {
+        if (selectedItem is null)
+        {
+            _editViewTitle = "Dodaj novega uporabnika";
+            _selectedItemId = null;
+        }
+        else
+        {
+            _editViewTitle = $"Uredi uporabnika - {selectedItem.FirstName} {selectedItem.LastName}";
+            _selectedItemId = selectedItem.Id.ToString();
+        }
+
+        windowVisible = true;
+    }
+
+    async Task CloseEditView()
+    {
+        await Task.Delay(1000);
+        windowVisible = false;
+        _selectedItemId = null;
+        _grid.Rebind();
+    }
+}

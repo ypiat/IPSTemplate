@@ -13,6 +13,21 @@ namespace IPSTemplate.BusinessLibrary.BO.BookCopy
     {
         #region Properties
 
+        public static readonly PropertyInfo<int> BookCopyNumberProperty = RegisterProperty<int>(p => p.BookCopyNumber);
+        [Range(0, int.MaxValue)]
+        [Display(Name = "Številka")]
+        public int BookCopyNumber
+        {
+            get => GetProperty(BookCopyNumberProperty);
+            set => LoadProperty(BookCopyNumberProperty, value);
+        }
+
+        //[Display(Name = "Številka")]
+        //public int NewBookCopyNumber
+        //{
+
+        //}
+
         public static readonly PropertyInfo<Guid> BookIDProperty = RegisterProperty<Guid>(p => p.BookID);
         [Display(Name = "BookId")]
         public Guid BookID

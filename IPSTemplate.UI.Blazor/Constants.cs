@@ -4,6 +4,9 @@ namespace IPSTemplate.UI.Blazor
 {
     public static class Constants
     {
+        public static readonly string UserRole = "Admin";
+        //public static readonly string UserRole = "User";
+
         public static readonly string AppVersion = "1.0.0";
 
         public static readonly CultureItem[] SupportedCultures = new[]

@@ -16,22 +16,19 @@ namespace IPSTemplate.UI.Blazor.Features.Book
     {
         [Parameter] public EventCallback ItemSaved { get; set; }
 
-        [Inject] NavigationManager NavigationManager { get; set; } = default!;
-
         [Inject] protected IDataPortalFactory DataPortalFactory { get; set; } = default!;
 
         bool windowVisible;
         AuthorEdit _authorEditView = default!;
-        BookEdit _bookEditView = default!;
 
-        protected IPSComboBox<Guid?, TEAuthorInfo>? cbxAuthor = default!;
-        protected IPSComboBox<Guid?, TEGenreInfo>? cbxGenre= default!;
+        protected IPSMultiSelect<Guid, TEAuthorInfo> authorRef = default!;
+        protected IPSComboBox<Guid?, TEGenreInfo> cbxGenre= default!;
 
 
         private void CloseEditView()
         {
             windowVisible = false;
-            //_bookEditView.
+            authorRef.Rebind();
         }
 
         protected async Task GetAuthors(ReadEventArgs args)

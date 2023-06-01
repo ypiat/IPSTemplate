@@ -7,6 +7,9 @@ namespace IPSTemplate.Dal.Models
     public class TEBookCopy : Entity
     {
         [Required]
+        public int BookCopyNumber { get; set; }
+
+        [Required]
         public Guid BookID { get; set; }
         public virtual TEBook Book { get; set; }
 

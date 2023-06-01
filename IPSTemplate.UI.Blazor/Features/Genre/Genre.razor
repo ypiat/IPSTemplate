@@ -4,14 +4,14 @@
 
 <IPSPageTop Title="Žanre">
     <ActionsContent>
-        <IPSButton IconClass="fas fa-plus" Color="Color.Primary" OnClick=@(() => OpenEditView(null))>Add genre</IPSButton>
+        <IPSButton IconClass="fas fa-plus" Color="Color.Primary" OnClick=@(() => OpenEditView(null))>Dodaj žanr</IPSButton>
     </ActionsContent>
 </IPSPageTop>
 
 <GenresGrid EditClicked=OpenEditView @ref=_grid />
 
 <IPSWindow Title=@_editViewTitle
-           Size="WindowSize.Medium"
+           Size="WindowSize.Small"
            ConfirmCloseWhen=@(() => _editView.ViewModel.Model.IsDirty)
 @bind-Visible=@windowVisible>
     <WindowContent>
@@ -48,11 +48,12 @@
         windowVisible = true;
     }
 
-    private void CloseEditView()
+    async Task CloseEditView()
     {
+        await Task.Delay(1000);
         windowVisible = false;
         _selectedItemId = null;
-        _grid.Refresh();
+        _grid.Rebind();
     }
 
 }

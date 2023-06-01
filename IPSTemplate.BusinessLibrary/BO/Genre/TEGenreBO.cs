@@ -13,7 +13,7 @@ namespace IPSTemplate.BusinessLibrary.BO.Genre
         public static readonly PropertyInfo<string> NameProperty = RegisterProperty<string>(p => p.Name);
         [Required]
         [LocalizedStringLength(100, 2)]
-        [Display(Name = "Ime")]
+        [Display(Name = "Žanr")]
         public string Name
         {
             get => GetProperty(NameProperty);

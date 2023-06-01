@@ -10,6 +10,15 @@ namespace IPSTemplate.BusinessLibrary.BO.BookCopy
     {
         #region Properties
 
+        public static readonly PropertyInfo<int> BookCopyNumberProperty = RegisterProperty<int>(p => p.BookCopyNumber);
+        [Range(0, int.MaxValue)]
+        [Display(Name = "Številka")]
+        public int BookCopyNumber
+        {
+            get => GetProperty(BookCopyNumberProperty);
+            set => SetProperty(BookCopyNumberProperty, value);
+        }
+
         public static readonly PropertyInfo<Guid> BookIDProperty = RegisterProperty<Guid>(p => p.BookID);
         [Required]
         [Display(Name = "BookId")]
@@ -62,6 +71,18 @@ namespace IPSTemplate.BusinessLibrary.BO.BookCopy
         #endregion
 
         #region Client-side methods
+
+        protected override void Create()
+        {
+            IsAvailable = true;
+            base.Create();
+        }
+
+        protected override Task CreateAsync(bool isAsync)
+        {
+            IsAvailable = true;
+            return base.CreateAsync(isAsync);
+        }
 
         #endregion
 

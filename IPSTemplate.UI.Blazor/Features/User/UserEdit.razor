@@ -1,0 +1,36 @@
+﻿
+@using BusinessLibrary.BO.User
+@using Dal.Models
+
+
+@inherits EditView<TEUserBO, TEUser>
+
+@if (ViewModel?.Model is null)
+{
+    <IPSLoader />
+    return;
+}
+
+@if (Error is not null)
+{
+    @Error
+    return;
+}
+
+<IPSForm Model=ViewModel OnSaved=@(() => ItemSaved.InvokeAsync())>
+    <FormFields>
+        <IPSRow>
+            <IPSColumn>
+                <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.FirstName) />
+                <IPSDatePicker Property=@ViewModel.GetProperty(() => ViewModel.Model.DateOfBirth) />
+            </IPSColumn>
+            <IPSColumn>
+                <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.LastName) />
+                <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.Email) />
+            </IPSColumn>
+        </IPSRow>
+    </FormFields>
+    <FormButtons>
+        <IPSFormSaveButton />
+    </FormButtons>
+</IPSForm>

@@ -3,14 +3,14 @@
 
 <IPSPageTop Title="Založbe">
     <ActionsContent>
-        <IPSButton IconClass="fas fa-plus" Color="Color.Primary" OnClick=@(() => OpenEditView(null))>Add publisher</IPSButton>
+        <IPSButton IconClass="fas fa-plus" Color="Color.Primary" OnClick=@(() => OpenEditView(null))>Dodaj založbo</IPSButton>
     </ActionsContent>
 </IPSPageTop>
 
 <PublishersGrid EditClicked=OpenEditView @ref=_grid />
 
 <IPSWindow Title=@_editViewTitle
-           Size="WindowSize.Medium"
+           Size="WindowSize.Small"
            ConfirmCloseWhen=@(() => _editView.ViewModel.Model.IsDirty)
 @bind-Visible=@windowVisible>
     <WindowContent>
@@ -29,29 +29,29 @@
 
     private PublisherEdit _publisherEdit = default!;
 
-    //[Inject] NavigationManager NavigationManager { get; set; } = default!;
 
     protected void OpenEditView(TEPublisherInfo? selectedItem)
     {
         if (selectedItem is null)
         {
-            _editViewTitle = "Dodaj novega izdatelja";
+            _editViewTitle = "Dodaj novo založbo";
             _selectedItemId = null;
         }
         else
         {
-            _editViewTitle = $"Uredi izdatelja - {selectedItem.Name}";
+            _editViewTitle = $"Uredi založbo - {selectedItem.Name}";
             _selectedItemId = selectedItem.Id.ToString();
         }
 
         windowVisible = true;
     }
 
-    private void CloseEditView()
+    async Task CloseEditView()
     {
+        await Task.Delay(1000);
         windowVisible = false;
         _selectedItemId = null;
-        _grid.Refresh();
+        _grid.Rebind();
     }
 
 }

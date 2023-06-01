@@ -1,0 +1,32 @@
+﻿@namespace IPSTemplate.UI.Blazor.Features.User
+
+@using Core.Library.Base
+@using Csla.Core
+@using IPSTemplate.BusinessLibrary.BO.User
+@using Telerik.Blazor
+@using Telerik.Blazor.Components
+@using IPSTemplate.BusinessLibrary.StandardCollections
+@using IPSTemplate.Dal.Models
+@using Telerik.DataSource
+
+
+@inherits GridView<UsersGrid,
+                   TEUserInfo,
+                   TEUserGridInfo,
+                   TEUserRL,
+                   TEUser>
+
+<IPSGrid Id="UsersGrid" ShowHeader=true
+         OnRead=ReadData TItem=TEUserInfo
+         Context="user" @ref=_user>
+    <GridColumns>
+        <IPSGridColumn Id="Id" Field=@nameof(TEUserInfo.Id) Visible=false />
+        <IPSGridColumn Id="FirstName" Field=@nameof(TEUserInfo.FirstName) />
+        <IPSGridColumn Id="LastName" Field=@nameof(TEUserInfo.LastName) />
+        <IPSGridColumn Id="DateOfBirth" Title="Datum rojstva" Field=@nameof(TEUserInfo.ShowDateAs) />
+        <IPSGridColumn Id="Email" Field=@nameof(TEUserInfo.Email) />
+        <IPSGridCommandColumn>
+            <IPSButton OnClick=@(() => EditClicked.InvokeAsync((TEUserInfo)context)) Icon=Icon.Pencil />
+        </IPSGridCommandColumn>
+    </GridColumns>
+</IPSGrid>

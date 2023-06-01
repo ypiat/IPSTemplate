@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Core.Library.Base;
 using Csla;
+using Csla.DataPortalClient;
 using IPSTemplate.BusinessLibrary.BO.Author;
 using IPSTemplate.BusinessLibrary.BO.BookAuthor;
 using IPSTemplate.BusinessLibrary.BO.BookCopy;
+using IPSTemplate.BusinessLibrary.StandardCollections;
 using IPSTemplate.Dal.Models;
 
 namespace IPSTemplate.BusinessLibrary.BO.Book
@@ -35,6 +37,11 @@ namespace IPSTemplate.BusinessLibrary.BO.Book
         {
             get => GetProperty(LanguageProperty);
             set => LoadProperty(LanguageProperty, value);
+        }
+
+        public string UserFriendlyLanguageName
+        {
+            get => TELanguages.GetUserFriendlyName(Language);
         }
 
         public static readonly PropertyInfo<int?> PageAmountProperty = RegisterProperty<int?>(p => p.PageAmount);
@@ -83,12 +90,14 @@ namespace IPSTemplate.BusinessLibrary.BO.Book
             return TEBookCopyRL.GetByBookId(Id, factory);
         }
 
-        public static readonly PropertyInfo<TEBookCopyRL> ThisBookCopiesProperty = RegisterProperty<TEBookCopyRL>(p => p.ThisBookCopies, RelationshipTypes.LazyLoad);
-        public TEBookCopyRL ThisBookCopies
+     
+
+        public int NewBookCopyNumber
         {
-            get => LazyGetProperty(ThisBookCopiesProperty, () => TEBookCopyRL.GetListByIds(BookCopies.Select(ba => ba.BookID), ApplicationContext.GetRequiredService<IDataPortalFactory>()));
-            set => LoadProperty(ThisBookCopiesProperty, value);
+            get => BookCopies.Any() ? (BookCopies.Select(p => p.BookCopyNumber).ToList().Max() + 1) : 1;
         }
+
+       
 
         #endregion
 

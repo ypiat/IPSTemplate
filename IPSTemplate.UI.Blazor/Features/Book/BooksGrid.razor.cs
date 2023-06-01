@@ -1,5 +1,6 @@
 ﻿using Core.Library.Base;
 using IPSBlazor;
+using IPSBlazor.Components;
 using IPSBlazor.Extensions;
 using IPSTemplate.BusinessLibrary.BO.Author;
 using IPSTemplate.BusinessLibrary.BO.Book;
@@ -21,14 +22,19 @@ public partial class BooksGrid
     [Parameter] public EventCallback<TEBookInfo> EditClicked { get; set; }
     [Parameter] public EventCallback<TEBookCopyInfo> CopyEditClicked { get; set; }
     [Parameter] public EventCallback<TEBookInfo> AddClicked { get; set; }
+    [Parameter] public EventCallback<TEBookCopyInfo> BorrowClicked { get; set; }
+
+    private IPSGrid<TEBookInfo> _book = default!;
+    private IPSGrid<TEBookCopyInfo> _bookCopy = default!;
 
     protected override async Task<TEBookGridInfo> GetGridData(MobileCslaRequest request)
     {
         return await TEBookGridInfo.GetGridInfoAsync(request, DataPortalFactory);
     }
 
+    public void RebindBookGrid() => _book.Rebind();
+    public void RebindBookCopyGrid() => _bookCopy.Rebind();
 
-    
 
     public Color GetColor(TEBookInfo book)
     {
@@ -54,6 +60,4 @@ public partial class BooksGrid
         }
 
     }
-
-
 }

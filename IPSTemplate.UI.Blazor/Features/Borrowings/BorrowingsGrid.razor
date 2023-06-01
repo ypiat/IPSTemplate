@@ -1,0 +1,73 @@
+﻿@namespace IPSTemplate.UI.Blazor.Features.Borrowings
+
+@using Core.Library.Base
+@using Csla.Core
+@using IPSTemplate.BusinessLibrary.BO.Borrowings
+@using Telerik.Blazor
+@using Telerik.Blazor.Components
+@using IPSTemplate.BusinessLibrary.StandardCollections
+@using IPSTemplate.Dal.Models
+@using Telerik.DataSource
+
+
+@inherits GridView<BorrowingsGrid,
+                   TEBorrowingsInfo,
+                   TEBorrowingsGridInfo,
+                   TEBorrowingsRL,
+                   TEBorrowings>
+
+
+@if(Constants.UserRole == "Admin")
+{
+    <IPSGrid Id="BorrowingsGrid" ShowHeader=true
+         OnRead=ReadData TItem=TEBorrowingsInfo
+         Context="borrowing" @ref=_ref>
+        <GridColumns>
+            <IPSGridColumn Id="Id" Field=@nameof(TEBorrowingsInfo.Id) Visible=false />
+            <IPSGridColumn Id="BookName" Field=@nameof(TEBorrowingsInfo.BookCopyBookName) />
+            <IPSGridColumn Id="BookCopyNumber" Field=@nameof(TEBorrowingsInfo.BookCopyBookCopyNumber) />
+            <IPSGridColumn Id="User" Field=@nameof(TEBorrowingsInfo.UserShowFullName) />
+            <IPSGridColumn Id="StartBorrowing" Field=@nameof(TEBorrowingsInfo.StartBorrowing) />
+            <IPSGridColumn Id="EndBorrowing" Field=@nameof(TEBorrowingsInfo.EndBorrowing) />
+            <IPSGridColumn Id="Status" Field=@nameof(TEBorrowingsInfo.Status)>
+                <Template>
+                    @{
+                        var borrowing = (TEBorrowingsInfo)context;
+                        var color = GetColor(borrowing);
+                        <IPSBadge Color="color">@borrowing.Status</IPSBadge>
+                    }
+                </Template>
+               
+            </IPSGridColumn>
+            <IPSGridCommandColumn Width="200px">
+                @{
+                    var borrowing = (TEBorrowingsInfo)context;
+                    @if (!borrowing.IsReturned)
+                    {
+                        <IPSButton Size=ButtonSize.Small Color="Color.Success" OnClick=@(() => HandleReturn.InvokeAsync((TEBorrowingsInfo)context))>Vrni</IPSButton>
+                        <IPSButton Size=ButtonSize.Small Color="Color.Warning" OnClick=@(() => HandleExtend.InvokeAsync((TEBorrowingsInfo)context))>Podaljšaj</IPSButton>
+                    } 
+                }     
+            </IPSGridCommandColumn>
+        </GridColumns>
+    </IPSGrid>
+}
+else
+{
+    <IPSGrid Id="BorrowingsGrid" ShowHeader=true
+             OnRead=ReadData TItem=TEBorrowingsInfo
+             Context="user">
+        <GridColumns>
+            <IPSGridColumn Id="Id" Field=@nameof(TEBorrowingsInfo.Id) Visible=false />
+            <IPSGridColumn Id="BookName" Field=@nameof(TEBorrowingsInfo.BookCopyBookName) />
+            <IPSGridColumn Id="BookCopyNumber" Field=@nameof(TEBorrowingsInfo.BookCopyBookCopyNumber) />
+            <IPSGridColumn Id="StartBorrowing" Field=@nameof(TEBorrowingsInfo.StartBorrowing) />
+            <IPSGridColumn Id="EndBorrowing" Field=@nameof(TEBorrowingsInfo.EndBorrowing) />
+            <IPSGridColumn Id="Status" Field=@nameof(TEBorrowingsInfo.Status) />
+            <IPSGridCommandColumn Width="200px">
+                <IPSButton Color="Color.Success">Vrni</IPSButton>
+                <IPSButton Color="Color.Warning">Podaljšaj</IPSButton>
+            </IPSGridCommandColumn>
+        </GridColumns>
+    </IPSGrid>
+}

@@ -23,47 +23,83 @@
 
     <IPSGrid Id="BooksGrid" ShowHeader=true
              OnRead=ReadData TItem=TEBookInfo
-             Context="book" EnableLoaderContainer=true>
+         Context="book" EnableLoaderContainer @ref=_book>
         <GridColumns>
             <IPSGridColumn Id="Id" Field=@nameof(TEBookInfo.Id) Visible=false />
             <IPSGridColumn  Id="Name" Field=@nameof(TEBookInfo.Name) />
-            <IPSGridColumn  Id="Author" Title="Avtor/je" Field=@nameof(TEBookInfo.AuthorNames)>
-                @*<FilterCellTemplate>
+            <IPSGridColumn  Id="Author" Title="Avtor/ji" Field=@nameof(TEBookInfo.AuthorNames)>
+                @*<FilterCellTemplate >
 
-            </FilterCellTemplate>*@
+                </FilterCellTemplate>*@
             </IPSGridColumn>
             <IPSGridColumn  Id="Genre" Field=@nameof(TEBookInfo.GenreName)>
-            <Template>
-                @{
-                    var book = (TEBookInfo)context;
-                    var color = GetColor(book);
-                    <IPSBadge Color="color">@book.GenreName</IPSBadge>
-                }
-            </Template>
+                <Template>
+                    @{
+                        var book = (TEBookInfo)context;
+                        var color = GetColor(book);
+                        <IPSBadge Color="color">@book.GenreName</IPSBadge>
+                    }
+                </Template>
             </IPSGridColumn>
-            <IPSGridColumn  Id="Language" Field=@nameof(TEBookInfo.Language) />
-            <IPSGridColumn  Id="PageAmount" Field=@nameof(TEBookInfo.PageAmount) />
-            <IPSGridColumn  Id="CopyAmount" Title="Število kopij"/>        
-            <IPSGridCommandColumn >
-                <IPSButton OnClick=@(() => EditClicked.InvokeAsync((TEBookInfo)context)) Icon=Icon.Pencil />
-                <IPSButton OnClick=@(() => AddClicked.InvokeAsync((TEBookInfo)context)) Icon=Icon.Add />
-            </IPSGridCommandColumn>
+            <IPSGridColumn  Id="Language" Title="Jezik" Field=@nameof(TEBookInfo.UserFriendlyLanguageName) />
+            <IPSGridColumn  Id="PageAmount" Field=@nameof(TEBookInfo.PageAmount) Filterable=false/>
+            <IPSGridColumn Id="CopyAmount" Title="Število kopij" Width="100px">
+                <Template>
+                    @{
+                        var books = (TEBookInfo)context;
+                        var counter = books.BookCopies.Count();
+                        <IPSBadge Rounded Color="Color.Light">@counter</IPSBadge>
+                    }
+                </Template>
+            </IPSGridColumn>
+            @if (Constants.UserRole == "Admin")
+            {
+                <IPSGridCommandColumn Width="100px">
+                    <IPSButton OnClick=@(() => EditClicked.InvokeAsync((TEBookInfo)context)) Icon=Icon.Pencil />
+                    <IPSButton OnClick=@(() => AddClicked.InvokeAsync((TEBookInfo)context)) Icon=Icon.Add />
+                </IPSGridCommandColumn>
+            }
         </GridColumns>
-
-    <DetailTemplate>
-            <IPSGrid Data=book.BookCopies FilterMode="GridFilterMode.None">
+        <DetailTemplate >
+        <IPSGrid Data=book.BookCopies FilterMode="GridFilterMode.None" @ref=_bookCopy>
                 <GridColumns>
                     <IPSGridColumn Field=@nameof(TEBookCopyInfo.Id) Visible=false  />
+                    <IPSGridColumn Field=@nameof(TEBookCopyInfo.BookCopyNumber) Title="Številka" /> 
                     <IPSGridColumn Field=@nameof(TEBookCopyInfo.BookName) Title="Naslov"  />
                     <IPSGridColumn Field=@nameof(TEBookCopyInfo.PublishedYear) Title="Leto izdaje"  />
                     <IPSGridColumn Field=@nameof(TEBookCopyInfo.PublisherName) Title="Založba"  />
                     <IPSGridColumn Field=@nameof(TEBookCopyInfo.Status) Title="Stanje"  />
-                    <IPSGridCommandColumn>
-                    <IPSButton OnClick=@(() => CopyEditClicked.InvokeAsync((TEBookCopyInfo)context)) Icon=Icon.Pencil />
+                    
+                    
+                    @if (Constants.UserRole == "Admin")
+                     {
+                        <IPSGridCommandColumn Width="140px">
+                            @{
+                                var bookCopy = (TEBookCopyInfo)context;
+                                var buttonText = "Izposodi";
+                                var color = Color.Success;
+                                @if (!bookCopy.IsAvailable)
+                                {
+                                    buttonText = "Ni na voljo";
+                                    color = Color.Secondary;
+                                }
+                            }
+                            <IPSButton Size=ButtonSize.Small OnClick=@(() => CopyEditClicked.InvokeAsync((TEBookCopyInfo)context)) Icon=Icon.Pencil />
+                            <IPSButton Size=ButtonSize.Small Color=@color OnClick=@(() => BorrowClicked.InvokeAsync((TEBookCopyInfo)context)) Disabled=@(!bookCopy.IsAvailable)>@buttonText</IPSButton>
+                        </IPSGridCommandColumn>
+                    }
+                    else
+                    {
+                    <IPSGridCommandColumn Width="100px">
+                        @{
+                            var bookCopy = (TEBookCopyInfo)context;
+                        }
+                        <IPSButton Color="Color.Success" Disabled=@(!bookCopy.IsAvailable)>Izposodi</IPSButton>
                     </IPSGridCommandColumn>
-                </GridColumns>
+                    }
+            </GridColumns>
             </IPSGrid>
-    </DetailTemplate>
+        </DetailTemplate>
     </IPSGrid>
 
 

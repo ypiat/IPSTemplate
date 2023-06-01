@@ -23,26 +23,24 @@
 }
 
 
-<IPSForm Model=ViewModel OnSaved=@(() => ItemSaved.InvokeAsync())>
+<IPSForm Model=ViewModel OnSaved=@(() => ItemSaved.InvokeAsync()) >
     <FormFields>
         <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.Name) />
         <IPSMultiSelect Property=@ViewModel.GetProperty(() => ViewModel.Model.AuthorIds) OnRead="GetAuthors"
-                            TItem="TEAuthorInfo" TValue="Guid" TextField="ShowAs" ValueField="Id" />
-        <IPSButton Icon=Icon.Add Color="Color.Secondary" OnClick="(() => windowVisible = true)">Add new author</IPSButton>
+                        TItem="TEAuthorInfo" TValue="Guid" TextField="ShowAs" ValueField="Id"
+                        @ref=authorRef />
+        <IPSButton Icon=Icon.Add Color="Color.Secondary" OnClick="(() => windowVisible = true)">Dodaj avtorja</IPSButton>
         
-        @*<IPSComboBox @ref=cbxPublisher Label="Publisher" TItem=TEPublisherInfo TValue=Guid?
-                    TextField=@nameof(TEPublisherInfo.Name)
-                    ValueField=@nameof(TEPublisherInfo.Id)
-                    Property=@ViewModel.GetProperty(() => ViewModel.Model.PublisherID)
-                    OnRead="GetPublishers"
-                    Placeholder="Publisher" />*@
         <IPSRow>
             <IPSComboBox @ref=cbxGenre TItem=TEGenreInfo TValue=Guid?
                          TextField=@nameof(TEGenreInfo.Name)
                          ValueField=@nameof(TEGenreInfo.Id)
                          Property=@ViewModel.GetProperty(() => ViewModel.Model.GenreID)
                          OnRead="GetGenres" ColumnWidth="6" />
-            <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.Language) ColumnWidth="6" />
+            <IPSComboBox Data=@TELanguages.OrderedUserFriendlyNameMap
+                         ValueField=@nameof(KeyValuePair<string, string>.Key)
+                         TextField=@nameof(KeyValuePair<string, string>.Value)
+                         Property=@ViewModel.GetProperty(() => ViewModel.Model.Language) ColumnWidth="6" />
             
         </IPSRow>
         <IPSNumericTextBox Property=@ViewModel.GetProperty(() => ViewModel.Model.PageAmount) ColumnWidth="6" />
@@ -52,7 +50,7 @@
     </FormButtons>
 </IPSForm>
 
-<IPSWindow Title="Add new avtor"
+<IPSWindow Title="Dodaj novega avtorja"
            Size="WindowSize.Medium"
            ConfirmCloseWhen=@(() => _authorEditView.ViewModel.Model.IsDirty)
             @bind-Visible=@windowVisible>
@@ -60,7 +58,6 @@
         <AuthorEdit ItemSaved=CloseEditView @ref=_authorEditView />
     </WindowContent>
 </IPSWindow>
-
 
 
 
