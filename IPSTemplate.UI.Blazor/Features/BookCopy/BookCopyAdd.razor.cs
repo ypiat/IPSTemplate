@@ -12,9 +12,11 @@ using Telerik.Blazor.Components;
 
 namespace IPSTemplate.UI.Blazor.Features.BookCopy
 {
-    public partial class BookCopyEdit : EditView<TEBookCopyBO, TEBookCopy>
+    public partial class BookCopyAdd : EditView<TEBookCopyBO, TEBookCopy>
     {
         [Parameter] public EventCallback ItemSaved { get; set; }
+
+        [Parameter, EditorRequired] public TEBookInfo Book { get; set; } = default!;
 
 
         bool windowVisible;
@@ -42,6 +44,8 @@ namespace IPSTemplate.UI.Blazor.Features.BookCopy
             else
             {
                 await base.OnInitializedAsync();
+
+                ViewModel.Model.SetBook(Book, DataPortalFactory);
 
             }     
         }

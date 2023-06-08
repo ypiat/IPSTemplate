@@ -15,12 +15,12 @@ namespace IPSTemplate.AppServer.Areas.Identity.Pages.Account
     {
         public class Model
         {
-            [Required]
+            [Required(ErrorMessage = "Polje Uporabniško ime je obvezno")]
             //[Display(ResourceType = typeof(IPSDiva.Ui.Blazor.Resources.Resources), Name = "Login_Email")]
             [Display(Name = "Uporabniško ime")]
             public string? Username { get; set; }
 
-            [Required] 
+            [Required(ErrorMessage = "Polje Geslo je obvezno")] 
             [DataType(DataType.Password)]
             //[Display(ResourceType = typeof(IPSDiva.Ui.Blazor.Resources.Resources), Name = "Login_Password")]
             [Display(Name = "Geslo")]

@@ -38,7 +38,7 @@ else
            ConfirmCloseWhen=@(() => _addCopyView.ViewModel.Model.IsDirty)
 @bind-Visible=@windowAddCopyVisible>
     <WindowContent>
-        <BookCopyEdit Book=@_selectedBook ItemId=@_selectedItemId BookCopyNumber=@_bookCopyNumber ItemSaved=CloseAddCopyView @ref=_addCopyView />
+        <BookCopyAdd Book=@_selectedBook ItemId=@_selectedItemId  ItemSaved=CloseAddCopyView @ref=_addCopyView />
     </WindowContent>
 </IPSWindow>
 
@@ -57,7 +57,7 @@ else
     bool _isAddNew;
     BooksGrid _bookGrid = default!;
     BookEdit _editView = default!;
-    BookCopyEdit _addCopyView = default!;
+    BookCopyAdd _addCopyView = default!;
 
     private bool IsAdmin { get; set; } = false;
 

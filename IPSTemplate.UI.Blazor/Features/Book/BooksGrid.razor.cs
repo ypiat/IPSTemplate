@@ -55,7 +55,7 @@ public partial class BooksGrid
     Guid _selectedBookCopyId;
     int _bookCopyNumber;
     string? _editCopyViewTitle;
-    string _bookName;
+    string? _bookName;
     bool windowEditCopyVisible;
     bool windowBorrowVisible;
     BookCopyGrid _bookCopyGrid = default!;
@@ -85,9 +85,10 @@ public partial class BooksGrid
 
     protected void OpenEditCopyView(TEBookCopyInfo selectedItem)
     {
+        
         _editCopyViewTitle = $"Uredi kopijo knjige - {selectedItem.BookName}";
-        _selectedBookId = selectedItem.BookID;
-        _bookCopyNumber = selectedItem.BookCopyNumber;
+        //_selectedBookId = selectedItem.Id;
+        //_bookCopyNumber = selectedItem.BookCopyNumber;
         _selectedItemId = selectedItem.Id.ToString();
 
         windowEditCopyVisible = true;

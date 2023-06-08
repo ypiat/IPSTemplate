@@ -85,7 +85,7 @@
            ConfirmCloseWhen=@(() => _editCopyView.ViewModel.Model.IsDirty)
            @bind-Visible=@windowEditCopyVisible>
     <WindowContent>
-        <BookCopyEdit BookId=@_selectedBookId ItemId=@_selectedItemId BookCopyNumber=@_bookCopyNumber ItemSaved=CloseEditCopyView @ref=_editCopyView />
+        <BookCopyEdit  ItemId=@_selectedItemId  ItemSaved=CloseEditCopyView @ref=_editCopyView />
     </WindowContent>
 </IPSWindow>
 
