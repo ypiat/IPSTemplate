@@ -1,24 +1,26 @@
 ﻿@inject IStringLocalizer<Resources> Localizer
 
 <IPSNavMenu>
-    @if(Constants.UserRole == "Admin")
-    {
+    <AuthorizeView Roles="Administrator">
         <IPSNavMenuLink Link="/" IconClass="fa-solid fa-clipboard">@Localizer["Izposoje"]</IPSNavMenuLink>
         <IPSNavMenuLink Link="/user" IconClass="fa-solid fa-user">Uporabniki</IPSNavMenuLink>
         <hr />
-        <IPSNavMenuLink Link="/book" IconClass="fa-solid fa-book">Knjige</IPSNavMenuLink>
+    </AuthorizeView>
+
+    <AuthorizeView Roles="Member">
+
+        <IPSNavMenuLink Link="/" IconClass="fa-solid fa-clipboard">@Localizer["Moje izposoje"]</IPSNavMenuLink>
+        @*<IPSNavMenuLink Link="/profile" IconClass="fa-solid fa-user">Moj profil</IPSNavMenuLink>*@
+        <hr />
+    </AuthorizeView>
+
+    <IPSNavMenuLink Link="/book" IconClass="fa-solid fa-book">Knjige</IPSNavMenuLink>
+
+    <AuthorizeView Roles="Administrator">
         <IPSNavMenuLink Link="/author" IconClass="fa-solid fa-feather">Avtorji</IPSNavMenuLink>
         <IPSNavMenuLink Link="/publisher" IconClass="fa-solid fa-house">Založbe</IPSNavMenuLink>
         <IPSNavMenuLink Link="/genre" IconClass="fa-solid fa-palette">Žanre</IPSNavMenuLink>
-    }
-
-    @if (Constants.UserRole == "User")
-    {
-        <p>Ime Priimek</p>
-        <IPSNavMenuLink Link="/" IconClass="fa-solid fa-clipboard">@Localizer["Moje izposoje"]</IPSNavMenuLink>
-        <IPSNavMenuLink Link="/profile" IconClass="fa-solid fa-user">Moj profil</IPSNavMenuLink>
-        <hr />
-        <IPSNavMenuLink Link="/book" IconClass="fa-solid fa-book">Knjige</IPSNavMenuLink>
-    }
+    </AuthorizeView>
+    
     
 </IPSNavMenu>

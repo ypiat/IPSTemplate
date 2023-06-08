@@ -22,11 +22,6 @@ namespace IPSTemplate.BusinessLibrary.BO.BookCopy
             set => LoadProperty(BookCopyNumberProperty, value);
         }
 
-        //[Display(Name = "Številka")]
-        //public int NewBookCopyNumber
-        //{
-
-        //}
 
         public static readonly PropertyInfo<Guid> BookIDProperty = RegisterProperty<Guid>(p => p.BookID);
         [Display(Name = "BookId")]

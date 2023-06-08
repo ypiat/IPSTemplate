@@ -5,8 +5,6 @@ namespace IPSTemplate.Dal.Models
 {
     public class TEBook : Entity
     {
- 
-
         [Required]
         [MaxLength(100)]
         public string Name { get; set; }
@@ -20,6 +18,6 @@ namespace IPSTemplate.Dal.Models
 
         public int? PageAmount { get; set; }
 
-
+        public int BookIndex { get; set; }
     }
 }

@@ -1,9 +1,9 @@
 ﻿@page "/user"
-@using IPSTemplate.BusinessLibrary.BO.User;
+@using IPSTemplate.BusinessLibrary.BO.Identity.User;
 
 <IPSPageTop Title="Uporabniki" >
     <ActionsContent>
-        <IPSButton IconClass="fas fa-plus" Color="Color.Primary" OnClick=@(() => OpenEditView(null))>Dodaj userja</IPSButton>
+        <IPSButton IconClass="fas fa-plus" Color="Color.Primary" OnClick=NavigateToRegister>Dodaj uporabnika</IPSButton>
     </ActionsContent>
 </IPSPageTop>
 
@@ -25,19 +25,30 @@
     UsersGrid _grid = default!; 
     UserEdit _editView = default!;
 
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationStateTask { get; set; } = default!;
+
+    [Inject] private NavigationManager NavigationManager { get; set; } = default!;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var user = (await authenticationStateTask).User;
+
+        if (user.Identity?.IsAuthenticated == false || user.IsInRole("Member"))
+        {
+            NavigationManager.NavigateTo("/");
+        }
+    }
+
+    protected void NavigateToRegister()
+    {
+        NavigationManager.NavigateTo("/account/register");
+    }
+
     protected void OpenEditView(TEUserInfo? selectedItem)
     {
-        if (selectedItem is null)
-        {
-            _editViewTitle = "Dodaj novega uporabnika";
-            _selectedItemId = null;
-        }
-        else
-        {
-            _editViewTitle = $"Uredi uporabnika - {selectedItem.FirstName} {selectedItem.LastName}";
-            _selectedItemId = selectedItem.Id.ToString();
-        }
-
+        _editViewTitle = $"Uredi uporabnika - {selectedItem.DisplayNameLong}";
+        _selectedItemId = selectedItem.Id.ToString();
         windowVisible = true;
     }
 

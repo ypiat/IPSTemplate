@@ -1,9 +1,10 @@
 ﻿
-@using BusinessLibrary.BO.User
+@using BusinessLibrary.BO.Identity.User
+@using Core.DAL.Infrastructure;
 @using Dal.Models
 
 
-@inherits EditView<TEUserBO, TEUser>
+@inherits EditView<TEUserBO, Entity>
 
 @if (ViewModel?.Model is null)
 {
@@ -21,11 +22,11 @@
     <FormFields>
         <IPSRow>
             <IPSColumn>
-                <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.FirstName) />
+                <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.Name) />
                 <IPSDatePicker Property=@ViewModel.GetProperty(() => ViewModel.Model.DateOfBirth) />
             </IPSColumn>
             <IPSColumn>
-                <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.LastName) />
+                <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.Surname) />
                 <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.Email) />
             </IPSColumn>
         </IPSRow>

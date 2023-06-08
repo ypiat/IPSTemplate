@@ -1,4 +1,4 @@
-﻿@page "/book/edit/{ItemId?}"
+﻿@*@page "/book/edit/{ItemId?}"*@
 
 @using BusinessLibrary.BO.Book
 @using Dal.Models
@@ -7,6 +7,7 @@
 
 
 @using IPSTemplate.UI.Blazor.Features.Author
+@using IPSTemplate.UI.Blazor.Features.Genre
 
 @inherits EditView<TEBookBO, TEBook>
 
@@ -28,22 +29,30 @@
         <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.Name) />
         <IPSMultiSelect Property=@ViewModel.GetProperty(() => ViewModel.Model.AuthorIds) OnRead="GetAuthors"
                         TItem="TEAuthorInfo" TValue="Guid" TextField="ShowAs" ValueField="Id"
-                        @ref=authorRef />
-        <IPSButton Icon=Icon.Add Color="Color.Secondary" OnClick="(() => windowVisible = true)">Dodaj avtorja</IPSButton>
+                        @ref=_authorRef />
+        <IPSButton Icon=Icon.Add Color="Color.Secondary" OnClick="(() => windowAuthorVisible = true)">Dodaj avtorja</IPSButton>
         
         <IPSRow>
-            <IPSComboBox @ref=cbxGenre TItem=TEGenreInfo TValue=Guid?
+            <IPSComboBox  TItem=TEGenreInfo TValue=Guid?
                          TextField=@nameof(TEGenreInfo.Name)
                          ValueField=@nameof(TEGenreInfo.Id)
                          Property=@ViewModel.GetProperty(() => ViewModel.Model.GenreID)
-                         OnRead="GetGenres" ColumnWidth="6" />
+                         OnRead="GetGenres" ColumnWidth="6" @ref=_genreRef />
             <IPSComboBox Data=@TELanguages.OrderedUserFriendlyNameMap
                          ValueField=@nameof(KeyValuePair<string, string>.Key)
                          TextField=@nameof(KeyValuePair<string, string>.Value)
                          Property=@ViewModel.GetProperty(() => ViewModel.Model.Language) ColumnWidth="6" />
             
         </IPSRow>
-        <IPSNumericTextBox Property=@ViewModel.GetProperty(() => ViewModel.Model.PageAmount) ColumnWidth="6" />
+        <IPSButton Icon=Icon.Add Color="Color.Secondary" OnClick="(() => windowGenreVisible = true)">Dodaj žanr</IPSButton>
+        <IPSRow>
+            <IPSNumericTextBox Property=@ViewModel.GetProperty(() => ViewModel.Model.PageAmount) ColumnWidth="6" />
+            @if(IsAddNew)
+            {
+                <IPSNumericTextBox Property=@ViewModel.GetProperty(() => ViewModel.Model.BookIndex) ColumnWidth="6" />
+            }
+
+        </IPSRow>
     </FormFields>
     <FormButtons>
         <IPSFormSaveButton />
@@ -53,9 +62,18 @@
 <IPSWindow Title="Dodaj novega avtorja"
            Size="WindowSize.Medium"
            ConfirmCloseWhen=@(() => _authorEditView.ViewModel.Model.IsDirty)
-            @bind-Visible=@windowVisible>
+@bind-Visible=@windowAuthorVisible>
     <WindowContent>
-        <AuthorEdit ItemSaved=CloseEditView @ref=_authorEditView />
+        <AuthorEdit ItemSaved=CloseEditAuthorView @ref=_authorEditView />
+    </WindowContent>
+</IPSWindow>
+
+<IPSWindow Title="Dodaj žanr"
+           Size="WindowSize.Small"
+           ConfirmCloseWhen=@(() => _genreEditView.ViewModel.Model.IsDirty)
+@bind-Visible=@windowGenreVisible>
+    <WindowContent>
+        <GenreEdit ItemSaved=CloseEditGenreView @ref=_genreEditView />
     </WindowContent>
 </IPSWindow>
 

@@ -1,0 +1,53 @@
+﻿@page "/borrow/history"
+@namespace IPSTemplate.UI.Blazor.Features.Borrowings
+
+@using Core.Library.Base
+@using Csla.Core
+@using IPSTemplate.BusinessLibrary.BO.Borrowings
+@using Telerik.Blazor
+@using Telerik.Blazor.Components
+@using IPSTemplate.BusinessLibrary.StandardCollections
+@using IPSTemplate.Dal.Models
+@using Telerik.DataSource
+
+
+@inherits GridView<BorrowingsHistoryGrid,
+                   TEBorrowingsInfo,
+                   TEBorrowingsGridInfo,
+                   TEBorrowingsRL,
+                   TEBorrowings>
+
+
+<AuthorizeView Roles="Administrator" Context="Auth">
+    
+    <IPSPageTop Title="Zgodovina izposoj" >
+        <ActionsContent>
+            <IPSButton Color="Color.Warning" OnClick=NavigateToBorrowings>Tekoče izposoje</IPSButton>
+        </ActionsContent>
+    </IPSPageTop>
+    <IPSGrid Id="BorrowingsGrid" ShowHeader=true
+             OnRead=ReadData TItem=TEBorrowingsInfo
+             Context="borrowing" >
+        <GridColumns>
+            <IPSGridColumn Id="Id" Field=@nameof(TEBorrowingsInfo.Id) Visible=false />
+            <IPSGridColumn Id="BookCopyNumber" Field=@nameof(TEBorrowingsInfo.BookCopyBookCopyNumber) Width="110px" Filterable=false />
+            <IPSGridColumn Id="BookName" Field=@nameof(TEBorrowingsInfo.BookCopyBookName) />
+            <IPSGridColumn Id="User" Field=@nameof(TEBorrowingsInfo.UserShowFullName) />
+            <IPSGridColumn Id="StartBorrowing" Field=@nameof(TEBorrowingsInfo.StartBorrowing) Filterable=false/>
+            <IPSGridColumn Id="EndBorrowing" Field=@nameof(TEBorrowingsInfo.EndBorrowing) Filterable=false />
+            <IPSGridColumn Id="Status" Field=@nameof(TEBorrowingsInfo.Status) Filterable=false>
+                <Template>
+                    @{
+                        var borrowings = (TEBorrowingsInfo)context;
+                        var color = GetColor(borrowings);
+                        var borrowing = (TEBorrowingsInfo)context;
+                        <IPSBadge Color=@color>@borrowing.Status</IPSBadge>
+                    }
+                </Template>
+            </IPSGridColumn>
+        </GridColumns>
+    </IPSGrid>
+</AuthorizeView>
+
+
+

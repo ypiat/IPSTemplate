@@ -1,0 +1,72 @@
+﻿@namespace IPSTemplate.UI.Blazor.Features.BookCopy
+
+@using Core.Library.Base
+@using Csla.Core
+@using IPSTemplate.BusinessLibrary.BO.Book
+@using IPSTemplate.BusinessLibrary.BO.BookCopy;
+@using IPSTemplate.UI.Blazor.Features.BookCopy
+@using Telerik.Blazor
+@using Telerik.Blazor.Components
+@using IPSTemplate.Dal.Models
+@using Telerik.DataSource
+
+
+
+@inherits GridView<BookCopyGrid,
+                   TEBookCopyInfo,
+                   TEBookCopyGridInfo,
+                   TEBookCopyRL,
+                   TEBookCopy>
+
+
+
+<IPSGrid Id="BookCopyGrid" OnRead=ReadData TItem=TEBookCopyInfo FilterMode="GridFilterMode.None" @ref=_bookCopy>
+    <GridColumns>
+        <IPSGridColumn Field=@nameof(TEBookCopyInfo.Id) Visible=false  />
+        <IPSGridColumn Field=@nameof(TEBookCopyInfo.BookCopyNumber) Title="Številka" /> 
+        <IPSGridColumn Field=@nameof(TEBookCopyInfo.BookName) Title="Naslov"  />
+        <IPSGridColumn Field=@nameof(TEBookCopyInfo.PublishedYear) Title="Leto izdaje"  />
+        <IPSGridColumn Field=@nameof(TEBookCopyInfo.PublisherName) Title="Založba"  />
+        <AuthorizeView Context="Auth">
+            <IPSGridColumn Field=@nameof(TEBookCopyInfo.Status) Title="Stanje"  />
+        </AuthorizeView>
+                    
+        <AuthorizeView Roles="Administrator" Context="Auth">
+            <IPSGridCommandColumn Width="100px">
+                @{
+                    var bookCopy = (TEBookCopyInfo)context;
+                    var buttonText = "Izposodi";
+                    var color = Color.Success;
+                    @if (!bookCopy.IsAvailable)
+                    {
+                        buttonText = "Ni na voljo";
+                        color = Color.Secondary;
+                    }
+                }
+                <IPSButton Size=ButtonSize.Small OnClick=@(() => CopyEditClicked.InvokeAsync((TEBookCopyInfo)context)) Icon=Icon.Pencil />
+                <IPSButton Size=ButtonSize.Small Color=@color OnClick=@(() => BorrowClicked.InvokeAsync((TEBookCopyInfo)context)) Disabled=@(!bookCopy.IsAvailable)>@buttonText</IPSButton>
+            </IPSGridCommandColumn>
+         </AuthorizeView>
+
+        <AuthorizeView Roles="Member" Context="Auth">
+            <IPSGridCommandColumn Width="100px">
+                @{
+                    var bookCopy = (TEBookCopyInfo)context;
+                    var buttonText = "Izposodi";
+                    var color = Color.Success;
+                    @if (!bookCopy.IsAvailable)
+                    {
+                        buttonText = "Ni na voljo";
+                        color = Color.Secondary;
+                    }
+                }
+                <IPSButton Size=ButtonSize.Small Color=@color OnClick=@(() => BorrowClicked.InvokeAsync((TEBookCopyInfo)context)) Disabled=@(!bookCopy.IsAvailable)>@buttonText</IPSButton>
+            </IPSGridCommandColumn>
+         </AuthorizeView>
+
+    </GridColumns>
+</IPSGrid>
+
+
+
+

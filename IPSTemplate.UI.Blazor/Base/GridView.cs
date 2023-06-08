@@ -45,6 +45,7 @@ public abstract class GridView<TSelf, TInfo, TGridInfo, TReadOnlyList, TEntity> 
     }
 
     protected abstract Task<TGridInfo> GetGridData(MobileCslaRequest request);
+    //protected abstract Task<TGridInfo> GetGridData(string? filter, MobileCslaRequest request);
 
     protected async Task ReadData(ReadEventArgs args)
     {

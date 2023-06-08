@@ -1,25 +1,18 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.InteropServices;
-using System.Text.RegularExpressions;
+﻿using System.ComponentModel.DataAnnotations;
 using Core.DAL.Infrastructure;
+using Microsoft.AspNetCore.Identity;
 
-namespace IPSTemplate.Dal.Models
+namespace IPSTemplate.Dal.Models;
+
+public class TEUser : Entity
 {
-    public class TEUser : Entity
-    {
-        [Required]
-        [MaxLength(100)]
-        public string FirstName { get; set; }
+    [MaxLength(100)]
+    public string FirstName { get; set; }
 
-        [Required]
-        [MaxLength(100)]
-        public string LastName { get; set; }
+    [MaxLength(100)]
+    public string Lastname { get; set; }
 
-        public DateTime? DateOfBirth { get; set; }
+    public DateTime? DateOfBirth { get; set; }
 
-        [MaxLength(100)]
-        public string? Email { get; set; }
-
-    }
+    public string Email { get; set; }
 }

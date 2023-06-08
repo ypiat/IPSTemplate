@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Core.Library;
 using Core.Library.Base;
 using Csla;
 using Csla.DataPortalClient;
@@ -39,6 +40,7 @@ namespace IPSTemplate.BusinessLibrary.BO.Book
             set => LoadProperty(LanguageProperty, value);
         }
 
+        [CustomFilter(Property = new[] { nameof(Language) })]
         public string UserFriendlyLanguageName
         {
             get => TELanguages.GetUserFriendlyName(Language);
@@ -90,12 +92,40 @@ namespace IPSTemplate.BusinessLibrary.BO.Book
             return TEBookCopyRL.GetByBookId(Id, factory);
         }
 
-     
-
-        public int NewBookCopyNumber
+        public static readonly PropertyInfo<int> BookIndexProperty = RegisterProperty<int>(p => p.BookIndex);
+        [Range(100, 999900)]
+        [Display(Name = "Index knjigi")]
+        public int BookIndex
         {
-            get => BookCopies.Any() ? (BookCopies.Select(p => p.BookCopyNumber).ToList().Max() + 1) : 1;
+            get => GetProperty(BookIndexProperty);
+            set => LoadProperty(BookIndexProperty, value);
         }
+
+
+
+        //public static readonly PropertyInfo<TEBookRL> BooksProperty = RegisterProperty<TEBookRL>(p => p.Books, RelationshipTypes.LazyLoad);
+        //public TEBookRL Books
+        //{
+        //    get => LazyGetProperty(BooksProperty, () => GetBooks(ApplicationContext.GetRequiredService<IDataPortalFactory>()));
+        //    set => LoadProperty(BooksProperty, value);
+        //}
+
+        //protected TEBookRL GetBooks(IDataPortalFactory factory)
+        //{
+        //    return TEBookRL.GetList(factory);
+        //}
+
+
+
+        //public int NewBookIndex
+        //{
+        //    get => Books.Any() ? (Books.Select(p => p.BookIndex).ToList().Max() + 100) : 100;
+        //}
+
+        //public int NewBookCopyNumber
+        //{
+        //    get => BookCopies.Any() ? (BookCopies.Select(p => p.BookCopyNumber).ToList().Max() + 1) : BookIndex + 1;
+        //}
 
        
 

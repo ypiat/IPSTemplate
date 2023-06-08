@@ -2,13 +2,16 @@
 @using IPSTemplate.BusinessLibrary.BO.Genre;
 
 
-<IPSPageTop Title="Žanre">
-    <ActionsContent>
-        <IPSButton IconClass="fas fa-plus" Color="Color.Primary" OnClick=@(() => OpenEditView(null))>Dodaj žanr</IPSButton>
-    </ActionsContent>
-</IPSPageTop>
-
+ 
+<IPSPageTop Title="Žanre" />
+<IPSButton IconClass="fas fa-plus" Color="Color.Primary" OnClick=@(() => OpenEditView(null))>Dodaj žanr</IPSButton>
+<br/>
+<br/>
+<br />
 <GenresGrid EditClicked=OpenEditView @ref=_grid />
+
+
+
 
 <IPSWindow Title=@_editViewTitle
            Size="WindowSize.Small"
@@ -30,7 +33,20 @@
 
     private GenreEdit _genreEdit = default!;
 
-    //[Inject] NavigationManager NavigationManager { get; set; } = default!;
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationStateTask { get; set; } = default!;
+
+    [Inject] private NavigationManager NavigationManager { get; set; } = default!;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var user = (await authenticationStateTask).User;
+
+        if (user.Identity?.IsAuthenticated == false || user.IsInRole("Member"))
+        {
+            NavigationManager.NavigateTo("/");
+        }
+    }
 
     protected void OpenEditView(TEGenreInfo? selectedItem)
     {

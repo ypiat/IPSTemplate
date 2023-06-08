@@ -111,6 +111,7 @@ namespace IPSTemplate.BusinessLibrary.BO.Borrowings
 
         public void OnReturn()
         {
+            EndBorrowing = DateTime.Now;
             IsReturned = true;
             BookCopy.IsAvailable = true;
             BookCopy = BookCopy.Save();

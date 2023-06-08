@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Core.DAL.Infrastructure;
+using IPSTemplate.Dal.Models.Identity;
 
 namespace IPSTemplate.Dal.Models
 {
@@ -12,7 +13,7 @@ namespace IPSTemplate.Dal.Models
 
         [Required]
         public Guid UserID { get; set; }
-        public virtual TEUser User { get; set; }
+        public virtual TEIdentityUser User { get; set; }
 
         public DateTime StartBorrowing { get; set; }
 

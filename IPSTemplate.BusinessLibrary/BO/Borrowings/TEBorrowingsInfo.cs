@@ -1,7 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Core.Library;
 using Core.Library.Base;
 using Csla;
+using IPSTemplate.BusinessLibrary.BO.Identity.User;
 using IPSTemplate.Dal.Models;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Newtonsoft.Json.Serialization;
 
 namespace IPSTemplate.BusinessLibrary.BO.Borrowings
@@ -44,26 +47,27 @@ namespace IPSTemplate.BusinessLibrary.BO.Borrowings
             set => LoadProperty(UserIDProperty, value);
         }
 
-        public static readonly PropertyInfo<string> UserFirstNameProperty = RegisterProperty<string>(p => p.UserFirstName);
+        public static readonly PropertyInfo<string> UserNameProperty = RegisterProperty<string>(p => p.UserName);
         [Display(Name = "Ime userja")]
-        public string UserFirstName
+        public string UserName
         {
-            get => GetProperty(UserFirstNameProperty);
-            set => LoadProperty(UserFirstNameProperty, value);
+            get => GetProperty(UserNameProperty);
+            set => LoadProperty(UserNameProperty, value);
         }
 
-        public static readonly PropertyInfo<string> UserLastNameProperty = RegisterProperty<string>(p => p.UserLastName);
+        public static readonly PropertyInfo<string> UserSurnameProperty = RegisterProperty<string>(p => p.UserSurname);
         [Display(Name = "Priimek userja")]
-        public string UserLastName
+        public string UserSurname
         {
-            get => GetProperty(UserLastNameProperty);
-            set => LoadProperty(UserLastNameProperty, value);
+            get => GetProperty(UserSurnameProperty);
+            set => LoadProperty(UserSurnameProperty, value);
         }
 
         [Display(Name = "Uporabnik")]
+        [CustomFilter(Property = new[] { nameof(UserName), nameof(UserSurname) })]
         public string UserShowFullName
         {
-            get => String.Format($"{UserFirstName} {UserLastName}");
+            get => String.Format($"{UserName} {UserSurname}");
         }
 
         public static readonly PropertyInfo<DateTime> StartBorrowingProperty = RegisterProperty<DateTime>(p => p.StartBorrowing);
@@ -103,6 +107,7 @@ namespace IPSTemplate.BusinessLibrary.BO.Borrowings
                 }
             }
         }
+
 
         #endregion
 

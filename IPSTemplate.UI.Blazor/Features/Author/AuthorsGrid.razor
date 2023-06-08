@@ -23,8 +23,12 @@
         <IPSGridColumn Id="Id" Field=@nameof(TEAuthorInfo.Id) Visible=false />
         <IPSGridColumn Id="FirstName" Field=@nameof(TEAuthorInfo.FirstName) />
         <IPSGridColumn Id="LastName" Field=@nameof(TEAuthorInfo.LastName) />
-        <IPSGridColumn Id="LifeYears" Title="Leta življenja" Field=@nameof(TEAuthorInfo.LifeYears) />
         <IPSGridColumn Id="Country" Title="Država" Field=@nameof(TEAuthorInfo.UserFriendlyCountryName) />
+        <IPSGridColumn Id="LifeYears" Title="Leta življenja" Field=@nameof(TEAuthorInfo.LifeYears) Filterable=false>
+@*            <FilterCellTemplate>
+                <IPSNumericTextBox TValue=int ValueChanged=@((value) => GridHelper.ApplyFilterAsync(context, value, FilterOperator.Contains)) />
+            </FilterCellTemplate>*@
+        </IPSGridColumn>
         <IPSGridCommandColumn>
             <IPSButton OnClick=@(() => EditClicked.InvokeAsync((TEAuthorInfo)context)) Icon=Icon.Pencil />
         </IPSGridCommandColumn>

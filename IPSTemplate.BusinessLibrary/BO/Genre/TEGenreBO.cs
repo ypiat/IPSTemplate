@@ -11,7 +11,7 @@ namespace IPSTemplate.BusinessLibrary.BO.Genre
         #region Properties
 
         public static readonly PropertyInfo<string> NameProperty = RegisterProperty<string>(p => p.Name);
-        [Required]
+        [Required(ErrorMessage = "Polje Zanr je obvezno")]
         [LocalizedStringLength(100, 2)]
         [Display(Name = "Žanr")]
         public string Name

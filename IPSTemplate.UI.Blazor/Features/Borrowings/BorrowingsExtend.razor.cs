@@ -3,7 +3,7 @@ using IPSBlazor.Extensions;
 using IPSTemplate.BusinessLibrary.BO.Book;
 using IPSTemplate.BusinessLibrary.BO.Borrowings;
 using IPSTemplate.BusinessLibrary.BO.Genre;
-using IPSTemplate.BusinessLibrary.BO.User;
+using IPSTemplate.BusinessLibrary.BO.Identity.User;
 using IPSTemplate.Dal.Models;
 using IPSTemplate.UI.Blazor.Base;
 using System;

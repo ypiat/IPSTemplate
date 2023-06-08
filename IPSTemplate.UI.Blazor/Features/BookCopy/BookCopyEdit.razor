@@ -25,7 +25,6 @@
 
 <IPSForm Model=ViewModel OnSaved=@(() => ItemSaved.InvokeAsync())>
     <FormFields>
-        <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.BookCopyNumber) />
         <IPSComboBox @ref=cbxPublisher Label="Založba"  TItem=TEPublisherInfo TValue=Guid?
                      TextField=@nameof(TEPublisherInfo.Name)
                      ValueField=@nameof(TEPublisherInfo.Id)

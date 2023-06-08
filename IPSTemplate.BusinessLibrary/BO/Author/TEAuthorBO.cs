@@ -12,7 +12,7 @@ namespace IPSTemplate.BusinessLibrary.BO.Author
         #region Properties
 
         public static readonly PropertyInfo<string> FirstNameProperty = RegisterProperty<string>(p => p.FirstName);
-        [Required]
+        [Required(ErrorMessage = "Polje Ime je obvezno")]
         [LocalizedStringLength(100, 2)]
         [Display(Name = "Ime")]
         public string FirstName
@@ -22,7 +22,7 @@ namespace IPSTemplate.BusinessLibrary.BO.Author
         }
 
         public static readonly PropertyInfo<string> LastNameProperty = RegisterProperty<string>(p => p.LastName);
-        [Required]
+        [Required(ErrorMessage = "Polje Priimek je obvezno")]
         [LocalizedStringLength(100, 2)]
         [Display(Name = "Priimek")]
         public string LastName
@@ -32,7 +32,6 @@ namespace IPSTemplate.BusinessLibrary.BO.Author
         }
 
         public static readonly PropertyInfo<int?> BirthYearProperty = RegisterProperty<int?>(p => p.BirthYear);
-        [Range(1, 2023)]
         [Display(Name = "Letnica rojstva")]
         public int? BirthYear
         {
@@ -41,7 +40,6 @@ namespace IPSTemplate.BusinessLibrary.BO.Author
         }
 
         public static readonly PropertyInfo<int?> DeathYearProperty = RegisterProperty<int?>(p => p.DeathYear);
-        [Range(1, 2023)]
         [Display(Name = "Letnica smrti")]
         public int? DeathYear
         {
@@ -50,7 +48,7 @@ namespace IPSTemplate.BusinessLibrary.BO.Author
         }
 
         public static readonly PropertyInfo<string> CountryProperty = RegisterProperty<string>(p => p.Country);
-        [Display(Name = "Country")]
+        [Display(Name = "Država")]
         public string Country
         {
             get => GetProperty(CountryProperty);
@@ -65,13 +63,14 @@ namespace IPSTemplate.BusinessLibrary.BO.Author
 
         protected override void AddBusinessRules()
         {
-            BusinessRules.AddRule(new IsYearNotMoreThanActual(DeathYearProperty));
+            BusinessRules.AddRule(new IsDeathYearInRightRange(DeathYearProperty));
+            BusinessRules.AddRule(new IsBirthYearInRightRange(BirthYearProperty));
             base.AddBusinessRules();
         }
 
-        private class IsYearNotMoreThanActual : BusinessRule
+        private class IsDeathYearInRightRange : BusinessRule
         {
-            public IsYearNotMoreThanActual(Csla.Core.IPropertyInfo deathYearProperty) : base(deathYearProperty)
+            public IsDeathYearInRightRange(Csla.Core.IPropertyInfo deathYearProperty) : base(deathYearProperty)
             {
                 InputProperties.Add(PrimaryProperty);
             }
@@ -84,9 +83,31 @@ namespace IPSTemplate.BusinessLibrary.BO.Author
                     return;
                 }
 
-                if ( deathYear > DateTime.Now.Year)
+                if ( deathYear > DateTime.Now.Year || deathYear < 1)
                 {
-                    context.AddErrorResult($"Year can't be greater than {DateTime.Now.Year.ToString()}");
+                    context.AddErrorResult($"Leto mora biti v območju 1 - {DateTime.Now.Year.ToString()}");
+                }
+            }
+        }
+
+        private class IsBirthYearInRightRange : BusinessRule
+        {
+            public IsBirthYearInRightRange(Csla.Core.IPropertyInfo birthYearProperty) : base(birthYearProperty)
+            {
+                InputProperties.Add(PrimaryProperty);
+            }
+
+            protected override void Execute(IRuleContext context)
+            {
+                int? birthYear = null;
+                if (!context.TryGetInputValue(PrimaryProperty, ref birthYear))
+                {
+                    return;
+                }
+
+                if (birthYear > DateTime.Now.AddYears(-5).Year || birthYear < 1)
+                {
+                    context.AddErrorResult($"Leto mora biti v območju 1 - {DateTime.Now.AddYears(-5).Year.ToString()}");
                 }
             }
         }

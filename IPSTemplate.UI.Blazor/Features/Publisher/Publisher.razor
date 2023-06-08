@@ -29,6 +29,21 @@
 
     private PublisherEdit _publisherEdit = default!;
 
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationStateTask { get; set; } = default!;
+
+    [Inject] private NavigationManager NavigationManager { get; set; } = default!;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var user = (await authenticationStateTask).User;
+
+        if (user.Identity?.IsAuthenticated == false || user.IsInRole("Member"))
+        {
+            NavigationManager.NavigateTo("/");
+        }
+    }
+
 
     protected void OpenEditView(TEPublisherInfo? selectedItem)
     {

@@ -17,6 +17,11 @@ namespace IPSTemplate.BusinessLibrary.BO.Book
         {
             return await dataPortalFactory.GetPortal<TEBookRL>().FetchAsync(filter);
         }
+
+        //public static async Task<TEBookRL> GetList(IDataPortalFactory dataPortalFactory)
+        //{
+        //    return await dataPortalFactory.GetPortal<TEBookRL>().FetchAsync();
+        //}
         #endregion
         #region Server-side methods
         [Fetch]
@@ -27,8 +32,14 @@ namespace IPSTemplate.BusinessLibrary.BO.Book
             else
                 Fetch(repository, childFactory);
         }
+
+        //[Fetch]
+        //protected async Task FetchList( [Inject] IRepository<TEBook, TEBook> repository, [Inject] IChildDataPortalFactory childFactory)
+        //{
+        //    Fetch(repository, childFactory);
+        //}
         #endregion
 
-   
+
     }
 }

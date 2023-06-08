@@ -11,9 +11,9 @@ namespace IPSTemplate.BusinessLibrary.BO.Publisher
         #region Properties
 
         public static readonly PropertyInfo<string> NameProperty = RegisterProperty<string>(p => p.Name);
-        [Required]
+        [Required(ErrorMessage = "Polje Založba je obvezno")]
         [LocalizedStringLength(100, 2)]
-        [Display(Name = "Ime")]
+        [Display(Name = "Založba")]
         public string Name
         {
             get => GetProperty(NameProperty);
@@ -21,7 +21,7 @@ namespace IPSTemplate.BusinessLibrary.BO.Publisher
         }
 
         public static readonly PropertyInfo<string?> AddressProperty = RegisterProperty<string?>(p => p.Address);
-        [LocalizedStringLength(100, 0)]
+        [LocalizedStringLength(256)]
         [Display(Name = "Naslov")]
         public string? Address
         {
@@ -30,7 +30,7 @@ namespace IPSTemplate.BusinessLibrary.BO.Publisher
         }
 
         public static readonly PropertyInfo<string?> EmailProperty = RegisterProperty<string?>(p => p.Email);
-        [RegularExpression(@"^[\w-\.]+@([\w -]+\.)+[\w-]{2,4}$", ErrorMessage = "Neveljaven e-poštni vzorec (example@example.com")]
+        [RegularExpression(@"^[\w-\.]+@([\w -]+\.)+[\w-]{2,4}$", ErrorMessage = "Neveljaven e-poštni vzorec (example@example.com)")]
         [Display(Name = "Email")]
         public string? Email
         {
@@ -43,6 +43,7 @@ namespace IPSTemplate.BusinessLibrary.BO.Publisher
         #region Validation rules
 
         public async Task CheckRulesAsync() => await BusinessRules.CheckRulesAsync();
+
 
         #endregion
 

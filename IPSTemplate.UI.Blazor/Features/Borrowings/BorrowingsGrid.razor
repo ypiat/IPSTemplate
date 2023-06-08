@@ -17,24 +17,29 @@
                    TEBorrowings>
 
 
-@if(Constants.UserRole == "Admin")
-{
+<AuthorizeView Roles="Administrator" Context="Auth">
+    <IPSPageTop Title="Tekoče izposoje">
+        <ActionsContent>
+            <IPSButton Color="Color.Secondary" OnClick=NavigateToHistory>Zgodovina izposoj</IPSButton>
+        </ActionsContent>
+    </IPSPageTop>
     <IPSGrid Id="BorrowingsGrid" ShowHeader=true
          OnRead=ReadData TItem=TEBorrowingsInfo
-         Context="borrowing" @ref=_ref>
+             Context="borrowing" Sortable @ref=_ref>
         <GridColumns>
             <IPSGridColumn Id="Id" Field=@nameof(TEBorrowingsInfo.Id) Visible=false />
-            <IPSGridColumn Id="BookName" Field=@nameof(TEBorrowingsInfo.BookCopyBookName) />
-            <IPSGridColumn Id="BookCopyNumber" Field=@nameof(TEBorrowingsInfo.BookCopyBookCopyNumber) />
+            <IPSGridColumn Id="BookCopyNumber" Field=@nameof(TEBorrowingsInfo.BookCopyBookCopyNumber) Width="110px" Filterable=false />
+            <IPSGridColumn Id="BookName" Field=@nameof(TEBorrowingsInfo.BookCopyBookName) Width="600px"/> 
             <IPSGridColumn Id="User" Field=@nameof(TEBorrowingsInfo.UserShowFullName) />
-            <IPSGridColumn Id="StartBorrowing" Field=@nameof(TEBorrowingsInfo.StartBorrowing) />
-            <IPSGridColumn Id="EndBorrowing" Field=@nameof(TEBorrowingsInfo.EndBorrowing) />
-            <IPSGridColumn Id="Status" Field=@nameof(TEBorrowingsInfo.Status)>
+            <IPSGridColumn Id="StartBorrowing" Field=@nameof(TEBorrowingsInfo.StartBorrowing) Filterable=false Width="200px" />
+            <IPSGridColumn Id="EndBorrowing" Field=@nameof(TEBorrowingsInfo.EndBorrowing) Filterable=false Width="200px" />
+            <IPSGridColumn Id="Status" Field=@nameof(TEBorrowingsInfo.Status) Filterable=false Width="110px">
                 <Template>
                     @{
+                        var borrowings = (TEBorrowingsInfo)context;
+                        var color = GetColor(borrowings);
                         var borrowing = (TEBorrowingsInfo)context;
-                        var color = GetColor(borrowing);
-                        <IPSBadge Color="color">@borrowing.Status</IPSBadge>
+                        <IPSBadge Color=@color>@borrowing.Status</IPSBadge>
                     }
                 </Template>
                
@@ -51,23 +56,60 @@
             </IPSGridCommandColumn>
         </GridColumns>
     </IPSGrid>
-}
-else
-{
+</AuthorizeView>
+
+<AuthorizeView Roles="Member" Context="Auth">
+    <IPSPageTop Title="Tekoče izposoje" />
     <IPSGrid Id="BorrowingsGrid" ShowHeader=true
-             OnRead=ReadData TItem=TEBorrowingsInfo
-             Context="user">
+             OnRead=ReadUserData TItem=TEBorrowingsInfo
+             Context="borrowing" Sortable @ref=_ref>
         <GridColumns>
             <IPSGridColumn Id="Id" Field=@nameof(TEBorrowingsInfo.Id) Visible=false />
-            <IPSGridColumn Id="BookName" Field=@nameof(TEBorrowingsInfo.BookCopyBookName) />
-            <IPSGridColumn Id="BookCopyNumber" Field=@nameof(TEBorrowingsInfo.BookCopyBookCopyNumber) />
-            <IPSGridColumn Id="StartBorrowing" Field=@nameof(TEBorrowingsInfo.StartBorrowing) />
-            <IPSGridColumn Id="EndBorrowing" Field=@nameof(TEBorrowingsInfo.EndBorrowing) />
-            <IPSGridColumn Id="Status" Field=@nameof(TEBorrowingsInfo.Status) />
+            <IPSGridColumn Id="BookCopyNumber" Field=@nameof(TEBorrowingsInfo.BookCopyBookCopyNumber) Width="110px" Filterable=false />
+            <IPSGridColumn Id="BookName" Field=@nameof(TEBorrowingsInfo.BookCopyBookName) Width="600px" />
+            <IPSGridColumn Id="StartBorrowing" Field=@nameof(TEBorrowingsInfo.StartBorrowing) Filterable=false Width="200px" />
+            <IPSGridColumn Id="EndBorrowing" Field=@nameof(TEBorrowingsInfo.EndBorrowing) Filterable=false Width="200px" />
+            <IPSGridColumn Id="Status" Field=@nameof(TEBorrowingsInfo.Status) Filterable=false Width="100px">
+                <Template>
+                    @{
+                        var borrowing = (TEBorrowingsInfo)context;
+                        <IPSBadge Color="Color.Warning">@borrowing.Status</IPSBadge>
+                    }
+                </Template>
+            </IPSGridColumn>
             <IPSGridCommandColumn Width="200px">
-                <IPSButton Color="Color.Success">Vrni</IPSButton>
-                <IPSButton Color="Color.Warning">Podaljšaj</IPSButton>
+                @{
+                    var borrowing = (TEBorrowingsInfo)context;
+                    @if (!borrowing.IsReturned)
+                    {
+                        <IPSButton Size=ButtonSize.Small Color="Color.Success" OnClick=@(() => HandleReturn.InvokeAsync((TEBorrowingsInfo)context))>Vrni</IPSButton>
+                        <IPSButton Size=ButtonSize.Small Color="Color.Warning" OnClick=@(() => HandleExtend.InvokeAsync((TEBorrowingsInfo)context))>Podaljšaj</IPSButton>
+                    }
+                }
             </IPSGridCommandColumn>
         </GridColumns>
     </IPSGrid>
-}
+    <br />
+    <br />
+    <br />
+    <IPSPageTop Title="Zgodovina izposoj" />
+    <IPSGrid Id="BorrowingsGrid" ShowHeader=true
+             OnRead=ReadUserHistoryData TItem=TEBorrowingsInfo
+             Context="borrowing" Sortable @ref=_refHistory>
+        <GridColumns>
+            <IPSGridColumn Id="Id" Field=@nameof(TEBorrowingsInfo.Id) Visible=false />
+            <IPSGridColumn Id="BookCopyNumber" Field=@nameof(TEBorrowingsInfo.BookCopyBookCopyNumber) Width="110px"  Filterable=false/>
+            <IPSGridColumn Id="BookName" Field=@nameof(TEBorrowingsInfo.BookCopyBookName) Width="600px"/>     
+            <IPSGridColumn Id="StartBorrowing" Field=@nameof(TEBorrowingsInfo.StartBorrowing) Filterable=false Width="200px" />
+            <IPSGridColumn Id="EndBorrowing" Field=@nameof(TEBorrowingsInfo.EndBorrowing) Filterable=false Width="200px" />
+            <IPSGridColumn Id="Status" Field=@nameof(TEBorrowingsInfo.Status) Filterable=false Width="200px">
+                <Template>
+                    @{
+                        var borrowing = (TEBorrowingsInfo)context;
+                        <IPSBadge Color="Color.Success">@borrowing.Status</IPSBadge>
+                    }
+                </Template>
+            </IPSGridColumn> 
+        </GridColumns>
+    </IPSGrid>
+</AuthorizeView>

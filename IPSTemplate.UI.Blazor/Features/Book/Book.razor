@@ -4,14 +4,23 @@
 @using IPSTemplate.UI.Blazor.Features.BookCopy;
 @using IPSTemplate.UI.Blazor.Features.Borrowings;
 
-<IPSPageTop Title="Knjige">
-    <ActionsContent>
-        <IPSButton Icon=Icon.Add Color="Color.Primary" OnClick=@(() => OpenEditView(null))>Dodaj knjigo</IPSButton>
-        
-    </ActionsContent>
-</IPSPageTop>
 
-<BooksGrid EditClicked=OpenEditView AddClicked=OpenAddView CopyEditClicked=OpenEditCopyView BorrowClicked=OpenBorrowView @ref=_grid />
+@if(IsAdmin)
+{
+    <IPSPageTop Title="Knjige">
+        <ActionsContent>
+            <IPSButton Icon=Icon.Add Color="Color.Primary" OnClick=@(() => OpenEditView(null))>Dodaj knjigo</IPSButton>
+        </ActionsContent>
+    </IPSPageTop>
+}
+else
+{
+    <IPSPageTop Title="Knjige" />
+}
+
+
+
+<BooksGrid EditClicked=OpenEditView AddClicked=OpenAddView  @ref=_bookGrid />
 
 
 <IPSWindow Title=@_editViewTitle
@@ -19,46 +28,53 @@
            ConfirmCloseWhen=@(() => _editView.ViewModel.Model.IsDirty)
 @bind-Visible=@windowEditVisible>
     <WindowContent>
-        <BookEdit ItemId=@_selectedItemId ItemSaved=CloseEditView @ref=_editView />
+        <BookEdit ItemId=@_selectedItemId IsAddNew=_isAddNew ItemSaved=CloseEditView @ref=_editView />
     </WindowContent>
 </IPSWindow>
 
-<IPSWindow Title=@_editCopyViewTitle
+
+<IPSWindow Title=@_addCopyViewTitle
            Size="WindowSize.Medium"
-           ConfirmCloseWhen=@(() => _editCopyView.ViewModel.Model.IsDirty)
-           @bind-Visible=@windowEditCopyVisible>
+           ConfirmCloseWhen=@(() => _addCopyView.ViewModel.Model.IsDirty)
+@bind-Visible=@windowAddCopyVisible>
     <WindowContent>
-        <BookCopyEdit BookId=@_selectedBookId ItemId=@_selectedItemId BookCopyNumber=@_bookCopyNumber ItemSaved=CloseEditCopyView @ref=_editCopyView />
+        <BookCopyEdit Book=@_selectedBook ItemId=@_selectedItemId BookCopyNumber=@_bookCopyNumber ItemSaved=CloseAddCopyView @ref=_addCopyView />
     </WindowContent>
 </IPSWindow>
 
-<IPSWindow Title=@_borrowViewTitle
-           Size="WindowSize.Medium"
-           ConfirmCloseWhen=@(() => _borrowView.ViewModel.Model.IsDirty)
-           @bind-Visible=@windowBorrowVisible>
-    <WindowContent>
-        <BorrowingsEdit BookCopyId=@_selectedBookCopyId ItemSaved=CloseBorrowView @ref=_borrowView />
-    </WindowContent>
-</IPSWindow>
 
 
 @code{
     string? _selectedItemId;
-    Guid _selectedBookId;
+    TEBookInfo _selectedBook;
     Guid _selectedBookCopyId;
     int _bookCopyNumber;
     string? _editViewTitle;
-    string? _editCopyViewTitle;
-    string _borrowViewTitle;
+    string? _addCopyViewTitle;
     bool windowEditVisible;
-    bool windowEditCopyVisible;
+    bool windowAddCopyVisible;
     bool windowBorrowVisible;
-    BooksGrid _grid = default!;
+    bool _isAddNew;
+    BooksGrid _bookGrid = default!;
     BookEdit _editView = default!;
-    BookCopyEdit _editCopyView = default!;
-    BorrowingsEdit _borrowView = default!;
+    BookCopyEdit _addCopyView = default!;
 
+    private bool IsAdmin { get; set; } = false;
 
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationStateTask { get; set; } = default!;
+
+    [Inject] private NavigationManager NavigationManager { get; set; } = default!;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var user = (await authenticationStateTask).User;
+
+        if (user.IsInRole("Administrator"))
+        {
+            IsAdmin = true;
+        }
+    }
 
     protected void OpenEditView(TEBookInfo? selectedItem)
     {
@@ -66,11 +82,13 @@
         {
             _editViewTitle = "Dodaj novo knjigo";
             _selectedItemId = null;
+            _isAddNew = true;
         }
         else
         {
             _editViewTitle = $"Uredi knjigo - {selectedItem.Name}";
             _selectedItemId = selectedItem.Id.ToString();
+            _isAddNew = false;
         }
 
         windowEditVisible = true;
@@ -81,52 +99,26 @@
         await Task.Delay(1000);
         windowEditVisible = false;
         _selectedItemId = null;
-        _grid.RebindBookGrid();
+        _bookGrid.RebindBookGrid();
     }
 
 
 
     protected void OpenAddView(TEBookInfo selectedItem)
     {
-        _editCopyViewTitle = $"Dodaj kopijo knjige - {selectedItem.Name}";
-        _selectedBookId = selectedItem.Id;
-        _bookCopyNumber = selectedItem.NewBookCopyNumber;
+        _addCopyViewTitle = $"Dodaj kopijo knjige - {selectedItem.Name}";
+        _selectedBook = selectedItem;
         _selectedItemId = null;
 
-        windowEditCopyVisible = true;
+        windowAddCopyVisible = true;
     }
 
-    protected void OpenEditCopyView (TEBookCopyInfo selectedItem)
-    {
-        _editCopyViewTitle = $"Uredi kopijo knjige - {selectedItem.BookName}";
-        _selectedBookId = selectedItem.BookID;
-        _bookCopyNumber = selectedItem.BookCopyNumber;
-        _selectedItemId = selectedItem.Id.ToString();
 
-        windowEditCopyVisible = true;
-    }
-
-    async Task CloseEditCopyView()
+    async Task CloseAddCopyView()
     {
         await Task.Delay(1000);
-        windowEditCopyVisible = false;
+        windowAddCopyVisible = false;
         _selectedItemId = null;
-        _grid.RebindBookGrid();
-    }
-
-    protected void OpenBorrowView(TEBookCopyInfo selectedItem)
-    {
-        _borrowViewTitle = $"Izposoj za knjigo - {selectedItem.BookName}";
-        _selectedBookCopyId = selectedItem.Id;
-
-        windowBorrowVisible = true;
-    }
-    
-    async Task CloseBorrowView()
-    {
-        await Task.Delay(1000);
-        windowBorrowVisible = false;
-        _selectedItemId = null;
-        _grid.RebindBookGrid();
+        _bookGrid.RebindBookGrid();
     }
 }

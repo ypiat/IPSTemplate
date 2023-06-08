@@ -3,7 +3,7 @@
 
 <IPSPageTop Title="Avtorje">
     <ActionsContent>
-        <IPSButton IconClass="fas fa-plus" Color="Color.Primary" OnClick=@(() => OpenEditView(null))>Add author</IPSButton>
+        <IPSButton IconClass="fas fa-plus" Color="Color.Primary" OnClick=@(() => OpenEditView(null))>Dodaj avtorja</IPSButton>
     </ActionsContent>
 </IPSPageTop>
 
@@ -26,6 +26,21 @@
     AuthorEdit _editView = default!;
 
     private AuthorEdit _authorEdit = default!;
+
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationStateTask { get; set; } = default!;
+
+    [Inject] private NavigationManager NavigationManager { get; set; } = default!;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var user = (await authenticationStateTask).User;
+
+        if (user.Identity?.IsAuthenticated == false || user.IsInRole("Member"))
+        {
+            NavigationManager.NavigateTo("/");
+        }
+    }
 
     protected void OpenEditView(TEAuthorInfo? selectedItem)
     {

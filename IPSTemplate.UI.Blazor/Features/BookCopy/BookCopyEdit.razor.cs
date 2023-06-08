@@ -7,6 +7,7 @@ using IPSTemplate.BusinessLibrary.BO.Publisher;
 using IPSTemplate.Dal.Models;
 using IPSTemplate.UI.Blazor.Base;
 using IPSTemplate.UI.Blazor.Features.Publisher;
+using Microsoft.AspNetCore.Components.Authorization;
 using Telerik.Blazor.Components;
 
 namespace IPSTemplate.UI.Blazor.Features.BookCopy
@@ -15,7 +16,7 @@ namespace IPSTemplate.UI.Blazor.Features.BookCopy
     {
         [Parameter] public EventCallback ItemSaved { get; set; }
 
-        [Parameter] public Guid BookId { get; set; }
+        [Parameter, EditorRequired] public TEBookInfo Book { get; set; } = default!;
         [Parameter] public int BookCopyNumber { get; set; }
 
         bool windowVisible;
@@ -26,12 +27,26 @@ namespace IPSTemplate.UI.Blazor.Features.BookCopy
         protected IPSComboBox<Guid?, TEBookInfo>? cbxBook = default!;
         protected IPSComboBox<Guid?, TEPublisherInfo> cbxPublisher= default!;
 
+        [CascadingParameter]
+        private Task<AuthenticationState> authenticationStateTask { get; set; } = default!;
+
+        [Inject] private NavigationManager NavigationManager { get; set; } = default!;
+
+
         protected override async Task OnInitializedAsync()
         {
-            await base.OnInitializedAsync();
+            var user = (await authenticationStateTask).User;
 
-            ViewModel.Model.BookID = BookId;
-            ViewModel.Model.BookCopyNumber = BookCopyNumber;
+            if (user.Identity?.IsAuthenticated == false)
+            {
+                NavigationManager.NavigateTo("/");
+            }
+            else
+            {
+                await base.OnInitializedAsync();
+
+                ViewModel.Model.SetBook(Book, DataPortalFactory);
+            }     
         }
 
         async Task CloseEditView()

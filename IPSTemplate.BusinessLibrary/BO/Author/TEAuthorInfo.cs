@@ -1,4 +1,5 @@
-﻿using Core.Library.Base;
+﻿using Core.Library;
+using Core.Library.Base;
 using Csla;
 using IPSTemplate.BusinessLibrary.StandardCollections;
 using IPSTemplate.Dal.Models;
@@ -50,8 +51,9 @@ namespace IPSTemplate.BusinessLibrary.BO.Author
             set => LoadProperty(DeathYearProperty, value);
         }
 
-        //public static readonly PropertyInfo<string> LifeYearsProperty = RegisterProperty<string>(p => p.LifeYears);
-        //[Display(Name = "Leta življenja")]
+        public static readonly PropertyInfo<string> LifeYearsProperty = RegisterProperty<string>(p => p.LifeYears);
+        [Display(Name = "Leta življenja")]
+        [CustomFilter(Property = new[] { nameof(BirthYear) })]
         public string LifeYears => String.Format($"{BirthYear} - {DeathYear}");
 
         public static readonly PropertyInfo<string> CountryProperty = RegisterProperty<string>(p => p.Country);
@@ -62,6 +64,7 @@ namespace IPSTemplate.BusinessLibrary.BO.Author
             set => LoadProperty(CountryProperty, value);
         }
 
+        [CustomFilter(Property = new[] { nameof(Country) })]
         public string UserFriendlyCountryName
         {
             get => TECountries.GetUserFriendlyName(Country);

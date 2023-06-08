@@ -1,7 +1,7 @@
 ﻿
 @using BusinessLibrary.BO.Borrowings
 @using Dal.Models
-@using IPSTemplate.BusinessLibrary.BO.User;
+@using IPSTemplate.BusinessLibrary.BO.Identity.User;
 
 @inherits EditView<TEBorrowingsBO, TEBorrowings>
 
@@ -17,16 +17,31 @@
     return;
 }
 
-<IPSForm Model=ViewModel OnSaved=@(() => ItemSaved.InvokeAsync())>
-    <FormFields>
-        <IPSComboBox @ref=cbxUser TItem=TEUserInfo TValue=Guid
-                     TextField=@nameof(TEUserInfo.ShowFullName)
-                     ValueField=@nameof(TEUserInfo.Id)
-                     Property=@ViewModel.GetProperty(() => ViewModel.Model.UserID)
-                     OnRead="GetUsers" Label=""/>
-    </FormFields>
-    <FormButtons>
-        @*<IPSFormSaveButton />*@
-        <IPSButton Color="Color.Success" Type="IPSBlazor.Components.ButtonType.Submit" OnClick="HandleSave">Izposodi</IPSButton>
-    </FormButtons>
-</IPSForm>
+<AuthorizeView Roles="Administrator" Context="Auth">
+
+    <IPSForm Model=ViewModel OnSaved=@(() => ItemSaved.InvokeAsync())>
+        <FormFields>
+            <IPSComboBox @ref=cbxUser TItem=TEUserInfo TValue=Guid
+                         TextField=@nameof(TEUserInfo.DisplayName)
+                         ValueField=@nameof(TEUserInfo.Id)
+                         Property=@ViewModel.GetProperty(() => ViewModel.Model.UserID)
+                         OnRead="GetUsers" Label="Uporabnik" />
+        </FormFields>
+        <FormButtons>
+            <IPSButton Color="Color.Success" Type="IPSBlazor.Components.ButtonType.Submit" OnClick="HandleSave">Izposodi</IPSButton>
+        </FormButtons>
+    </IPSForm>
+</AuthorizeView>
+
+<AuthorizeView Roles="Member" Context="Auth">
+    <IPSForm Model=ViewModel OnSaved=@(() => ItemSaved.InvokeAsync())>
+        <FormFields>
+            <h3>Želiš izposoditi knjigo - @BookTitle?</h3>
+            <br />
+        </FormFields>
+        <FormButtons>
+            <IPSButton Color="Color.Success" Type="IPSBlazor.Components.ButtonType.Submit" OnClick="HandleSave">Izposodi</IPSButton>
+        </FormButtons>
+    </IPSForm>
+</AuthorizeView>
+

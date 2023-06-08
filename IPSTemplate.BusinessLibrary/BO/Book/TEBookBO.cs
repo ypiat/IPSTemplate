@@ -14,7 +14,7 @@ namespace IPSTemplate.BusinessLibrary.BO.Book
         #region Properties
 
         public static readonly PropertyInfo<string> NameProperty = RegisterProperty<string>(p => p.Name);
-        [Required]
+        [Required(ErrorMessage = "Polje Naslov je obvezno")]
         [LocalizedStringLength(100, 2)]
         [Display(Name = "Naslov")]
         public string Name
@@ -24,7 +24,7 @@ namespace IPSTemplate.BusinessLibrary.BO.Book
         }
 
         public static readonly PropertyInfo<Guid?> GenreIDProperty = RegisterProperty<Guid?>(p => p.GenreID);
-        [Required]
+        [Required(ErrorMessage = "Polje Žanr je obvezno")]
         [Display(Name = "Žanr")]
         public Guid? GenreID
         {
@@ -85,6 +85,37 @@ namespace IPSTemplate.BusinessLibrary.BO.Book
             }
         }
 
+        public static readonly PropertyInfo<int> BookIndexProperty = RegisterProperty<int>(p => p.BookIndex);
+        [Required(ErrorMessage = "Polje Index knjigi je obvezno (je unikalna številka knjigi)")]
+        [Range(100, 999900)]
+        [Display(Name = "Index knjigi")]
+        public int BookIndex
+        {
+            get => Books.Any() ? (Books.Select(p => p.BookIndex).Max() + 100) : 100;
+            set => SetProperty(BookIndexProperty, value);
+        }
+
+        //public static readonly PropertyInfo<int> GenerateBookIndexProperty = RegisterProperty<int>(p => p.GenerateBookIndex);
+        //[Required(ErrorMessage = "Polje Index knjigi je obvezno (je unikalna številka knjigi)")]
+        //[Range(100, 999900)]
+        //[Display(Name = "Index knjigi")]
+        //public int GenerateBookIndex
+        //{
+        //    get => Books.Any() ? (Books.Select(p => p.BookIndex).Max() + 100) : 100;
+        //}
+
+        public static readonly PropertyInfo<TEBookRL> BooksProperty = RegisterProperty<TEBookRL>(p => p.Books, RelationshipTypes.LazyLoad);
+        public TEBookRL Books
+        {
+            get => LazyGetProperty(BooksProperty, () => GetBooks(ApplicationContext.GetRequiredService<IDataPortalFactory>()));
+            set => LoadProperty(BooksProperty, value);
+        }
+
+        protected TEBookRL GetBooks(IDataPortalFactory factory)
+        {
+            return TEBookRL.GetList(factory);
+        }
+
         
 
 
@@ -97,6 +128,7 @@ namespace IPSTemplate.BusinessLibrary.BO.Book
         protected override void AddBusinessRules()
         {
             BusinessRules.AddRule(new HasAtLeastOneAuthorRule(AuthorIdsProperty));
+            BusinessRules.AddRule(new IsIndexUniqueRule(BookIndexProperty));
             base.AddBusinessRules();
         }
 
@@ -123,10 +155,49 @@ namespace IPSTemplate.BusinessLibrary.BO.Book
             }
         }
 
+        private class IsIndexUniqueRule : BusinessRule
+        {
+            public IsIndexUniqueRule(Csla.Core.IPropertyInfo bookIndexProperty) : base(bookIndexProperty)
+            {
+                InputProperties.Add(PrimaryProperty);
+                InputProperties.Add(BooksProperty);
+            }
+
+            protected override void Execute(IRuleContext context)
+           {
+                TEBookRL? books = null;
+                int bookIndex = 0;
+                if (!context.TryGetInputValue(BooksProperty, ref books))
+                {
+                    return;
+                }
+
+                if (!context.TryGetInputValue(BookIndexProperty, ref bookIndex))
+                {
+                    return;
+                }
+
+                if (books.Select(p => p.BookIndex).ToList().Contains(bookIndex))
+                {
+                    context.AddErrorResult("Ta index že obstaja! Izberite drug.");
+                }
+            }
+        }
+
         #endregion
 
         #region Client-side methods
+        //protected override void Create()
+        //{
+        //    BookIndex = GenerateBookIndex;
+        //    base.Create();
+        //}
 
+        //protected override Task CreateAsync(bool isAsync)
+        //{
+        //    BookIndex = GenerateBookIndex;
+        //    return base.CreateAsync(isAsync);
+        //}
         #endregion
 
         #region Server-side methods

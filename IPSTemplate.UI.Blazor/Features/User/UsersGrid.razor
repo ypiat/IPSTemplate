@@ -1,8 +1,9 @@
 ﻿@namespace IPSTemplate.UI.Blazor.Features.User
 
+@using Core.DAL.Infrastructure;
 @using Core.Library.Base
 @using Csla.Core
-@using IPSTemplate.BusinessLibrary.BO.User
+@using IPSTemplate.BusinessLibrary.BO.Identity.User
 @using Telerik.Blazor
 @using Telerik.Blazor.Components
 @using IPSTemplate.BusinessLibrary.StandardCollections
@@ -14,17 +15,17 @@
                    TEUserInfo,
                    TEUserGridInfo,
                    TEUserRL,
-                   TEUser>
+                   Entity>
 
 <IPSGrid Id="UsersGrid" ShowHeader=true
          OnRead=ReadData TItem=TEUserInfo
          Context="user" @ref=_user>
     <GridColumns>
         <IPSGridColumn Id="Id" Field=@nameof(TEUserInfo.Id) Visible=false />
-        <IPSGridColumn Id="FirstName" Field=@nameof(TEUserInfo.FirstName) />
-        <IPSGridColumn Id="LastName" Field=@nameof(TEUserInfo.LastName) />
-        <IPSGridColumn Id="DateOfBirth" Title="Datum rojstva" Field=@nameof(TEUserInfo.ShowDateAs) />
+        <IPSGridColumn Id="FirstName" Field=@nameof(TEUserInfo.Name) />
+        <IPSGridColumn Id="LastName" Field=@nameof(TEUserInfo.Surname) />
         <IPSGridColumn Id="Email" Field=@nameof(TEUserInfo.Email) />
+        <IPSGridColumn Id="DateOfBirth" Title="Datum rojstva" Field=@nameof(TEUserInfo.ShowDateAs) Filterable=false/>
         <IPSGridCommandColumn>
             <IPSButton OnClick=@(() => EditClicked.InvokeAsync((TEUserInfo)context)) Icon=Icon.Pencil />
         </IPSGridCommandColumn>
