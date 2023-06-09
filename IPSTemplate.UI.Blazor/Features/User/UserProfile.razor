@@ -18,21 +18,27 @@
     return;
 }
 
-<IPSForm Model=ViewModel OnSaved=@(() => ItemSaved.InvokeAsync())>
-    <FormFields>
-        <IPSRow>
-            <IPSColumn>
-                <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.Name) />
-                <IPSDatePicker Property=@ViewModel.GetProperty(() => ViewModel.Model.DateOfBirth) />
-            </IPSColumn>
-            <IPSColumn>
-                <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.Surname) />
-                <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.Email) />
-            </IPSColumn>
-        </IPSRow>
-        @*<IPSLink Class="me-auto" Link="/account/reset-password">Spremeni geslo</IPSLink>*@
-    </FormFields>
-    <FormButtons>
-        <IPSFormSaveButton />
-    </FormButtons>
-</IPSForm>
+<IPSRow>
+     <IPSColumn Md="6">
+        <IPSForm Model=ViewModel OnSaved=@(() => ItemSaved.InvokeAsync())>
+            <FormFields>
+                <IPSRow>
+                    <IPSColumn>
+                        <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.Name) />
+                        <IPSDatePicker Property=@ViewModel.GetProperty(() => ViewModel.Model.DateOfBirth) />
+                    </IPSColumn>
+                    <IPSColumn>
+                        <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.Surname) />
+                        <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.Email) />
+                    </IPSColumn>
+                </IPSRow>
+            </FormFields>
+            <FormButtons>
+                <IPSFormSaveButton />
+            </FormButtons>
+        </IPSForm>
+        <hr />
+    </IPSColumn>
+</IPSRow>
+
+<UserPasswordChange></UserPasswordChange>
