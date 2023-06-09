@@ -30,7 +30,7 @@
              Context="borrowing" >
         <GridColumns>
             <IPSGridColumn Id="Id" Field=@nameof(TEBorrowingsInfo.Id) Visible=false />
-            <IPSGridColumn Id="BookCopyNumber" Field=@nameof(TEBorrowingsInfo.BookCopyBookCopyNumber) Width="110px" Filterable=false />
+            <IPSGridColumn Id="BookCopyNumber" Title="Index kopije" Field=@nameof(TEBorrowingsInfo.BookCopyBookCopyNumber) Width="110px" Filterable=false />
             <IPSGridColumn Id="BookName" Field=@nameof(TEBorrowingsInfo.BookCopyBookName) />
             <IPSGridColumn Id="User" Field=@nameof(TEBorrowingsInfo.UserShowFullName) />
             <IPSGridColumn Id="StartBorrowing" Field=@nameof(TEBorrowingsInfo.StartBorrowing) Filterable=false/>

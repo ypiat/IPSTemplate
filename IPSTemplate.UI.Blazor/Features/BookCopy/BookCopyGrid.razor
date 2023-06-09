@@ -23,7 +23,7 @@
 <IPSGrid Id="BookCopyGrid" OnRead=ReadData TItem=TEBookCopyInfo FilterMode="GridFilterMode.None" @ref=_bookCopy>
     <GridColumns>
         <IPSGridColumn Field=@nameof(TEBookCopyInfo.Id) Visible=false  />
-        <IPSGridColumn Field=@nameof(TEBookCopyInfo.BookCopyNumber) Title="Številka" /> 
+        <IPSGridColumn Field=@nameof(TEBookCopyInfo.BookCopyNumber) Title="Index kopije" /> 
         <IPSGridColumn Field=@nameof(TEBookCopyInfo.BookName) Title="Naslov"  />
         <IPSGridColumn Field=@nameof(TEBookCopyInfo.PublishedYear) Title="Leto izdaje"  />
         <IPSGridColumn Field=@nameof(TEBookCopyInfo.PublisherName) Title="Založba"  />

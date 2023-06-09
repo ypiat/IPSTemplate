@@ -91,18 +91,15 @@ namespace IPSTemplate.BusinessLibrary.BO.Book
         [Display(Name = "Index knjigi")]
         public int BookIndex
         {
-            get => Books.Any() ? (Books.Select(p => p.BookIndex).Max() + 100) : 100;
+            get => GetProperty(BookIndexProperty);
             set => SetProperty(BookIndexProperty, value);
         }
 
-        //public static readonly PropertyInfo<int> GenerateBookIndexProperty = RegisterProperty<int>(p => p.GenerateBookIndex);
-        //[Required(ErrorMessage = "Polje Index knjigi je obvezno (je unikalna številka knjigi)")]
-        //[Range(100, 999900)]
-        //[Display(Name = "Index knjigi")]
-        //public int GenerateBookIndex
-        //{
-        //    get => Books.Any() ? (Books.Select(p => p.BookIndex).Max() + 100) : 100;
-        //}
+        public static readonly PropertyInfo<int> GenerateBookIndexProperty = RegisterProperty<int>(p => p.GenerateBookIndex);
+        public int GenerateBookIndex
+        {
+            get => Books.Any() ? (Books.Select(p => p.BookIndex).Max() + 100) : 100;
+        }
 
         public static readonly PropertyInfo<TEBookRL> BooksProperty = RegisterProperty<TEBookRL>(p => p.Books, RelationshipTypes.LazyLoad);
         public TEBookRL Books

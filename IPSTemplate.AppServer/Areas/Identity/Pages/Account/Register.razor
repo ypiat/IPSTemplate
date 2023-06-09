@@ -14,7 +14,7 @@
             <IPSCard Class="p-3">
                 <h1>@PageTitle</h1>
                 <hr />
-                <IPSForm Model=ViewModel OnValidSubmit=RegisterUser>
+                <IPSForm Model=ViewModel OnValidSubmit=RegisterUser >
                     <FormFields>
                         <IPSTextBox  Property=@(ViewModel.GetProperty(() => ViewModel.Model.Email)) Autocomplete=Autocomplete.Off />
                         <IPSLabel For="col_password">Geslo</IPSLabel>
