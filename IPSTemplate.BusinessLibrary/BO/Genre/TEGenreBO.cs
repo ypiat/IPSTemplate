@@ -20,6 +20,15 @@ namespace IPSTemplate.BusinessLibrary.BO.Genre
             set => SetProperty(NameProperty, value);
         }
 
+        public static readonly PropertyInfo<string> ColorProperty = RegisterProperty<string>(p => p.Color);
+        [Required(ErrorMessage = "Polje Barva je obvezno")]
+        [Display(Name = "Barva")]
+        public string Color
+        {
+            get => GetProperty(ColorProperty);
+            set => SetProperty(ColorProperty, value);
+        }
+
 
         #endregion
 

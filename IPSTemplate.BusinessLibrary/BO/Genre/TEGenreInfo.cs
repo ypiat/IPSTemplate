@@ -24,6 +24,14 @@ namespace IPSTemplate.BusinessLibrary.BO.Genre
             set => LoadProperty(NameProperty, value);
         }
 
+        public static readonly PropertyInfo<string> ColorProperty = RegisterProperty<string>(p => p.Color);
+        [Display(Name = "Barva")]
+        public string Color
+        {
+            get => GetProperty(ColorProperty);
+            set => LoadProperty(ColorProperty, value);
+        }
+
         //public static readonly PropertyInfo<Guid> GenreIDProperty = RegisterProperty<Guid>(p => p.GenreID);
         //[Display(Name = "GenreId")]
         //public Guid GenreID

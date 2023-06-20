@@ -1,0 +1,145 @@
+﻿@using Core.Library.Base;
+@using IPSTemplate.BusinessLibrary.BO.Book;
+@using IPSTemplate.BusinessLibrary.BO.BookCopy;
+@using IPSTemplate.BusinessLibrary.BO.Borrowings;
+@using IPSTemplate.Dal.Models;
+@using IPSTemplate.Dal.Models.Identity;
+@using IPSTemplate.UI.Blazor.Features.Borrowings;
+@using Microsoft.AspNetCore.Identity;
+
+
+
+@if (CurentBorrowings is null || HistoryBorrowings is null)
+{
+    <IPSLoader />
+    return;
+}
+
+<IPSPageTop Title="Tekoče izposoje" />
+<IPSCard>
+    <IPSDataList Borders=DataListBorders.All Class="p-3" @ref=_list>
+        @if (CurentBorrowings.Count() == 0)
+        {
+            <h4>Ni tekočih izposoj</h4>
+        } 
+        else
+        {
+            <IPSDataItem>
+                <IPSDataItemValue><strong>Številka kopije</strong></IPSDataItemValue>
+                <IPSDataItemValue><strong>Naslov</strong></IPSDataItemValue>
+                <IPSDataItemValue><strong>Start izposoji</strong></IPSDataItemValue>
+                <IPSDataItemValue><strong>Konec izposoji</strong></IPSDataItemValue>
+                <IPSDataItemValue><strong>Preostalih dni</strong></IPSDataItemValue>
+                <IPSDataItemValue><strong>Stanje</strong></IPSDataItemValue>
+                <IPSDataItemValue></IPSDataItemValue>
+            </IPSDataItem>
+            @foreach (TEBorrowingsInfo Borrowing in CurentBorrowings)
+            {
+                <IPSDataItem>
+                    <IPSDataItemValue>@Borrowing.BookCopyBookCopyNumber</IPSDataItemValue>
+                    <IPSDataItemValue>@Borrowing.BookCopyBookName</IPSDataItemValue>
+                    <IPSDataItemValue>@Borrowing.StartBorrowing.ToString("dd/MM/yyyy")</IPSDataItemValue>
+                    <IPSDataItemValue>@Borrowing.EndBorrowing.ToString("dd/MM/yyyy")</IPSDataItemValue>
+                    <IPSDataItemValue>@Borrowing.DaysLeft</IPSDataItemValue>
+                    <IPSDataItemValue>
+                        <IPSBadge Color="Color.Warning">@Borrowing.Status</IPSBadge>
+                    </IPSDataItemValue>
+                    <IPSDataItemValue>
+                        <IPSButton Size=ButtonSize.Small Color="Color.Success" OnClick=@(() => HandleReturn.InvokeAsync(Borrowing))>Vrni</IPSButton>
+                        <IPSButton Size=ButtonSize.Small Color="Color.Warning" OnClick=@(() => HandleExtend.InvokeAsync(Borrowing))>Podaljšaj</IPSButton>
+                    </IPSDataItemValue>
+                </IPSDataItem>
+            }
+        }    
+    </IPSDataList>
+</IPSCard>
+
+<br />
+<br />
+<br />
+<IPSPageTop Title="Zgodovina izposoj" />
+<IPSCard>
+    <IPSDataList Borders=DataListBorders.All Class="p-3">
+        @if (HistoryBorrowings.Count() == 0)
+        {
+            <h4>Ni tekočih izposoj</h4>
+        } 
+        else
+        {
+            <IPSDataItem>
+                <IPSDataItemValue><strong>Številka kopije</strong></IPSDataItemValue>
+                <IPSDataItemValue><strong>Naslov</strong></IPSDataItemValue>
+                <IPSDataItemValue><strong>V izposoji</strong></IPSDataItemValue>
+                <IPSDataItemValue><strong>Stanje</strong></IPSDataItemValue>
+            </IPSDataItem>
+            @foreach (TEBorrowingsInfo Borrowing in HistoryBorrowings)
+            {
+                <IPSDataItem>
+                    <IPSDataItemValue>@Borrowing.BookCopyBookCopyNumber</IPSDataItemValue>
+                    <IPSDataItemValue>@Borrowing.BookCopyBookName</IPSDataItemValue>
+                    <IPSDataItemValue>@Borrowing.InBorrow</IPSDataItemValue>
+                    <IPSDataItemValue>
+                        <IPSBadge Color="Color.Success">@Borrowing.Status</IPSBadge>
+                    </IPSDataItemValue>
+                </IPSDataItem>
+            }
+        }
+    </IPSDataList>
+</IPSCard>
+
+
+
+@code {
+    [Parameter] public EventCallback<TEBorrowingsInfo> HandleReturn { get; set; }
+    [Parameter] public EventCallback<TEBorrowingsInfo> HandleExtend { get; set; }
+
+    [Inject] protected IDataPortalFactory DataPortalFactory { get; set; } = default!;
+
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationStateTask { get; set; } = default!;
+
+    [Inject]
+    UserManager<TEIdentityUser> userManager { get; set; } = default!;
+
+    [Inject] NotificationService NotificationService { get; set; } = default!;
+
+    public IEnumerable<TEBorrowingsInfo> CurentBorrowings { get; set; } = default!;
+
+    public IEnumerable<TEBorrowingsInfo> HistoryBorrowings { get; set; } = default!;
+
+    public Guid UserId { get; set; }
+
+    private IPSDataList _list = default!;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        var user = (await authenticationStateTask).User;
+
+        if (user.Identity?.IsAuthenticated == true)
+        {
+            UserId = Guid.Parse(userManager.GetUserId(user));
+        }
+
+        await LoadData();
+    }
+
+    public async Task LoadData()
+    {
+        var request = new CslaRequest
+            {
+                Include = new string[] { "BookCopy", "BookCopy.Book", "User" }
+            };
+
+        CurentBorrowings = await TEBorrowingsRL.GetByUserIdAsync(UserId, false, DataPortalFactory);
+        CurentBorrowings = CurentBorrowings.OrderByDescending(p => p.StartBorrowing);
+        HistoryBorrowings = await TEBorrowingsRL.GetByUserIdAsync(UserId, true, DataPortalFactory);
+        HistoryBorrowings = HistoryBorrowings.OrderByDescending(p => p.EndBorrowing);
+    }
+
+    public async Task ShowMessage(string message)
+    {
+        await Task.Delay(500);
+        NotificationService.ShowSuccess(message);
+    }
+} 

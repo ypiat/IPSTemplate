@@ -9,5 +9,7 @@ namespace IPSTemplate.Dal.Models
         [MaxLength(100)]
         public string Name { get; set; }
 
+        public string Color { get; set; }
+
     }
 }

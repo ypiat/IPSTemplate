@@ -32,6 +32,14 @@ namespace IPSTemplate.BusinessLibrary.BO.Book
             set => LoadProperty(GenreNameProperty, value);
         }
 
+        public static readonly PropertyInfo<string> GenreColorProperty = RegisterProperty<string>(p => p.GenreColor);
+        [Display(Name = "Barva žanra")]
+        public string GenreColor
+        {
+            get => GetProperty(GenreColorProperty);
+            set => LoadProperty(GenreColorProperty, value);
+        }
+
         public static readonly PropertyInfo<string?> LanguageProperty = RegisterProperty<string?>(p => p.Language);
         [Display(Name = "Jezik")]
         public string? Language

@@ -3,11 +3,13 @@
 
 
  
-<IPSPageTop Title="Žanre" />
-<IPSButton IconClass="fas fa-plus" Color="Color.Primary" OnClick=@(() => OpenEditView(null))>Dodaj žanr</IPSButton>
-<br/>
-<br/>
-<br />
+
+<IPSPageTop Title="Žanre" >
+    <ActionsContent>
+        <IPSButton IconClass="fas fa-plus" Color="Color.Primary" OnClick=@(() => OpenEditView(null))>Dodaj žanr</IPSButton>
+    </ActionsContent>
+</IPSPageTop>
+
 <GenresGrid EditClicked=OpenEditView @ref=_grid />
 
 

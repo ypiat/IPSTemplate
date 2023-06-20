@@ -1,4 +1,5 @@
 ﻿using Core.Library.Base;
+using IPSBlazor.Services;
 using IPSTemplate.BusinessLibrary.BO.Book;
 using IPSTemplate.BusinessLibrary.BO.BookCopy;
 using IPSTemplate.UI.Blazor.Features.BookCopy;
@@ -27,12 +28,14 @@ namespace IPSTemplate.UI.Blazor.Features.Book
 
         [Inject] protected IDataPortalFactory DataPortalFactory { get; set; } = default!;
 
+        [Inject] NotificationService NotificationService { get; set; } = default!;
+
         bool windowBorrowVisible;
         Guid _selectedBookCopyId;
         string? _bookName;
         BorrowingsEdit _borrowView = default!;
 
-        private bool IsMember { get; set; }
+        BookCopyList _list = default!;
 
         protected override async Task OnInitializedAsync()
         {
@@ -43,10 +46,6 @@ namespace IPSTemplate.UI.Blazor.Features.Book
                 NavigationManager.NavigateTo("/");
             }
 
-            if (user.IsInRole("Member"))
-            {
-                IsMember = true;
-            }
 
             await LoadData();
         }
@@ -77,13 +76,15 @@ namespace IPSTemplate.UI.Blazor.Features.Book
 
         async Task CloseBorrowView()
         {
-            await Task.Delay(1000);
             windowBorrowVisible = false;
+            await LoadData();
+            await ShowMessage("Ste uspešno izposodili knjigo");
+        }
 
-            if (IsMember)
-            {
-                NavigationManager.NavigateTo("/borrowing");
-            }
+        private async Task ShowMessage(string message)
+        {
+            await Task.Delay(500);
+            NotificationService.ShowSuccess(message);
         }
     }
 }

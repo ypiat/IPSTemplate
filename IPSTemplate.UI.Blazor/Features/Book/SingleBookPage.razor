@@ -77,13 +77,13 @@
     <br/>
     @if(Book.BookCopies.Count() != 0)
     {
-        <BookCopyList Book=@Book BorrowClicked=OpenBorrowView/>
+        <BookCopyList Book=@Book BorrowClicked=OpenBorrowView @ref=_list/>
     }
     
 </IPSCard>
 
 
-<IPSWindow Size="WindowSize.Medium"
+<IPSWindow Size="WindowSize.Small"
            ConfirmCloseWhen=@(() => _borrowView.ViewModel.Model.IsDirty)
 @bind-Visible=@windowBorrowVisible>
     <WindowContent>

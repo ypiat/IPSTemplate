@@ -4,14 +4,13 @@
 @using IPSTemplate.BusinessLibrary.BO.Borrowings;
 
 
-@inject NavigationManager _navigationManager
 
 <AuthorizeView Roles="Administrator">
     <BorrowingsGrid HandleReturn=OpenReturnView HandleExtend=OpenExtendView @ref=_grid />
 </AuthorizeView>
 
 <AuthorizeView Roles="Member">
-    <BorrowingsGrid HandleReturn=OpenReturnView HandleExtend=OpenExtendView @ref=_grid />
+    <BorrowingsList HandleReturn=OpenReturnView HandleExtend=OpenExtendView @ref=_list/>
 </AuthorizeView>
 
 
@@ -45,18 +44,23 @@
     BorrowingsReturn _returnView = default!;
     BorrowingsExtend _extendView = default!;
     BorrowingsGrid _grid = default!;
+    BorrowingsList _list = default!;
 
-    [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; } = default!;
+    private bool IsAdmin { get; set; } = false;
 
-    //protected async override Task OnInitializedAsync()
-    //{
-    //    base.OnInitialized();
-    //    var user = (await AuthStat).User;
-    //    if (user.Identity?.IsAuthenticated == false)
-    //    {
-    //        _navigationManager.NavigateTo("/booksearch");
-    //    }
-    //}
+    [CascadingParameter] protected Task<AuthenticationState> authenticationStateTask { get; set; } = default!;
+
+    [Inject] NotificationService NotificationService { get; set; } = default!;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var user = (await authenticationStateTask).User;
+
+        if (user.IsInRole("Administrator"))
+        {
+            IsAdmin = true;
+        }
+    }
 
     protected void OpenReturnView(TEBorrowingsInfo selectedItem)
     {
@@ -69,11 +73,26 @@
 
     async Task CloseReturnView()
     {
-        await Task.Delay(1000);
         windowReturnVisible = false;
-        _grid.Rebind();
-        _grid.RebindHistory();
+        if (IsAdmin)
+        {
+            _grid.Rebind();
+        }
+        else
+        {
+            await _list.LoadData();    
+        }
+        await ShowMessage("Uspešno ste vrnjili knjigo.");
+
     }
+
+    public async Task ShowMessage(string message)
+    {
+        await Task.Delay(500);
+        NotificationService.ShowSuccess(message);
+    }
+
+
 
     protected void OpenExtendView(TEBorrowingsInfo selectedItem)
     {
@@ -86,9 +105,16 @@
 
     async Task CloseExtendView()
     {
-        await Task.Delay(1000);
         windowExtendVisible = false;
-        _grid.Rebind();
+        if (IsAdmin)
+        {
+            _grid.Rebind();
+        }
+        else
+        {
+            await _list.LoadData();
+        }
+        await ShowMessage("Uspešno ste podaljšali izposojo.");
     }
 
 

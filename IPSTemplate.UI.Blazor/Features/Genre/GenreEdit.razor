@@ -19,6 +19,9 @@
 <IPSForm Model=ViewModel OnSaved=@(() => ItemSaved.InvokeAsync())>
     <FormFields>
         <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.Name) />
+            <IPSLabel>Barva</IPSLabel>
+            <br/>
+        <IPSColorPalette Colors=@customColorPallete @bind-Value=@ViewModel.Model.Color></IPSColorPalette>
     </FormFields>
     <FormButtons>
         <IPSFormSaveButton />

@@ -50,6 +50,7 @@
     BookEdit _editView = default!;
     BookCopyAdd _addCopyView = default!;
 
+    [Inject] NotificationService NotificationService { get; set; } = default!;
 
     [CascadingParameter]
     private Task<AuthenticationState> authenticationStateTask { get; set; } = default!;
@@ -64,6 +65,12 @@
         {
             NavigationManager.NavigateTo("/");
         }
+    }
+
+    public async Task ShowMessage(string message)
+    {
+        await Task.Delay(500);
+        NotificationService.ShowSuccess(message);
     }
 
     protected void OpenEditView(TEBookInfo? selectedItem)

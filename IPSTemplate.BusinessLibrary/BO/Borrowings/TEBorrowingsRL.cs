@@ -16,7 +16,7 @@ namespace IPSTemplate.BusinessLibrary.BO.Borrowings
         { }
 
         #region Client-side methods
-        public static TEBorrowingsRL GetByUserId(Guid userId, bool isReturned, IDataPortalFactory factory)
+        public static async Task<TEBorrowingsRL> GetByUserIdAsync(Guid userId, bool isReturned, IDataPortalFactory factory)
         {
             return factory.GetPortal<TEBorrowingsRL>().Fetch(userId, isReturned, false);
         }
@@ -39,11 +39,11 @@ namespace IPSTemplate.BusinessLibrary.BO.Borrowings
         #endregion
         #region Server-side methods
         [Fetch]
-        protected void FetchByUserId(Guid id, bool isReturned, bool _, [Inject] IRepository<TEBorrowings, TEBorrowings> repository, [Inject] IDataPortalFactory factory, [Inject] IChildDataPortalFactory childFactory)
+        protected void FetchByUserIdAsync(Guid id, bool isReturned, bool _, [Inject] IRepository<TEBorrowings, TEBorrowings> repository, [Inject] IDataPortalFactory factory, [Inject] IChildDataPortalFactory childFactory)
         {
             var request = new CslaRequest
             {
-                Include = new string[] { "BookCopy", "BookCopy.Book"  },
+                Include = new string[] { "BookCopy", "BookCopy.Book", "User" },
                 Predicate = PredicateBuilder.True<TEBorrowings>().And(p => p.UserID == id).And(p => p.IsReturned == isReturned)
             };
             //request.Filters = new MobileList<CslaRequestFilter>()
@@ -52,6 +52,7 @@ namespace IPSTemplate.BusinessLibrary.BO.Borrowings
             //};
 
             Fetch(request, repository, factory, childFactory);
+            
         }
 
         [Fetch]

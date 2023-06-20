@@ -152,26 +152,39 @@ namespace IPSTemplate.UI.Blazor
 
 
         public Color GetColor(TEBookInfo book)
+
         {
-            if (book.GenreName == "IT")
+            if (book.GenreColor == "#007dc3")
             {
                 return Color.Primary;
             }
-            if (book.GenreName == "Poslovna literatura")
+            if (book.GenreColor == "#adb5bd")
             {
-                return Color.Info;
+                return Color.Secondary;
             }
-            if (book.GenreName == "Psihologija")
+            if (book.GenreColor == "#19b698")
             {
                 return Color.Success;
             }
-            if (book.GenreName == "Ekonomija")
+            if (book.GenreColor == "#ea6153")
             {
                 return Color.Danger;
             }
-            else
+            if (book.GenreColor == "#f16e3f")
             {
                 return Color.Warning;
+            }
+            if (book.GenreColor == "#52c3d3")
+            {
+                return Color.Info;
+            }
+            if (book.GenreColor == "#e9ecef")
+            {
+                return Color.Light;
+            }
+            else
+            {
+                return Color.Light;
             }
 
         }

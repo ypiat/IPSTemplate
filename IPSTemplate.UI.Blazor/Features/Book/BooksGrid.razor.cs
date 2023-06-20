@@ -2,6 +2,7 @@
 using IPSBlazor;
 using IPSBlazor.Components;
 using IPSBlazor.Extensions;
+using IPSBlazor.Services;
 using IPSTemplate.BusinessLibrary.BO.Author;
 using IPSTemplate.BusinessLibrary.BO.Book;
 using IPSTemplate.BusinessLibrary.BO.BookCopy;
@@ -46,6 +47,8 @@ public partial class BooksGrid
     private Task<AuthenticationState> authenticationStateTask { get; set; } = default!;
 
     public bool IsMember { get; set; }
+
+    [Inject] NotificationService NotificationService { get; set; } = default!;
 
 
     public void RebindBookGrid() => _book.Rebind();
@@ -102,6 +105,8 @@ public partial class BooksGrid
         _bookCopyGrid.RebindBookCopyGrid();
     }
 
+    
+
     protected void OpenBorrowView(TEBookCopyInfo selectedItem)
     {
         _bookName = selectedItem.BookName;
@@ -121,26 +126,39 @@ public partial class BooksGrid
 
 
     public Color GetColor(TEBookInfo book)
+        
     {
-        if (book.GenreName == "IT")
+        if (book.GenreColor == "#007dc3")
         {
             return Color.Primary;
         }
-        if (book.GenreName == "Poslovna literatura")
+        if (book.GenreColor == "#adb5bd")
         {
-            return Color.Info;
+            return Color.Secondary;
         }
-        if (book.GenreName == "Psihologija")
+        if (book.GenreColor == "#19b698")
         {
             return Color.Success;
         }
-        if (book.GenreName == "Ekonomija")
+        if (book.GenreColor == "#ea6153")
         {
             return Color.Danger;
         }
-        else
+        if (book.GenreColor == "#f16e3f")
         {
             return Color.Warning;
+        }
+        if (book.GenreColor == "#52c3d3")
+        {
+            return Color.Info;
+        }
+        if (book.GenreColor == "#e9ecef")
+        {
+            return Color.Light;
+        }
+        else
+        {
+            return Color.Light;
         }
 
     }

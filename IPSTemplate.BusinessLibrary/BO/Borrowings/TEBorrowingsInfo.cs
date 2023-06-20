@@ -96,6 +96,15 @@ namespace IPSTemplate.BusinessLibrary.BO.Borrowings
             }
         }
 
+        [Display(Name = "V izposoji")]
+        public string InBorrow
+        {
+            get
+            {
+                return StartBorrowing.ToString("dd/MM/yyyy") + " - " + EndBorrowing.ToString("dd/MM/yyyy");
+            }
+        }
+
         public static readonly PropertyInfo<bool> IsReturnedProperty = RegisterProperty<bool>(p => p.IsReturned);
         public bool IsReturned
         {
