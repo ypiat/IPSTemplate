@@ -1,0 +1,95 @@
+﻿@page "/borrowing"
+
+@using IPSTemplate.BusinessLibrary.BO.BookCopy;
+@using IPSTemplate.BusinessLibrary.BO.Borrowings;
+
+
+@inject NavigationManager _navigationManager
+
+<AuthorizeView Roles="Administrator">
+    <BorrowingsGrid HandleReturn=OpenReturnView HandleExtend=OpenExtendView @ref=_grid />
+</AuthorizeView>
+
+<AuthorizeView Roles="Member">
+    <BorrowingsGrid HandleReturn=OpenReturnView HandleExtend=OpenExtendView @ref=_grid />
+</AuthorizeView>
+
+
+
+<IPSWindow Size="WindowSize.Medium"
+           ConfirmCloseWhen=@(() => _returnView.ViewModel.Model.IsDirty)
+@bind-Visible=@windowReturnVisible>
+    <WindowContent>
+        <BorrowingsReturn BookCopyId=@_selectedBookCopyId ItemId=@_selectedItemId ItemSaved=CloseReturnView BookName=@_bookName @ref=_returnView />
+    </WindowContent>
+</IPSWindow>
+
+<IPSWindow Size="WindowSize.Medium"
+           ConfirmCloseWhen=@(() => _extendView.ViewModel.Model.IsDirty)
+@bind-Visible=@windowExtendVisible>
+    <WindowContent>
+        <BorrowingsExtend BookCopyId=@_selectedBookCopyId ItemId=@_selectedItemId ItemSaved=CloseExtendView BookName=@_bookName @ref=_extendView />
+    </WindowContent>
+</IPSWindow>
+
+
+
+
+
+@code {
+    Guid _selectedBookCopyId;
+    string _selectedItemId;
+    string _bookName;
+    bool windowReturnVisible;
+    bool windowExtendVisible;
+    BorrowingsReturn _returnView = default!;
+    BorrowingsExtend _extendView = default!;
+    BorrowingsGrid _grid = default!;
+
+    [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; } = default!;
+
+    //protected async override Task OnInitializedAsync()
+    //{
+    //    base.OnInitialized();
+    //    var user = (await AuthStat).User;
+    //    if (user.Identity?.IsAuthenticated == false)
+    //    {
+    //        _navigationManager.NavigateTo("/booksearch");
+    //    }
+    //}
+
+    protected void OpenReturnView(TEBorrowingsInfo selectedItem)
+    {
+        _bookName = selectedItem.BookCopyBookName;
+        _selectedBookCopyId = selectedItem.BookCopyID;
+        _selectedItemId = selectedItem.Id.ToString();
+
+        windowReturnVisible = true;
+    }
+
+    async Task CloseReturnView()
+    {
+        await Task.Delay(1000);
+        windowReturnVisible = false;
+        _grid.Rebind();
+        _grid.RebindHistory();
+    }
+
+    protected void OpenExtendView(TEBorrowingsInfo selectedItem)
+    {
+        _bookName = selectedItem.BookCopyBookName;
+        _selectedBookCopyId = selectedItem.BookCopyID;
+        _selectedItemId = selectedItem.Id.ToString();
+
+        windowExtendVisible = true;
+    }
+
+    async Task CloseExtendView()
+    {
+        await Task.Delay(1000);
+        windowExtendVisible = false;
+        _grid.Rebind();
+    }
+
+
+}

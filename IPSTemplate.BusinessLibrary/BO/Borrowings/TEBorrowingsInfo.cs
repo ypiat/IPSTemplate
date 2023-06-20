@@ -86,6 +86,16 @@ namespace IPSTemplate.BusinessLibrary.BO.Borrowings
             set => LoadProperty(EndBorrowingProperty, value);
         }
 
+        [Display(Name = "Preostalih dni")]
+        public int DaysLeft
+        {
+            get 
+            {
+                var date = EndBorrowing - DateTime.Now;
+                return date.Days;
+            }
+        }
+
         public static readonly PropertyInfo<bool> IsReturnedProperty = RegisterProperty<bool>(p => p.IsReturned);
         public bool IsReturned
         {

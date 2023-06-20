@@ -1,0 +1,92 @@
+﻿@page "/book/info/{ItemId}"
+@using Core.Library.Base;
+@using IPSTemplate.BusinessLibrary.BO.Book;
+@using IPSTemplate.UI.Blazor.Features.BookCopy
+@using IPSTemplate.UI.Blazor.Features.Borrowings
+
+@if (Book is null)
+{
+    <IPSLoader />
+    return;
+}
+
+<IPSPageTop  TitleIconClass="fa-solid fa-font-awesome" BackUrl="/" />
+
+<IPSCard Class="p-3">
+        <IPSColumn Md="5" ColumnWidth="fit-content">
+            <IPSDataList InlineItems="false">
+                <IPSDataItem IconClass="fa-solid fa-book">
+                    <IPSDataItemValue><h2>@Book.Name</h2></IPSDataItemValue>
+                </IPSDataItem>
+            </IPSDataList>
+            <br />
+            <IPSDataList Borders=DataListBorders.All>
+                <IPSDataItem>
+                    <IPSDataItemKey>Avtor/ji</IPSDataItemKey>
+                    <IPSDataItemValue>@Book.AuthorNames</IPSDataItemValue>
+                </IPSDataItem>
+                <IPSDataItem>
+                    <IPSDataItemKey>Žanr</IPSDataItemKey>
+                    <IPSDataItemValue>@Book.GenreName</IPSDataItemValue>
+                </IPSDataItem>
+                <IPSDataItem>
+                    <IPSDataItemKey>Število strani</IPSDataItemKey>
+                    @if (Book.PageAmount == null)
+                    {
+                        <IPSDataItemValue>/</IPSDataItemValue>
+                    }
+                    else
+                    {
+                        <IPSDataItemValue>@Book.PageAmount</IPSDataItemValue>
+                    }
+                </IPSDataItem>
+                <IPSDataItem>
+                    <IPSDataItemKey>Jezik</IPSDataItemKey>
+                    @if (Book.UserFriendlyLanguageName == "")
+                    {
+                        <IPSDataItemValue>/</IPSDataItemValue>
+                    }
+                    else
+                    {
+                        <IPSDataItemValue>@Book.UserFriendlyLanguageName</IPSDataItemValue>
+                    }
+                </IPSDataItem>
+                <IPSDataItem>
+                    <IPSDataItemKey>Število kopij</IPSDataItemKey>
+                    <IPSDataItemValue>@Book.BookCopies.Count()</IPSDataItemValue>
+                </IPSDataItem>
+            </IPSDataList>
+        </IPSColumn>
+        <br/>
+        
+    <IPSColumn Md="5">
+        <IPSDataList _>
+            <IPSDataItem>
+                <IPSDataItemKey>Opis</IPSDataItemKey>
+                @if (@Book.Description == null)
+                {
+                    <IPSDataItemValue>/</IPSDataItemValue>
+                }
+                else
+                {
+                    <IPSDataItemValue>@Book.Description</IPSDataItemValue>
+                }  
+            </IPSDataItem>
+        </IPSDataList>
+    </IPSColumn>
+    <br/>
+    @if(Book.BookCopies.Count() != 0)
+    {
+        <BookCopyList Book=@Book BorrowClicked=OpenBorrowView/>
+    }
+    
+</IPSCard>
+
+
+<IPSWindow Size="WindowSize.Medium"
+           ConfirmCloseWhen=@(() => _borrowView.ViewModel.Model.IsDirty)
+@bind-Visible=@windowBorrowVisible>
+    <WindowContent>
+       <BorrowingsEdit BookCopyId=@_selectedBookCopyId ItemSaved=CloseBorrowView BookTitle=@_bookName @ref=_borrowView />
+    </WindowContent>
+</IPSWindow>

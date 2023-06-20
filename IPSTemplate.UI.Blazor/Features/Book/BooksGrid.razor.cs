@@ -116,10 +116,6 @@ public partial class BooksGrid
         windowBorrowVisible = false;
         _selectedItemId = null;
         _bookCopyGrid.RebindBookCopyGrid();
-        if(IsMember)
-        {
-            _navigationManager.NavigateTo("/");
-        }
     }
 
 

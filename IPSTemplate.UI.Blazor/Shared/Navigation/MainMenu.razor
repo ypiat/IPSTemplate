@@ -7,20 +7,24 @@
         <hr />
     </AuthorizeView>
 
-    <AuthorizeView Roles="Member">
-
-        <IPSNavMenuLink Link="/" IconClass="fa-solid fa-clipboard">@Localizer["Moje izposoje"]</IPSNavMenuLink>
-        @*<IPSNavMenuLink Link="/profile" IconClass="fa-solid fa-user">Moj profil</IPSNavMenuLink>*@
-        <hr />
+    <AuthorizeView>
+        <NotAuthorized>
+            <IPSNavMenuLink Link="/" IconClass="fa-solid fa-search">@Localizer["Iskanje knjig"]</IPSNavMenuLink>
+        </NotAuthorized>
     </AuthorizeView>
 
-    <IPSNavMenuLink Link="/book" IconClass="fa-solid fa-book">Knjige</IPSNavMenuLink>
+    <AuthorizeView Roles="Member">
+        <IPSNavMenuLink Link="/" IconClass="fa-solid fa-search">@Localizer["Iskanje knjig"]</IPSNavMenuLink>
+        <hr />
+        <IPSNavMenuLink Link="/borrowing" IconClass="fa-solid fa-clipboard">Moje izposoje</IPSNavMenuLink>
+    </AuthorizeView>
 
     <AuthorizeView Roles="Administrator">
+        <IPSNavMenuLink Link="/book" IconClass="fa-solid fa-book">Knjige</IPSNavMenuLink>
         <IPSNavMenuLink Link="/author" IconClass="fa-solid fa-feather">Avtorji</IPSNavMenuLink>
         <IPSNavMenuLink Link="/publisher" IconClass="fa-solid fa-house">Založbe</IPSNavMenuLink>
         <IPSNavMenuLink Link="/genre" IconClass="fa-solid fa-palette">Žanre</IPSNavMenuLink>
     </AuthorizeView>
-    
-    
+   
+
 </IPSNavMenu>

@@ -4,6 +4,7 @@ using Core.DALEF.ContextFactory;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Core.DALEF.ContextFactory.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20230620073647_Add_Description_To_TEBook")]
+    partial class Add_Description_To_TEBook
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -244,7 +246,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             NormalizedEmail = "ADMIN@IPSTEMPLATE.ORG",
                             NormalizedUserName = "ADMINISTRATOR",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "da90050b-a54f-4dc0-9af0-e54790ec5d2f",
+                            SecurityStamp = "ba2a0e71-5e99-4914-9c7d-d53d0055036a",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         },
@@ -261,7 +263,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             NormalizedEmail = "MEMBER@IPSTEMPLATE.ORG",
                             NormalizedUserName = "MEMBER",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "94ae7554-464f-4579-9092-142d74e425ee",
+                            SecurityStamp = "329da26b-fbcc-4ca2-87a1-af99a386b2c0",
                             TwoFactorEnabled = false,
                             UserName = "Member"
                         });
@@ -327,7 +329,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                     b.Property<bool>("Active")
                         .HasColumnType("bit");
 
-                    b.Property<int>("BookIndex")
+                    b.Property<int?>("BookIndex")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateChanged")
@@ -437,10 +439,6 @@ namespace Core.DALEF.ContextFactory.Migrations
 
                     b.Property<bool>("IsAvailable")
                         .HasColumnType("bit");
-
-                    b.Property<string>("Location")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int?>("PublishedYear")
                         .HasColumnType("int");

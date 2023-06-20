@@ -19,5 +19,7 @@ namespace IPSTemplate.Dal.Models
         public int? PageAmount { get; set; }
 
         public int BookIndex { get; set; }
+
+        public string? Description { get; set; }
     }
 }

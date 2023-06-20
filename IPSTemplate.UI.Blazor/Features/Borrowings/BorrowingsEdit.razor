@@ -19,7 +19,7 @@
 
 <AuthorizeView Roles="Administrator" Context="Auth">
 
-    <IPSForm Model=ViewModel OnSaved=@(() => ItemSaved.InvokeAsync())>
+    <IPSForm Model=ViewModel OnSaved=@(() => ItemSaved.InvokeAsync()) >
         <FormFields>
             <IPSComboBox @ref=cbxUser TItem=TEUserInfo TValue=Guid
                          TextField=@nameof(TEUserInfo.DisplayName)

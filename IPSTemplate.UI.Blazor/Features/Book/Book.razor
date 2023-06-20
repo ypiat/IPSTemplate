@@ -5,23 +5,14 @@
 @using IPSTemplate.UI.Blazor.Features.Borrowings;
 
 
-@if(IsAdmin)
-{
-    <IPSPageTop Title="Knjige">
-        <ActionsContent>
-            <IPSButton Icon=Icon.Add Color="Color.Primary" OnClick=@(() => OpenEditView(null))>Dodaj knjigo</IPSButton>
-        </ActionsContent>
-    </IPSPageTop>
-}
-else
-{
-    <IPSPageTop Title="Knjige" />
-}
 
-
+<IPSPageTop Title="Knjige">
+    <ActionsContent>
+        <IPSButton Icon=Icon.Add Color="Color.Primary" OnClick=@(() => OpenEditView(null))>Dodaj knjigo</IPSButton>
+    </ActionsContent>
+</IPSPageTop>
 
 <BooksGrid EditClicked=OpenEditView AddClicked=OpenAddView  @ref=_bookGrid />
-
 
 <IPSWindow Title=@_editViewTitle
            Size="WindowSize.Medium"
@@ -59,7 +50,6 @@ else
     BookEdit _editView = default!;
     BookCopyAdd _addCopyView = default!;
 
-    private bool IsAdmin { get; set; } = false;
 
     [CascadingParameter]
     private Task<AuthenticationState> authenticationStateTask { get; set; } = default!;
@@ -70,9 +60,9 @@ else
     {
         var user = (await authenticationStateTask).User;
 
-        if (user.IsInRole("Administrator"))
+        if (user.Identity?.IsAuthenticated == false || user.IsInRole("Member"))
         {
-            IsAdmin = true;
+            NavigationManager.NavigateTo("/");
         }
     }
 

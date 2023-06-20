@@ -33,6 +33,7 @@
         <IPSButton Icon=Icon.Add Color="Color.Secondary" OnClick="(() => windowVisible = true)">Dodaj založbo</IPSButton>
 
         <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.PublishedYear) />
+        <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.Location) />
     </FormFields>
     <FormButtons>
         <IPSFormSaveButton />

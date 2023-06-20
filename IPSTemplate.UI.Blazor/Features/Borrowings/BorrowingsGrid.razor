@@ -29,11 +29,12 @@
         <GridColumns>
             <IPSGridColumn Id="Id" Field=@nameof(TEBorrowingsInfo.Id) Visible=false />
             <IPSGridColumn Id="BookCopyNumber" Title="Index kopije" Field=@nameof(TEBorrowingsInfo.BookCopyBookCopyNumber) Width="110px" Filterable=false />
-            <IPSGridColumn Id="BookName" Field=@nameof(TEBorrowingsInfo.BookCopyBookName) Width="600px"/> 
+            <IPSGridColumn Id="BookName" Field=@nameof(TEBorrowingsInfo.BookCopyBookName) Width="400px"/> 
             <IPSGridColumn Id="User" Field=@nameof(TEBorrowingsInfo.UserShowFullName) />
-            <IPSGridColumn Id="StartBorrowing" Field=@nameof(TEBorrowingsInfo.StartBorrowing) Filterable=false Width="200px" />
-            <IPSGridColumn Id="EndBorrowing" Field=@nameof(TEBorrowingsInfo.EndBorrowing) Filterable=false Width="200px" />
-            <IPSGridColumn Id="Status" Field=@nameof(TEBorrowingsInfo.Status) Filterable=false Width="110px">
+            <IPSGridColumn Id="StartBorrowing" Field=@nameof(TEBorrowingsInfo.StartBorrowing) Filterable=false  />
+            <IPSGridColumn Id="EndBorrowing" Field=@nameof(TEBorrowingsInfo.EndBorrowing) Filterable=false  />
+            <IPSGridColumn Id="DaysLeft"  Field=@nameof(TEBorrowingsInfo.DaysLeft) Filterable=false Width="110px"/>
+            <IPSGridColumn Id="Status" Field=@nameof(TEBorrowingsInfo.Status) Filterable=false Width="100px">
                 <Template>
                     @{
                         var borrowings = (TEBorrowingsInfo)context;

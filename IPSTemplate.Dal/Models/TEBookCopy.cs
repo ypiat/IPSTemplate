@@ -20,5 +20,8 @@ namespace IPSTemplate.Dal.Models
         public int? PublishedYear { get; set; }
 
         public bool IsAvailable { get; set; }
+
+        [MaxLength(100)]
+        public string Location { get; set; }
     }
 }

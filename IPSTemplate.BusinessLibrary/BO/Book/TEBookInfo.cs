@@ -53,8 +53,14 @@ namespace IPSTemplate.BusinessLibrary.BO.Book
             get => GetProperty(PageAmountProperty);
             set => LoadProperty(PageAmountProperty, value);
         }
- 
 
+        public static readonly PropertyInfo<string> DescriptionProperty = RegisterProperty<string>(p => p.Description);
+        [Display(Name = "Opis")]
+        public string Description
+        {
+            get => GetProperty(DescriptionProperty);
+            set => LoadProperty(DescriptionProperty, value);
+        }
 
         public static readonly PropertyInfo<TEBookAuthorEL> BookAuthorsProperty = RegisterProperty<TEBookAuthorEL>(p => p.BookAuthors, RelationshipTypes.LazyLoad);
         public TEBookAuthorEL BookAuthors

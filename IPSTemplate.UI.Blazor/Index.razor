@@ -1,95 +1,194 @@
 ﻿@page "/"
 
-@using IPSTemplate.BusinessLibrary.BO.BookCopy;
-@using IPSTemplate.BusinessLibrary.BO.Borrowings;
+@using IPSTemplate.BusinessLibrary.BO.Genre;
 @using IPSTemplate.UI.Blazor.Features.Borrowings
 
-@inject NavigationManager _navigationManager
 
- <AuthorizeView Roles="Administrator">
-    <BorrowingsGrid HandleReturn=OpenReturnView HandleExtend=OpenExtendView @ref=_grid/>
-</AuthorizeView>
+@if(EnableBookSearch)
+{
+    <IPSPageTop Title="Iskanje knjig" />
 
-<AuthorizeView Roles="Member">
-    <BorrowingsGrid HandleReturn=OpenReturnView HandleExtend=OpenExtendView @ref=_grid />
-</AuthorizeView>
-
-
-
-    <IPSWindow Size="WindowSize.Medium"
-               ConfirmCloseWhen=@(() => _returnView.ViewModel.Model.IsDirty)
-               @bind-Visible=@windowReturnVisible>
-        <WindowContent>
-            <BorrowingsReturn BookCopyId=@_selectedBookCopyId ItemId=@_selectedItemId ItemSaved=CloseReturnView BookName=@_bookName @ref=_returnView />
-        </WindowContent>
-    </IPSWindow>
-
-    <IPSWindow Size="WindowSize.Medium"
-               ConfirmCloseWhen=@(() => _extendView.ViewModel.Model.IsDirty)
-               @bind-Visible=@windowExtendVisible>
-        <WindowContent>
-            <BorrowingsExtend BookCopyId=@_selectedBookCopyId ItemId=@_selectedItemId ItemSaved=CloseExtendView BookName=@_bookName @ref=_extendView />
-        </WindowContent>
-    </IPSWindow>
-
-
-
-
-
-@code{
-    Guid _selectedBookCopyId;
-    string _selectedItemId;
-    string _bookName;
-    bool windowReturnVisible;
-    bool windowExtendVisible;
-    BorrowingsReturn _returnView = default!;
-    BorrowingsExtend _extendView = default!;
-    BorrowingsGrid _grid = default!;
-
-    [CascadingParameter] protected Task<AuthenticationState> AuthStat { get; set; }
-
-    protected async override Task OnInitializedAsync()
+    @if (ListViewData is null)
     {
-        base.OnInitialized();
-        var user = (await AuthStat).User;
-        if (!user.Identity.IsAuthenticated)
-        {
-            _navigationManager.NavigateTo("/book");
-        }
-    }
-
-    protected void OpenReturnView(TEBorrowingsInfo selectedItem)
-    {
-        _bookName = selectedItem.BookCopyBookName;
-        _selectedBookCopyId = selectedItem.BookCopyID;
-        _selectedItemId = selectedItem.Id.ToString();
-
-        windowReturnVisible = true;
-    }
-
-    async Task CloseReturnView()
-    {
-            await Task.Delay(1000);
-            windowReturnVisible = false;
-            _grid.Rebind();
-            _grid.RebindHistory();
-    }
-
-    protected void OpenExtendView(TEBorrowingsInfo selectedItem)
-    {
-        _bookName = selectedItem.BookCopyBookName;
-        _selectedBookCopyId = selectedItem.BookCopyID;
-        _selectedItemId = selectedItem.Id.ToString();
-
-        windowExtendVisible = true;
-    }
-
-    async Task CloseExtendView()
-    {
-        await Task.Delay(1000);
-        windowExtendVisible = false;
-        _grid.Rebind();
+        <IPSLoader />
+        return;
     }
 
 
+    <TelerikListView Data=@FilteredList
+                     Pageable="true"
+                     PageSize="25" 
+                     @bind-Page="@Page">
+        <HeaderTemplate>
+            <IPSRow>
+                <IPSColumn ColumnWidth="fit-content" Lg="3">
+                    <IPSLabel For="name">Filtriraj po naslovu:</IPSLabel>
+                    <IPSTextBox Class="txt-listview" ValueChanged="@SetNameFilter"
+                                Value="@FilterNameText" Id="name"
+                    @ref=_filterNameBox />
+                </IPSColumn>
+                <IPSColumn ColumnWidth="fit-content" Lg="3">
+                    <IPSLabel For="author">Filtriraj po avtorju:</IPSLabel>
+                    <IPSTextBox Class="txt-listview" ValueChanged="@SetAuthorFilter"
+                                Value="@FilterAuthorText" Id="author"
+                    @ref=_filterAuthorBox />
+                </IPSColumn>
+                <IPSColumn ColumnWidth="fit-content" Lg="3">
+                    <IPSLabel For="genre">Filtriraj po žanru:</IPSLabel>
+                    <IPSComboBox Class="txt-listview" Id="genre"
+                                 TItem=TEGenreInfo TValue=Guid?
+                                 OnRead=@SearchGenres
+                                 TextField=@nameof(TEGenreInfo.Name)
+                                 ValueField=@nameof(TEGenreInfo.Id)
+                                 ValueChanged="@SetGenreFilter"
+                                 ClearButton="true"
+                    @ref=_filterGenreBox />
+                </IPSColumn>
+            </IPSRow>
+            <IPSButton Color="Color.Secondary" OnClick="@ClearFilter">Počisti vse filtre</IPSButton>
+            @if (ShowMessage)
+            {
+                <div style="margin-top: 20px;">
+                    <h4>Ni podatkov, ki bi ustrezali zahtevi.</h4>
+                </div>
+            }
+        </HeaderTemplate>
+        
+        <Template>
+                <div class="k-card k-card-horizontal">
+                    <div class="k-card-body">
+                        <div class="k-hbox k-justify-content-between k-flex-wrap ">
+                            <div class="product-name">
+                            @{
+                                var ItemId = @context.Id.ToString();
+                            }
+
+                            <a href="/book/info/@ItemId">
+                                    <h4 class="k-card-title">@context.Name</h4>
+                                </a> 
+                                <h5 class="k-card-subtitle">@context.AuthorNames</h5>
+                            </div>
+                            <ul class="product-info">
+                                <li>
+                                    @if (context.GenreName != null)
+                                    {
+                                        var color = GetColor(context);
+                                        <IPSBadge Color="color">@context.GenreName</IPSBadge>
+                                    }
+                                    @if (context.GenreName != null && context.UserFriendlyLanguageName != "")
+                                    {
+                                        <span> | </span>
+                                    }
+                                    @if (context.UserFriendlyLanguageName != "")
+                                    {
+                                        <span>@context.UserFriendlyLanguageName</span>
+                                    }
+                                    @if (context.PageAmount != null && context.UserFriendlyLanguageName != "")
+                                    {
+                                        <span> | </span>
+                                    }
+                                    @if (context.PageAmount != null)
+                                    {
+                                        <span>@context.PageAmount str.</span>
+                                    }
+                                </li>
+
+                            </ul>
+                            <div class="product-price">
+                                <strong>Število kopij: </strong>@context.BookCopies.Count()
+                            </div>
+                        </div>
+                    </div>
+                </div>
+ 
+  
+
+        </Template>
+
+    </TelerikListView>
 }
+else
+{
+    <Borowings></Borowings>
+}
+
+
+<style>
+
+    .k-listview {
+        background-color: transparent;
+    }
+
+    .k-listview-header {
+        margin-bottom: 25px;
+    }
+
+    .k-listview-item {
+        border: 1px solid grey;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+
+    .k-card {
+        padding: 10px 20px;
+        border-width: 0 0 1px 0;
+        border-radius: 10px;
+        box-shadow: none;
+    }
+
+        .k-card:last-child {
+            border-bottom: 0;
+        }
+
+        .k-card .k-card-title {
+            padding: 0;
+            font-size: 1em;
+            font-weight: bold;
+            line-height: normal;
+        }
+
+    .k-card-subtitle {
+        font-size: 1em;
+        margin-bottom: 0;
+    }
+
+    .product-name {
+        width: 50%;
+        min-width: 180px;
+        padding: 5px 0;
+    }
+
+    .product-info {
+        width: 25%;
+        min-width: 120px;
+        margin: 0;
+        padding: 5px 0;
+        font-size: .875em;
+    }
+
+        .product-info li {
+            list-style-type: none;
+        }
+
+    .product-price {
+        width: 15%;
+        min-width: 150px;
+        padding: 5px 0;
+        font-size: .875em;
+    }
+
+    .product-img {
+        width: 80px;
+        height: 50px;
+        text-align: center;
+        margin: auto;
+    }
+
+    .txt-listview {
+        max-width: 200px;
+        margin-right: 10px;
+    }
+</style>
+
+
+

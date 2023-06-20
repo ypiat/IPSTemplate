@@ -65,6 +65,15 @@ namespace IPSTemplate.BusinessLibrary.BO.BookCopy
             set => SetProperty(IsAvailableProperty, value);
         }
 
+        public static readonly PropertyInfo<string> LocationProperty = RegisterProperty<string>(p => p.Location);
+        [LocalizedStringLength(100, 2)]
+        [Display(Name = "Lokacja")]
+        public string Location
+        {
+            get => GetProperty(LocationProperty);
+            set => SetProperty(LocationProperty, value);
+        }
+
         public static readonly PropertyInfo<TEBookCopyRL> BookBookCopiesProperty = RegisterProperty<TEBookCopyRL>(p => p.BookBookCopies);
         public TEBookCopyRL BookBookCopies
         {
