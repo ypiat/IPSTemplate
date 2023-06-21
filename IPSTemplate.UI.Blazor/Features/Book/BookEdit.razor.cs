@@ -68,8 +68,6 @@ namespace IPSTemplate.UI.Blazor.Features.Book
             args.Total = authors.Count;
         }
 
-
-
         protected async Task GetGenres(ReadEventArgs args)
         {
             string? filter = args.Request.GetSingleFilter();

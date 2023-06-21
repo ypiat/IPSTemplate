@@ -115,36 +115,6 @@ namespace IPSTemplate.BusinessLibrary.BO.Book
             set => LoadProperty(BookIndexProperty, value);
         }
 
-
-
-        //public static readonly PropertyInfo<TEBookRL> BooksProperty = RegisterProperty<TEBookRL>(p => p.Books, RelationshipTypes.LazyLoad);
-        //public TEBookRL Books
-        //{
-        //    get => LazyGetProperty(BooksProperty, () => GetBooks(ApplicationContext.GetRequiredService<IDataPortalFactory>()));
-        //    set => LoadProperty(BooksProperty, value);
-        //}
-
-        //protected TEBookRL GetBooks(IDataPortalFactory factory)
-        //{
-        //    return TEBookRL.GetList(factory);
-        //}
-
-
-
-        //public int NewBookIndex
-        //{
-        //    get => Books.Any() ? (Books.Select(p => p.BookIndex).ToList().Max() + 100) : 100;
-        //}
-
-        //public int NewBookCopyNumber
-        //{
-        //    get => BookCopies.Any() ? (BookCopies.Select(p => p.BookCopyNumber).ToList().Max() + 1) : BookIndex + 1;
-        //}
-
-       
-
         #endregion
-
-
     }
 }

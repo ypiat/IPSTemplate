@@ -120,10 +120,6 @@ namespace IPSTemplate.BusinessLibrary.BO.Book
         {
             return TEBookRL.GetList(factory);
         }
-
-        
-
-
         #endregion
 
         #region Validation rules
@@ -148,7 +144,7 @@ namespace IPSTemplate.BusinessLibrary.BO.Book
             protected override void Execute(IRuleContext context)
             {
                 TEBookAuthorEL? authors = null;
-                if (!context.TryGetInputValue(AuthorsProperty, ref authors))
+                //if (!context.TryGetInputValue(AuthorsProperty, ref authors))
                 {
                     return;
                 }
@@ -192,17 +188,7 @@ namespace IPSTemplate.BusinessLibrary.BO.Book
         #endregion
 
         #region Client-side methods
-        //protected override void Create()
-        //{
-        //    BookIndex = GenerateBookIndex;
-        //    base.Create();
-        //}
 
-        //protected override Task CreateAsync(bool isAsync)
-        //{
-        //    BookIndex = GenerateBookIndex;
-        //    return base.CreateAsync(isAsync);
-        //}
         #endregion
 
         #region Server-side methods

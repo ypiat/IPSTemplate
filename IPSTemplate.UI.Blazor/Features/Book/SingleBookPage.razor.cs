@@ -28,11 +28,9 @@ namespace IPSTemplate.UI.Blazor.Features.Book
 
         [Inject] protected IDataPortalFactory DataPortalFactory { get; set; } = default!;
 
-        [Inject] NotificationService NotificationService { get; set; } = default!;
-
         bool windowBorrowVisible;
         Guid _selectedBookCopyId;
-        string? _bookName;
+        string? _bookName; 
         BorrowingsEdit _borrowView = default!;
 
         BookCopyList _list = default!;
@@ -45,7 +43,6 @@ namespace IPSTemplate.UI.Blazor.Features.Book
             {
                 NavigationManager.NavigateTo("/");
             }
-
 
             await LoadData();
         }
@@ -70,7 +67,6 @@ namespace IPSTemplate.UI.Blazor.Features.Book
         {
             _bookName = selectedItem.BookName;
             _selectedBookCopyId = selectedItem.Id;
-
             windowBorrowVisible = true;
         }
 
@@ -78,13 +74,6 @@ namespace IPSTemplate.UI.Blazor.Features.Book
         {
             windowBorrowVisible = false;
             await LoadData();
-            await ShowMessage("Ste uspešno izposodili knjigo");
-        }
-
-        private async Task ShowMessage(string message)
-        {
-            await Task.Delay(500);
-            NotificationService.ShowSuccess(message);
         }
     }
 }

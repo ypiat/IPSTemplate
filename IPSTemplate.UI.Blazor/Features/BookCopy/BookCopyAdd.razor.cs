@@ -57,44 +57,12 @@ namespace IPSTemplate.UI.Blazor.Features.BookCopy
             cbxPublisher.Rebind();
         }
 
-        //protected async Task GetAuthors(ReadEventArgs args)
-        //{
-        //    string? filter = args.Request.GetSingleFilter();
-        //    //var selectedIds = new List<Guid>();
-        //    //if (ViewModel.Model.AuthorIds?.Any())
-        //    //{
-        //    //    selectedIds.AddRange(ViewModel.Model.AuthorIds);
-        //    //}
-        //    var authors = await TEAuthorRL.GetFilteredList(filter ?? "", DataPortalFactory);
-        //    args.Data = authors;
-        //    args.Total = authors.Count;
-        //}
-
         protected async Task GetPublishers(ReadEventArgs args)
         {
             string? filter = args.Request.GetSingleFilter();
-            //var selectedIds = new List<Guid>();
-            //if (ViewModel.Model.PublisherID.HasValue)
-            //{
-            //    selectedIds.Add(ViewModel.Model.PublisherID.Value);
-            //}
             var publishers = await TEPublisherRL.GetFilteredList(filter ?? "", DataPortalFactory);
             args.Data = publishers;
             args.Total = publishers.Count;
         }
-
-        //protected async Task GetBooks(ReadEventArgs args)
-        //{
-        //    string? filter = args.Request.GetSingleFilter();
-        //    //var selectedIds = new List<Guid>();
-        //    //if (ViewModel.Model.GenreID.HasValue)
-        //    //{
-        //    //    selectedIds.Add(ViewModel.Model.GenreID.Value);
-        //    //}
-        //    var books = await TEBookRL.GetFilteredList(filter ?? "", DataPortalFactory);
-        //    args.Data = books;
-        //    args.Total = books.Count;
-        //}
-
     }
 }

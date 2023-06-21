@@ -20,7 +20,5 @@ namespace IPSTemplate.UI.Blazor.Features.User
     public partial class UserEdit : EditView<TEUserBO, Entity>
     {
         [Parameter] public EventCallback ItemSaved { get; set; }
-
-
     }
 }

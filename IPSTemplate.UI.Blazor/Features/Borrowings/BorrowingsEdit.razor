@@ -18,8 +18,7 @@
 }
 
 <AuthorizeView Roles="Administrator" Context="Auth">
-
-    <IPSForm Model=ViewModel OnSaved=@(() => ItemSaved.InvokeAsync()) >
+    <IPSForm Model=ViewModel OnSaved=HandleSaved OnSave=HandleSave>
         <FormFields>
             <IPSComboBox @ref=cbxUser TItem=TEUserInfo TValue=Guid
                          TextField=@nameof(TEUserInfo.DisplayName)
@@ -28,19 +27,20 @@
                          OnRead="GetUsers" Label="Uporabnik" />
         </FormFields>
         <FormButtons>
-            <IPSButton Color="Color.Success" Type="IPSBlazor.Components.ButtonType.Submit" OnClick="HandleSave">Izposodi</IPSButton>
+            <IPSButton Color="Color.Success" Type="IPSBlazor.Components.ButtonType.Submit">Izposodi</IPSButton>
         </FormButtons>
     </IPSForm>
 </AuthorizeView>
 
 <AuthorizeView Roles="Member" Context="Auth">
-    <IPSForm Model=ViewModel OnSaved=@(() => ItemSaved.InvokeAsync())>
+    <IPSForm Model=ViewModel OnSaved=HandleSaved OnSave=HandleSave>
+       
         <FormFields>
-            <h3>Želiš izposoditi knjigo - @BookTitle?</h3>
+            <h5>Želiš izposoditi knjigo - @BookTitle?</h5>
             <br />
         </FormFields>
         <FormButtons>
-            <IPSButton Color="Color.Success" Type="IPSBlazor.Components.ButtonType.Submit" OnClick="HandleSave">Izposodi</IPSButton>
+            <IPSButton Color="Color.Success" Type=IPSBlazor.Components.ButtonType.Submit>Izposodi</IPSButton>
         </FormButtons>
     </IPSForm>
 </AuthorizeView>

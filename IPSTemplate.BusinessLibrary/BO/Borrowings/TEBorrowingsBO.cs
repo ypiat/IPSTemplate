@@ -5,11 +5,13 @@ using IPSTemplate.BusinessLibrary.BO.BookCopy;
 using IPSTemplate.Dal.Models;
 using Newtonsoft.Json.Serialization;
 
+
 namespace IPSTemplate.BusinessLibrary.BO.Borrowings
 {
     [Serializable]
     public class TEBorrowingsBO : CslaBusinessBase<TEBorrowingsBO, TEBorrowings>
     {
+
         #region Properties
 
         public static readonly PropertyInfo<Guid> BookCopyIDProperty = RegisterProperty<Guid>(p => p.BookCopyID);
@@ -85,7 +87,6 @@ namespace IPSTemplate.BusinessLibrary.BO.Borrowings
         #endregion
 
         #region Client-side methods
-
         protected override void Create()
         {
             StartBorrowing = DateTime.Now;
@@ -104,9 +105,9 @@ namespace IPSTemplate.BusinessLibrary.BO.Borrowings
 
         public void OnBorrow()
         {
-            IsReturned = false;
-            BookCopy.IsAvailable = false;
-            BookCopy = BookCopy.Save();
+                IsReturned = false;
+                BookCopy.IsAvailable = false;
+                BookCopy = BookCopy.Save();
         }
 
         public void OnReturn()

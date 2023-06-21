@@ -13,8 +13,6 @@
 <GenresGrid EditClicked=OpenEditView @ref=_grid />
 
 
-
-
 <IPSWindow Title=@_editViewTitle
            Size="WindowSize.Small"
            ConfirmCloseWhen=@(() => _editView.ViewModel.Model.IsDirty)
@@ -23,55 +21,3 @@
         <GenreEdit ItemId=@_selectedItemId ItemSaved=CloseEditView @ref=_editView />
     </WindowContent>
 </IPSWindow>
-
-
-
-@code{
-    string? _selectedItemId;
-    string? _editViewTitle;
-    bool windowVisible;
-    GenresGrid _grid = default!;
-    GenreEdit _editView = default!;
-
-    private GenreEdit _genreEdit = default!;
-
-    [CascadingParameter]
-    private Task<AuthenticationState> authenticationStateTask { get; set; } = default!;
-
-    [Inject] private NavigationManager NavigationManager { get; set; } = default!;
-
-    protected override async Task OnInitializedAsync()
-    {
-        var user = (await authenticationStateTask).User;
-
-        if (user.Identity?.IsAuthenticated == false || user.IsInRole("Member"))
-        {
-            NavigationManager.NavigateTo("/");
-        }
-    }
-
-    protected void OpenEditView(TEGenreInfo? selectedItem)
-    {
-        if (selectedItem is null)
-        {
-            _editViewTitle = "Dodaj novi žanr";
-            _selectedItemId = null;
-        }
-        else
-        {
-            _editViewTitle = $"Uredi žanr - {selectedItem.Name}";
-            _selectedItemId = selectedItem.Id.ToString();
-        }
-
-        windowVisible = true;
-    }
-
-    async Task CloseEditView()
-    {
-        await Task.Delay(1000);
-        windowVisible = false;
-        _selectedItemId = null;
-        _grid.Rebind();
-    }
-
-}

@@ -19,7 +19,7 @@
 
 <IPSForm Model=ViewModel OnSaved=@(() => ItemSaved.InvokeAsync())>
     <FormFields>
-        <h3>Želiš vrniti knjigo - @BookName?</h3>
+        <h5>Želiš vrniti knjigo - @BookName?</h5>
         <br/>
         <p>Začetek izposoji: @ViewModel.Model.StartBorrowing</p>
         <p>Konec izposoji: @ViewModel.Model.EndBorrowing</p>

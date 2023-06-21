@@ -22,12 +22,13 @@ namespace IPSTemplate.BusinessLibrary.BO.Genre
         #endregion
         #region Server-side methods
         [Fetch]
-        protected async Task FetchFilteredList(string? filter, [Inject] IRepository<TEGenre, TEGenre> repository, [Inject] IChildDataPortalFactory childFactory)
+        protected Task FetchFilteredList(string? filter, [Inject] IRepository<TEGenre, TEGenre> repository, [Inject] IChildDataPortalFactory childFactory)
         {
             if (!string.IsNullOrEmpty(filter))
                 Fetch(p => p.Name.Contains(filter), repository, childFactory);
             else
                 Fetch(repository, childFactory);
+            return Task.CompletedTask;
         }
         #endregion
     }

@@ -25,9 +25,6 @@
         <IPSGridColumn Id="LastName" Field=@nameof(TEAuthorInfo.LastName) />
         <IPSGridColumn Id="Country" Title="Država" Field=@nameof(TEAuthorInfo.UserFriendlyCountryName) />
         <IPSGridColumn Id="LifeYears" Title="Leta življenja" Field=@nameof(TEAuthorInfo.LifeYears) Filterable=false>
-@*            <FilterCellTemplate>
-                <IPSNumericTextBox TValue=int ValueChanged=@((value) => GridHelper.ApplyFilterAsync(context, value, FilterOperator.Contains)) />
-            </FilterCellTemplate>*@
         </IPSGridColumn>
         <IPSGridCommandColumn>
             <IPSButton OnClick=@(() => EditClicked.InvokeAsync((TEAuthorInfo)context)) Icon=Icon.Pencil />

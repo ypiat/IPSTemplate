@@ -1,5 +1,6 @@
 ﻿using IPSBlazor.Components;
 using IPSBlazor.Extensions;
+using IPSBlazor.Services;
 using IPSTemplate.BusinessLibrary.BO.Book;
 using IPSTemplate.BusinessLibrary.BO.Borrowings;
 using IPSTemplate.BusinessLibrary.BO.Genre;
@@ -29,16 +30,18 @@ namespace IPSTemplate.UI.Blazor.Features.Borrowings
 
         protected IPSComboBox<Guid, TEUserInfo> cbxUser = default!;
 
-        public NavigationManager NavigationManager { get; set; }
-
         [CascadingParameter]
         private Task<AuthenticationState> authenticationStateTask { get; set; } = default!;
 
         [Inject]
         UserManager<TEIdentityUser> userManager { get; set; } = default!;
 
+        [Inject] NotificationService NotificationService { get; set; } = default!;
+
         [Inject]
         IDataPortalFactory DataPortalFactory { get; set; } = default!;
+
+        private bool IsAlreadyBorrowed { get; set; } = false;
 
 
         protected override async Task OnInitializedAsync()
@@ -74,7 +77,36 @@ namespace IPSTemplate.UI.Blazor.Features.Borrowings
 
         private async Task HandleSave()
         {
-            ViewModel.Model.OnBorrow(); 
+            if (ViewModel.Model.BookCopy.IsAvailable == false)
+            {
+                IsAlreadyBorrowed = true;
+                NotificationService.ShowError("Izposoja ni mogoča. Knjiga je že v izposoji.");
+                await Task.Delay(1000);
+            }
+            else
+            {
+                IsAlreadyBorrowed = false;
+                ViewModel.Model.OnBorrow();
+                await ViewModel.SaveAsync();
+            }
+        }
+
+        private async Task HandleSaved()
+        {
+            if (IsAlreadyBorrowed)
+            {
+                await ItemSaved.InvokeAsync();
+                //await Task.Delay(300);
+                NotificationService.ShowError("Izposoja ni mogoča. Knjiga je že v izposoji.");
+            }
+            else
+            {
+                await ItemSaved.InvokeAsync();
+                //await Task.Delay(300);
+                NotificationService.ShowSuccess("Uspešno ste izposodili knjigo");
+            }
+
+
         }
     }
 }

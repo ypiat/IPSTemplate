@@ -99,8 +99,6 @@
         _bookGrid.RebindBookGrid();
     }
 
-
-
     protected void OpenAddView(TEBookInfo selectedItem)
     {
         _addCopyViewTitle = $"Dodaj kopijo knjige - {selectedItem.Name}";
@@ -109,7 +107,6 @@
 
         windowAddCopyVisible = true;
     }
-
 
     async Task CloseAddCopyView()
     {

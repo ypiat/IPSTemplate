@@ -65,7 +65,6 @@ namespace IPSTemplate.BusinessLibrary.BO.BookCopy
         }
 
         public static readonly PropertyInfo<string> LocationProperty = RegisterProperty<string>(p => p.Location);
-        [LocalizedStringLength(100, 2)]
         [Display(Name = "Lokacja")]
         public string Location
         {

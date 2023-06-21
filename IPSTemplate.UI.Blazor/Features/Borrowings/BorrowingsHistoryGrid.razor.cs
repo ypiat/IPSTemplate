@@ -32,24 +32,17 @@ public partial class BorrowingsHistoryGrid
     IDataPortalFactory DataPortalFactory { get; set; } = default!;
 
     [Inject]
-    NavigationManager navigationManager { get; set; }
+    NavigationManager navigationManager { get; set; } = default!;
 
     protected override async Task<TEBorrowingsGridInfo> GetGridData(MobileCslaRequest request)
     {
         return await TEBorrowingsGridInfo.GetGridInfoAsync(request, DataPortalFactory);
     }
 
-    //protected override async Task<TEBorrowingsGridInfo> GetGridData(string? filter, MobileCslaRequest request)
-    //{
-    //    return await TEBorrowingsGridInfo.GetGridInfoAsync(false, filter, request, DataPortalFactory);
-    //}
-
     private void NavigateToBorrowings()
     {
         navigationManager.NavigateTo("/");
     }
-
-   
 
     protected new async Task ReadData(ReadEventArgs args)
     {
@@ -74,6 +67,5 @@ public partial class BorrowingsHistoryGrid
         {
             return Color.Info;
         }
-
     }
 }

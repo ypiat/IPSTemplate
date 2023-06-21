@@ -14,7 +14,9 @@
         <IPSDataItemValue><strong>Založba</strong></IPSDataItemValue>
         <IPSDataItemValue><strong>Lokacja</strong></IPSDataItemValue>
         <IPSDataItemValue><strong>Stanje</strong></IPSDataItemValue>
-        <IPSDataItemValue></IPSDataItemValue>
+        <AuthorizeView Roles="Member" >
+            <IPSDataItemValue></IPSDataItemValue>
+        </AuthorizeView>
     </IPSDataItem>
     @foreach (TEBookCopyInfo BookCopy in @Book.BookCopies)
     {
@@ -27,27 +29,18 @@
             @if (@BookCopy.Status == "Na voljo")
             {
                 <IPSDataItemValue><span style="color: #19B698">@BookCopy.Status</span></IPSDataItemValue>
-                <IPSDataItemValue><IPSButton Size=ButtonSize.Small Color="Color.Success" OnClick=@(() => BorrowClicked.InvokeAsync(BookCopy))>Izposodi</IPSButton></IPSDataItemValue>
+                <AuthorizeView Roles="Member" >
+                    <IPSDataItemValue><IPSButton Size=ButtonSize.Small Color="Color.Success" OnClick=@(() => BorrowClicked.InvokeAsync(BookCopy))>Izposodi</IPSButton></IPSDataItemValue>
+                </AuthorizeView>
             }
             else
             {
                 <IPSDataItemValue><span style="color: #EA6153">@BookCopy.Status</span></IPSDataItemValue>
-                <IPSDataItemValue></IPSDataItemValue>
+                <AuthorizeView Roles="Member">
+                    <IPSDataItemValue></IPSDataItemValue>
+                </AuthorizeView>
             }
 
         </IPSDataItem>
     }
 </IPSDataList>
-
-
-
-
-
-
-
-@code {
-    [Parameter, EditorRequired] public TEBookInfo Book { get; set; } = default!;
-
-    [Parameter] public EventCallback<TEBookCopyInfo> BorrowClicked { get; set; }
-   
-}

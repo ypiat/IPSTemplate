@@ -27,16 +27,8 @@
             <Template>
                 @{
                     var genre = (TEGenreInfo)context;
-                    var color = genre.Color;
-                    @if (genre.Color != null)
-                    {
-                        List<string> oneColorPallete = new List<string>()
-                        {
-                            color
-                        };
-                        <IPSColorPalette Colors=@oneColorPallete ColumnWidth="10px"/>
-                    }
-                    
+                    var color = GetColor(genre);
+                    <IPSBadge Color="color">@genre.Color</IPSBadge>                    
                 }
             </Template>
             

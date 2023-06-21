@@ -31,15 +31,6 @@ namespace IPSTemplate.BusinessLibrary.BO.Genre
             get => GetProperty(ColorProperty);
             set => LoadProperty(ColorProperty, value);
         }
-
-        //public static readonly PropertyInfo<Guid> GenreIDProperty = RegisterProperty<Guid>(p => p.GenreID);
-        //[Display(Name = "GenreId")]
-        //public Guid GenreID
-        //{
-        //    get => GetProperty(GenreIDProperty);
-        //    set => LoadProperty(GenreIDProperty, value);
-        //}
-
         #endregion
     }
 }

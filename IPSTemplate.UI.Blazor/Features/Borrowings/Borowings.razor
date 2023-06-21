@@ -15,7 +15,7 @@
 
 
 
-<IPSWindow Size="WindowSize.Medium"
+<IPSWindow Size="WindowSize.Small"
            ConfirmCloseWhen=@(() => _returnView.ViewModel.Model.IsDirty)
 @bind-Visible=@windowReturnVisible>
     <WindowContent>
@@ -23,99 +23,10 @@
     </WindowContent>
 </IPSWindow>
 
-<IPSWindow Size="WindowSize.Medium"
+<IPSWindow Size="WindowSize.Small"
            ConfirmCloseWhen=@(() => _extendView.ViewModel.Model.IsDirty)
 @bind-Visible=@windowExtendVisible>
     <WindowContent>
         <BorrowingsExtend BookCopyId=@_selectedBookCopyId ItemId=@_selectedItemId ItemSaved=CloseExtendView BookName=@_bookName @ref=_extendView />
     </WindowContent>
 </IPSWindow>
-
-
-
-
-
-@code {
-    Guid _selectedBookCopyId;
-    string _selectedItemId;
-    string _bookName;
-    bool windowReturnVisible;
-    bool windowExtendVisible;
-    BorrowingsReturn _returnView = default!;
-    BorrowingsExtend _extendView = default!;
-    BorrowingsGrid _grid = default!;
-    BorrowingsList _list = default!;
-
-    private bool IsAdmin { get; set; } = false;
-
-    [CascadingParameter] protected Task<AuthenticationState> authenticationStateTask { get; set; } = default!;
-
-    [Inject] NotificationService NotificationService { get; set; } = default!;
-
-    protected override async Task OnInitializedAsync()
-    {
-        var user = (await authenticationStateTask).User;
-
-        if (user.IsInRole("Administrator"))
-        {
-            IsAdmin = true;
-        }
-    }
-
-    protected void OpenReturnView(TEBorrowingsInfo selectedItem)
-    {
-        _bookName = selectedItem.BookCopyBookName;
-        _selectedBookCopyId = selectedItem.BookCopyID;
-        _selectedItemId = selectedItem.Id.ToString();
-
-        windowReturnVisible = true;
-    }
-
-    async Task CloseReturnView()
-    {
-        windowReturnVisible = false;
-        if (IsAdmin)
-        {
-            _grid.Rebind();
-        }
-        else
-        {
-            await _list.LoadData();    
-        }
-        await ShowMessage("Uspešno ste vrnjili knjigo.");
-
-    }
-
-    public async Task ShowMessage(string message)
-    {
-        await Task.Delay(500);
-        NotificationService.ShowSuccess(message);
-    }
-
-
-
-    protected void OpenExtendView(TEBorrowingsInfo selectedItem)
-    {
-        _bookName = selectedItem.BookCopyBookName;
-        _selectedBookCopyId = selectedItem.BookCopyID;
-        _selectedItemId = selectedItem.Id.ToString();
-
-        windowExtendVisible = true;
-    }
-
-    async Task CloseExtendView()
-    {
-        windowExtendVisible = false;
-        if (IsAdmin)
-        {
-            _grid.Rebind();
-        }
-        else
-        {
-            await _list.LoadData();
-        }
-        await ShowMessage("Uspešno ste podaljšali izposojo.");
-    }
-
-
-}

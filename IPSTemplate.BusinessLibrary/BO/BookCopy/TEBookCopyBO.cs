@@ -66,7 +66,7 @@ namespace IPSTemplate.BusinessLibrary.BO.BookCopy
         }
 
         public static readonly PropertyInfo<string> LocationProperty = RegisterProperty<string>(p => p.Location);
-        [LocalizedStringLength(100, 2)]
+        [LocalizedStringLength(100)]
         [Display(Name = "Lokacja")]
         public string Location
         {
@@ -91,7 +91,6 @@ namespace IPSTemplate.BusinessLibrary.BO.BookCopy
         protected override void AddBusinessRules()
         {
             BusinessRules.AddRule(new IsYearInRightRange(PublishedYearProperty));
-            //BusinessRules.AddRule(new IsBookCopyNumberUnique(BookCopyNumberProperty));
             base.AddBusinessRules();
         }
 
@@ -116,37 +115,6 @@ namespace IPSTemplate.BusinessLibrary.BO.BookCopy
                 }
             }
         }
-
-        //private class IsBookCopyNumberUnique : BusinessRule
-        //{
-        //    public IsBookCopyNumberUnique(Csla.Core.IPropertyInfo BookCopyNumberProperty) : base(BookCopyNumberProperty)
-        //    {
-        //        InputProperties.Add(PrimaryProperty);
-        //    }
-
-        //    protected override void Execute(IRuleContext context)
-        //    {
-        //        int BookCopyNumber = 0;
-
-        //        if (!context.TryGetInputValue(PrimaryProperty, ref BookCopyNumber))
-        //        {
-        //            return;
-        //        }
-
-
-
-        //        if (BookBookCopies.Select(p => p.BookCopyNumber).ToList().Contains(BookCopyNumber))
-        //        {
-        //            context.AddErrorResult($"Ta številka kopije že obstaja");
-        //        } 
-        //        else if (BookCopyNumber == 0)
-        //        {
-        //            context.AddErrorResult($"0 ne more biti številka kopije knjige");
-        //        }
-        //    }
-        //}
-
-
 
         #endregion
 

@@ -41,7 +41,7 @@ public partial class BooksGrid
     }
 
     [Inject]
-    public NavigationManager _navigationManager { get; set; }
+    public NavigationManager _navigationManager { get; set; } = default!;
 
     [CascadingParameter]
     private Task<AuthenticationState> authenticationStateTask { get; set; } = default!;
@@ -88,10 +88,7 @@ public partial class BooksGrid
 
     protected void OpenEditCopyView(TEBookCopyInfo selectedItem)
     {
-        
         _editCopyViewTitle = $"Uredi kopijo knjige - {selectedItem.BookName}";
-        //_selectedBookId = selectedItem.Id;
-        //_bookCopyNumber = selectedItem.BookCopyNumber;
         _selectedItemId = selectedItem.Id.ToString();
 
         windowEditCopyVisible = true;
@@ -105,8 +102,6 @@ public partial class BooksGrid
         _bookCopyGrid.RebindBookCopyGrid();
     }
 
-    
-
     protected void OpenBorrowView(TEBookCopyInfo selectedItem)
     {
         _bookName = selectedItem.BookName;
@@ -115,15 +110,12 @@ public partial class BooksGrid
         windowBorrowVisible = true;
     }
 
-    async Task CloseBorrowView()
+    private void CloseBorrowView()
     {
-        await Task.Delay(1000);
         windowBorrowVisible = false;
         _selectedItemId = null;
         _bookCopyGrid.RebindBookCopyGrid();
     }
-
-
 
     public Color GetColor(TEBookInfo book)
         
@@ -162,6 +154,4 @@ public partial class BooksGrid
         }
 
     }
-
-
 }
