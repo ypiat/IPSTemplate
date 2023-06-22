@@ -92,7 +92,6 @@ namespace IPSTemplate.BusinessLibrary.BO.Book
         [Display(Name = "Avtor/ji")]
         public string AuthorNames => String.Join(", ", Authors.Select(a => a.ShowAs));
 
-        
 
         public static readonly PropertyInfo<TEBookCopyRL> BookCopiesProperty = RegisterProperty<TEBookCopyRL>(p => p.BookCopies, RelationshipTypes.LazyLoad);
         public TEBookCopyRL BookCopies

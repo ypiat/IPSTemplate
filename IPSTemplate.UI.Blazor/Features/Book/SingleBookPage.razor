@@ -4,14 +4,15 @@
 @using IPSTemplate.UI.Blazor.Features.BookCopy
 @using IPSTemplate.UI.Blazor.Features.Borrowings
 
+
+
+<IPSPageTop  TitleIconClass="fa-solid fa-font-awesome" BackUrl="/" />
+
 @if (Book is null)
 {
     <IPSLoader />
     return;
 }
-
-<IPSPageTop  TitleIconClass="fa-solid fa-font-awesome" BackUrl="/" />
-
 <IPSCard Class="p-3">
         <IPSColumn Md="5" ColumnWidth="fit-content">
             <IPSDataList InlineItems="false">

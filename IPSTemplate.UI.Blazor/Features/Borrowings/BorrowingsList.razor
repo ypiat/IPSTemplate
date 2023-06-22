@@ -9,13 +9,14 @@
 
 
 
-@if (CurentBorrowings is null || HistoryBorrowings is null)
+
+
+<IPSPageTop Title="Tekoče izposoje" />
+@if (CurentBorrowings is null)
 {
     <IPSLoader />
     return;
 }
-
-<IPSPageTop Title="Tekoče izposoje" />
 <IPSCard>
     <IPSDataList Borders=DataListBorders.All Class="p-3">
         @if (CurentBorrowings.Count() == 0)
@@ -58,6 +59,11 @@
 <br />
 <br />
 <IPSPageTop Title="Zgodovina izposoj" />
+@if (HistoryBorrowings is null)
+{
+    <IPSLoader />
+    return;
+}
 <IPSCard>
     <IPSDataList Borders=DataListBorders.All Class="p-3">
         @if (HistoryBorrowings.Count() == 0)
