@@ -21,7 +21,7 @@
                     <div class="input-group">
                         <TelerikTextBox DebounceDelay=0 Class="form-control" Password=HidePassword @bind-Value=@ViewModel.Model.Password AutoComplete="current-password"></TelerikTextBox>
                         <div class="input-group-append">
-                            <IPSButton Class="ms-1" Type=ButtonType.Button Color=Color.Primary IconClass="@(HidePassword ? "fa fa-eye" : "fa fa-eye-slash")" OnClick="() => HidePassword = !HidePassword"></IPSButton>
+                            <IPSButton Class="ms-1" Type=ButtonType.Button Color=Color.Primary IconClass="@(HidePassword ? "fa fa-eye" : "fa fa-eye-slash")" OnClick=ShowPassword></IPSButton>
                         </div>
                     </div>
 

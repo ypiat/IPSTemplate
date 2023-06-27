@@ -110,6 +110,20 @@ namespace IPSTemplate.AppServer.Areas.Identity.Pages.Account
             }
         }
 
+        private async Task ShowPassword()
+        {
+            HidePassword = false;
+            await Task.Delay(2000);
+            HidePassword = true;
+        }
+
+        private async Task ShowConfirmPassword()
+        {
+            HideConfirmPassword = false;
+            await Task.Delay(2000);
+            HideConfirmPassword = true;
+        }
+
         private async Task RegisterUser()
         {
             // Create new user

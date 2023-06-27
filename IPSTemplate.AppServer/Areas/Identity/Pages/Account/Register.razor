@@ -21,14 +21,14 @@
                         <div class="input-group">
                             <TelerikTextBox DebounceDelay=0 Class="form-control" Password=HidePassword @bind-Value=@ViewModel.Model.Password ></TelerikTextBox>
                             <div class="input-group-append">
-                                <IPSButton Class="ms-1" Type=ButtonType.Button Color=Color.Primary IconClass="@(HidePassword ? "fa fa-eye" : "fa fa-eye-slash")" OnClick="() => HidePassword = !HidePassword"></IPSButton>
+                                <IPSButton Class="ms-1" Type=ButtonType.Button Color=Color.Primary IconClass="@(HidePassword ? "fa fa-eye" : "fa fa-eye-slash")" OnClick=ShowPassword></IPSButton>
                             </div>
                         </div>
                         <IPSLabel For="col_password">Potrdi geslo</IPSLabel>
                         <div class="input-group">
                             <TelerikTextBox DebounceDelay=0 Class="form-control" Password=HideConfirmPassword @bind-Value=@ViewModel.Model.ConfirmPassword></TelerikTextBox>
                             <div class="input-group-append">
-                                <IPSButton Class="ms-1" Type=ButtonType.Button Color=Color.Primary IconClass="@(HideConfirmPassword ? "fa fa-eye" : "fa fa-eye-slash")" OnClick="() => HideConfirmPassword = !HideConfirmPassword"></IPSButton>
+                                <IPSButton Class="ms-1" Type=ButtonType.Button Color=Color.Primary IconClass="@(HideConfirmPassword ? "fa fa-eye" : "fa fa-eye-slash")" OnClick=ShowConfirmPassword></IPSButton>
                             </div>
                         </div>
                         <IPSTextBox Property=@(ViewModel.GetProperty(() => ViewModel.Model.Name)) />
