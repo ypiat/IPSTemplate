@@ -21,10 +21,11 @@
             <IPSColumn>
                 <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.FirstName) />
                 <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.BirthYear) />
-                <IPSComboBox Data=@TECountries.OrderedUserFriendlyNameMap
+                <IPSDropDownList Data=@TECountries.OrderedUserFriendlyNameMap
                                  ValueField=@nameof(KeyValuePair<string, string>.Key)
                                  TextField=@nameof(KeyValuePair<string, string>.Value)
-                                 Property=@ViewModel.GetProperty(() => ViewModel.Model.Country) />
+                                 Property=@ViewModel.GetProperty(() => ViewModel.Model.Country) 
+                                 Filterable=true/>
             </IPSColumn>
             <IPSColumn>
                 <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.LastName) />

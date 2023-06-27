@@ -27,7 +27,7 @@
         <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.Name) />
         <IPSMultiSelect Property=@ViewModel.GetProperty(() => ViewModel.Model.AuthorIds) OnRead="GetAuthors"
                         TItem="TEAuthorInfo" TValue="Guid" TextField="ShowAs" ValueField="Id"
-                        @ref=_authorRef />
+                        @ref=_authorRef/>
         <IPSButton Icon=Icon.Add Color="Color.Secondary" OnClick="(() => windowAuthorVisible = true)">Dodaj avtorja</IPSButton>
         
         <IPSRow>
@@ -36,10 +36,11 @@
                          ValueField=@nameof(TEGenreInfo.Id)
                          Property=@ViewModel.GetProperty(() => ViewModel.Model.GenreID)
                          OnRead="GetGenres" ColumnWidth="6" @ref=_genreRef />
-            <IPSComboBox Data=@TELanguages.OrderedUserFriendlyNameMap
+            <IPSDropDownList Data=@TELanguages.OrderedUserFriendlyNameMap
                          ValueField=@nameof(KeyValuePair<string, string>.Key)
                          TextField=@nameof(KeyValuePair<string, string>.Value)
-                         Property=@ViewModel.GetProperty(() => ViewModel.Model.Language) ColumnWidth="6" />
+                         Property=@ViewModel.GetProperty(() => ViewModel.Model.Language) ColumnWidth="6" 
+                         Filterable=true/>
             
         </IPSRow>
         <IPSButton Icon=Icon.Add Color="Color.Secondary" OnClick="(() => windowGenreVisible = true)">Dodaj žanr</IPSButton>
