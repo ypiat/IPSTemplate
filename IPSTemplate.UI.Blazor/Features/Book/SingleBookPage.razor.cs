@@ -70,10 +70,10 @@ namespace IPSTemplate.UI.Blazor.Features.Book
             windowBorrowVisible = true;
         }
 
-        async Task CloseBorrowView()
+        private void CloseBorrowView()
         {
             windowBorrowVisible = false;
-            await LoadData();
+            NavigationManager.NavigateTo("/borrowing");
         }
     }
 }
