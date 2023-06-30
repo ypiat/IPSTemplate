@@ -20,6 +20,11 @@ namespace IPSTemplate.BusinessLibrary.BO.Borrowings
         {
             return await factory.GetPortal<TEBorrowingsRL>().FetchAsync(userId, isReturned, false);
         }
+
+        public static async Task<TEBorrowingsRL> GetByBookCopyIdAsync(Guid Id, IDataPortalFactory factory)
+        {
+            return await factory.GetPortal<TEBorrowingsRL>().FetchAsync(Id, false);
+        }
         #endregion
 
         #region Server-side methods
@@ -30,6 +35,19 @@ namespace IPSTemplate.BusinessLibrary.BO.Borrowings
             {
                 Include = new string[] { "BookCopy", "BookCopy.Book", "User" },
                 Predicate = PredicateBuilder.True<TEBorrowings>().And(p => p.UserID == id).And(p => p.IsReturned == isReturned)
+            };
+
+            Fetch(request, repository, factory, childFactory);
+            return Task.CompletedTask;
+        }
+
+        [Fetch]
+        protected Task FetchByBookCopyIdAsync(Guid id, bool _, [Inject] IRepository<TEBorrowings, TEBorrowings> repository, [Inject] IDataPortalFactory factory, [Inject] IChildDataPortalFactory childFactory)
+        {
+            var request = new CslaRequest
+            {
+                Include = new string[] { "BookCopy", "BookCopy.Book", "User" },
+                Predicate = PredicateBuilder.True<TEBorrowings>().And(p => p.BookCopyID == id).And(p => p.IsReturned == false)
             };
 
             Fetch(request, repository, factory, childFactory);
