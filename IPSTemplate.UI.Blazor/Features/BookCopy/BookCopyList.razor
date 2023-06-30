@@ -6,41 +6,144 @@
 
 
 
-<IPSDataList Borders=DataListBorders.All>
-    <IPSDataItem>
-        <IPSDataItemValue><strong>Številka kopije</strong></IPSDataItemValue>
-        <IPSDataItemValue><strong>Naslov</strong></IPSDataItemValue>
-        <IPSDataItemValue><strong>Leto izdaje</strong></IPSDataItemValue>
-        <IPSDataItemValue><strong>Založba</strong></IPSDataItemValue>
-        <IPSDataItemValue><strong>Lokacja</strong></IPSDataItemValue>
-        <IPSDataItemValue><strong>Stanje</strong></IPSDataItemValue>
-        <AuthorizeView Roles="Member" >
-            <IPSDataItemValue></IPSDataItemValue>
-        </AuthorizeView>
-    </IPSDataItem>
-    @foreach (TEBookCopyInfo BookCopy in @Book.BookCopies)
-    {
-        <IPSDataItem>
-            <IPSDataItemValue>@BookCopy.BookCopyNumber</IPSDataItemValue>
-            <IPSDataItemValue>@BookCopy.BookName</IPSDataItemValue>
-            <IPSDataItemValue>@BookCopy.PublishedYear</IPSDataItemValue>
-            <IPSDataItemValue>@BookCopy.PublisherName</IPSDataItemValue>
-            <IPSDataItemValue>@BookCopy.Location</IPSDataItemValue>
-            @if (@BookCopy.Status == "Na voljo")
-            {
-                <IPSDataItemValue><span style="color: #19B698">@BookCopy.Status</span></IPSDataItemValue>
-                <AuthorizeView Roles="Member" >
-                    <IPSDataItemValue><IPSButton Size=ButtonSize.Small Color="Color.Success" OnClick=@(() => BorrowClicked.InvokeAsync(BookCopy))>Izposodi</IPSButton></IPSDataItemValue>
-                </AuthorizeView>
-            }
-            else
-            {
-                <IPSDataItemValue><span style="color: #EA6153">@BookCopy.Status</span></IPSDataItemValue>
+<IPSMediaView>
+    <XLarge>
+        <br/>
+        <IPSDataList Borders=DataListBorders.All>
+            <IPSDataItem>
+                <IPSDataItemValue><strong>Številka knjige</strong></IPSDataItemValue>
+                <IPSDataItemValue><strong>Naslov</strong></IPSDataItemValue>
+                <IPSDataItemValue><strong>Leto izdaje</strong></IPSDataItemValue>
+                <IPSDataItemValue><strong>Založba</strong></IPSDataItemValue>
+                <IPSDataItemValue><strong>Lokacja</strong></IPSDataItemValue>
+                <IPSDataItemValue><strong>Stanje</strong></IPSDataItemValue>
                 <AuthorizeView Roles="Member">
                     <IPSDataItemValue></IPSDataItemValue>
                 </AuthorizeView>
-            }
+            </IPSDataItem>
+            @foreach (TEBookCopyInfo BookCopy in @Book.BookCopies)
+            {
+                <IPSDataItem>
+                    <IPSDataItemValue>@BookCopy.BookCopyNumber</IPSDataItemValue>
+                    <IPSDataItemValue>@BookCopy.BookName</IPSDataItemValue>
+                    <IPSDataItemValue>@BookCopy.PublishedYear</IPSDataItemValue>
+                    <IPSDataItemValue>@BookCopy.PublisherName</IPSDataItemValue>
+                    <IPSDataItemValue>@BookCopy.Location</IPSDataItemValue>
+                    @if (@BookCopy.Status == "Na voljo")
+                    {
+                        <IPSDataItemValue><span style="color: #19B698">@BookCopy.Status</span></IPSDataItemValue>
+                        <AuthorizeView Roles="Member">
+                            <IPSDataItemValue><IPSButton Size=ButtonSize.Small Color="Color.Success" OnClick=@(() => BorrowClicked.InvokeAsync(BookCopy))>Izposodi</IPSButton></IPSDataItemValue>
+                        </AuthorizeView>
+                    }
+                    else
+                    {
+                        <IPSDataItemValue><span style="color: #EA6153">@BookCopy.Status</span></IPSDataItemValue>
+                        <AuthorizeView Roles="Member">
+                            <IPSDataItemValue></IPSDataItemValue>
+                        </AuthorizeView>
+                    }
 
-        </IPSDataItem>
-    }
-</IPSDataList>
+                </IPSDataItem>
+            }
+        </IPSDataList>
+    </XLarge>
+    <XXLarge>
+        <br />
+        <IPSDataList Borders=DataListBorders.All>
+            <IPSDataItem>
+                <IPSDataItemValue><strong>Številka knjige</strong></IPSDataItemValue>
+                <IPSDataItemValue><strong>Naslov</strong></IPSDataItemValue>
+                <IPSDataItemValue><strong>Leto izdaje</strong></IPSDataItemValue>
+                <IPSDataItemValue><strong>Založba</strong></IPSDataItemValue>
+                <IPSDataItemValue><strong>Lokacja</strong></IPSDataItemValue>
+                <IPSDataItemValue><strong>Stanje</strong></IPSDataItemValue>
+                <AuthorizeView Roles="Member">
+                    <IPSDataItemValue></IPSDataItemValue>
+                </AuthorizeView>
+            </IPSDataItem>
+            @foreach (TEBookCopyInfo BookCopy in @Book.BookCopies)
+            {
+                <IPSDataItem>
+                    <IPSDataItemValue>@BookCopy.BookCopyNumber</IPSDataItemValue>
+                    <IPSDataItemValue>@BookCopy.BookName</IPSDataItemValue>
+                    <IPSDataItemValue>@BookCopy.PublishedYear</IPSDataItemValue>
+                    <IPSDataItemValue>@BookCopy.PublisherName</IPSDataItemValue>
+                    <IPSDataItemValue>@BookCopy.Location</IPSDataItemValue>
+                    @if (@BookCopy.Status == "Na voljo")
+                    {
+                        <IPSDataItemValue><span style="color: #19B698">@BookCopy.Status</span></IPSDataItemValue>
+                        <AuthorizeView Roles="Member">
+                            <IPSDataItemValue><IPSButton Size=ButtonSize.Small Color="Color.Success" OnClick=@(() => BorrowClicked.InvokeAsync(BookCopy))>Izposodi</IPSButton></IPSDataItemValue>
+                        </AuthorizeView>
+                    }
+                    else
+                    {
+                        <IPSDataItemValue><span style="color: #EA6153">@BookCopy.Status</span></IPSDataItemValue>
+                        <AuthorizeView Roles="Member">
+                            <IPSDataItemValue></IPSDataItemValue>
+                        </AuthorizeView>
+                    }
+
+                </IPSDataItem>
+            }
+        </IPSDataList>
+    </XXLarge>
+    <Default>
+        @foreach (TEBookCopyInfo BookCopy in @Book.BookCopies)
+        {
+            <IPSCard Class="p-1">
+                <IPSDataList Borders=DataListBorders.All>
+                    <IPSDataItem>
+                        <IPSDataItemKey>Št. knjige</IPSDataItemKey>
+                        <IPSDataItemValue>@BookCopy.BookCopyNumber</IPSDataItemValue>
+                    </IPSDataItem>
+                    <IPSDataItem>
+                        <IPSDataItemKey>Naslov</IPSDataItemKey>
+                        <IPSDataItemValue>@BookCopy.BookName</IPSDataItemValue>
+                    </IPSDataItem>
+                    <IPSDataItem>
+                        <IPSDataItemKey>Leto izdaje</IPSDataItemKey>
+                        <IPSDataItemValue>@BookCopy.PublishedYear</IPSDataItemValue>
+                    </IPSDataItem>
+                    <IPSDataItem>
+                        <IPSDataItemKey>Založba</IPSDataItemKey>
+                        <IPSDataItemValue>@BookCopy.PublisherName</IPSDataItemValue>
+                    </IPSDataItem>
+                    <IPSDataItem>
+                        <IPSDataItemKey>Lokacja</IPSDataItemKey>
+                        <IPSDataItemValue>@BookCopy.Location</IPSDataItemValue>
+                    </IPSDataItem>
+                    @if (@BookCopy.Status == "Na voljo")
+                    {
+                        <IPSDataItem>
+                            <IPSDataItemKey>Stanje</IPSDataItemKey>
+                            <IPSDataItemValue>
+                                <IPSBadge Color="Color.Success">@BookCopy.Status</IPSBadge>
+                            </IPSDataItemValue>
+                        </IPSDataItem>
+                    }
+                    else
+                    {
+                        <IPSDataItem>
+                            <IPSDataItemKey>Stanje</IPSDataItemKey>
+                            <IPSDataItemValue>
+                                <IPSBadge Color="Color.Danger">@BookCopy.Status</IPSBadge>
+                            </IPSDataItemValue>
+                        </IPSDataItem>
+                    }
+                </IPSDataList>
+                <br />
+                @if (@BookCopy.Status == "Na voljo")
+                {
+                    <div style="display: flex; justify-content: end">
+                        <AuthorizeView Roles="Member">
+                            <IPSButton Size=ButtonSize.Small Color="Color.Success" OnClick=@(() => BorrowClicked.InvokeAsync(BookCopy))>Izposodi</IPSButton>
+                        </AuthorizeView>
+                    </div>
+                }
+
+            </IPSCard>
+        }
+    </Default>
+</IPSMediaView>

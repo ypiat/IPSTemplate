@@ -1,0 +1,126 @@
+﻿@page "/book/copy/borrow/{ItemId}"
+@using Core.Library.Base;
+@using IPSTemplate.BusinessLibrary.BO.Book;
+@using IPSTemplate.UI.Blazor.Features.BookCopy
+@using IPSTemplate.UI.Blazor.Features.Borrowings
+@using Microsoft.AspNetCore.Authorization
+
+
+
+@if (BookCopy is null)
+{
+    <IPSLoader />
+    return;
+}
+<IPSPageTop/>
+
+<IPSRow>
+    <IPSColumn Md="3">
+        <IPSCard Class="p-3">
+            <IPSDataList InlineItems="false">
+                <IPSDataItem IconClass="fa-solid fa-book">
+                    <IPSDataItemValue><h2>@BookCopy.BookName</h2></IPSDataItemValue>
+                </IPSDataItem>
+            </IPSDataList>
+            <br />
+            <br />
+            @if (BookCopy.IsAvailable)
+            { 
+                <IPSDataList Borders=DataListBorders.All >
+                    <IPSDataItem>
+                        <IPSDataItemKey>Št. knjige</IPSDataItemKey>
+                        <IPSDataItemValue>@BookCopy.BookCopyNumber</IPSDataItemValue>
+                    </IPSDataItem>
+                    <IPSDataItem>
+                        <IPSDataItemKey>Začetek izposoji</IPSDataItemKey>
+                        <IPSDataItemValue>@StartBorrowDate.ToString("dd/MM/yyyy")</IPSDataItemValue>
+                    </IPSDataItem>
+                    <IPSDataItem>
+                        <IPSDataItemKey>Konec izposoji</IPSDataItemKey>
+                        <IPSDataItemValue>@EndBorrowDate.ToString("dd/MM/yyyy")</IPSDataItemValue>
+                    </IPSDataItem>      
+                </IPSDataList>
+                <br/>
+                <br />
+                <div style="display: flex; justify-content: end">
+                    <IPSButton Color="Color.Success" OnClick=OpenBorrowView>Izposodi</IPSButton>
+                </div>
+            }
+            else
+            {
+                <IPSDataList Borders=DataListBorders.All>
+                    <IPSDataItem>
+                        <IPSDataItemKey>Št. knjige</IPSDataItemKey>
+                        <IPSDataItemValue>@BookCopy.BookCopyNumber</IPSDataItemValue>
+                    </IPSDataItem>
+                    <AuthorizeView Roles="Administrator">
+                        <IPSDataItem>
+                            <IPSDataItemKey>Uporabnik</IPSDataItemKey>
+                            <IPSDataItemValue>@BookCopyBorrowing.UserShowFullName</IPSDataItemValue>
+                        </IPSDataItem>
+                    </AuthorizeView>
+                    <IPSDataItem>
+                        <IPSDataItemKey>Začetek izposoji</IPSDataItemKey>
+                        <IPSDataItemValue>@StartBorrowDate.ToString("dd/MM/yyyy")</IPSDataItemValue>
+                    </IPSDataItem>
+                    <IPSDataItem>
+                        <IPSDataItemKey>Konec izposoji</IPSDataItemKey>
+                        <IPSDataItemValue>@EndBorrowDate.ToString("dd/MM/yyyy")</IPSDataItemValue>
+                    </IPSDataItem>
+                    <IPSDataItem>
+                        <IPSDataItemKey>Preostalih dni</IPSDataItemKey>
+                        <IPSDataItemValue>@BookCopyBorrowing.DaysLeft</IPSDataItemValue>
+                    </IPSDataItem>
+                </IPSDataList>
+                <br />
+                <br />
+                
+               
+                    @if (IsBorrower)
+                    {
+                        <div style="display: flex; justify-content: end">
+                            <IPSButton Color="Color.Success" OnClick=OpenReturnView>Vrni</IPSButton>
+                                <span style="width:10px"></span>
+                            <IPSButton Color="Color.Warning" OnClick=OpenExtendView>Podaljšaj</IPSButton>
+                        </div>
+                    }
+                    else
+                    {
+                        <div style="display: flex; justify-content: end">
+                            <IPSButton Color="Color.Success" OnClick=OpenReturnView>Vrni</IPSButton>
+                        </div>
+                        <p>*Ta knjiga je v izposoji, najprej jo vrni</p>
+                    }
+                
+                
+            }
+        </IPSCard>
+    </IPSColumn>
+</IPSRow>
+
+
+<IPSWindow Size="WindowSize.Small"
+           ConfirmCloseWhen=@(() => _borrowView.ViewModel.Model.IsDirty)
+@bind-Visible=@windowBorrowVisible>
+    <WindowContent>
+        <BorrowingsEdit BookCopyId=@_selectedBookCopyId ItemSaved=CloseBorrowView BookTitle=@_bookName @ref=_borrowView />
+    </WindowContent>
+</IPSWindow>
+
+
+<IPSWindow Size="WindowSize.Small"
+           ConfirmCloseWhen=@(() => _returnView.ViewModel.Model.IsDirty)
+@bind-Visible=@windowReturnVisible>
+    <WindowContent>
+        <BorrowingsReturn BookCopyId=@_selectedBookCopyId ItemId=@_selectedItemId ItemSaved=CloseReturnView BookName=@_bookName @ref=_returnView />
+    </WindowContent>
+</IPSWindow>
+
+
+<IPSWindow Size="WindowSize.Small"
+           ConfirmCloseWhen=@(() => _extendView.ViewModel.Model.IsDirty)
+@bind-Visible=@windowExtendVisible>
+    <WindowContent>
+        <BorrowingsExtend BookCopyId=@_selectedBookCopyId ItemId=@_selectedItemId ItemSaved=CloseExtendView BookName=@_bookName @ref=_extendView />
+    </WindowContent>
+</IPSWindow>

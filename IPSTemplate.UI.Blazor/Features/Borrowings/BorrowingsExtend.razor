@@ -21,9 +21,9 @@
     <FormFields>
         <h5>Želiš podaljšati izposojo knjigi - @BookName?</h5>
         <br/>
-        <p>Začetek izposoji: @ViewModel.Model.StartBorrowing</p>
-        <p>Konec izposoji: @ViewModel.Model.EndBorrowing</p>
-        <p>Podaljšaj do: @ViewModel.Model.ExtendEndBorrowing</p>
+        <p>Začetek izposoji: @ViewModel.Model.StartBorrowing.ToString("dd/MM/yyyy")</p>
+        <p>Konec izposoji: @ViewModel.Model.EndBorrowing.ToString("dd/MM/yyyy")</p>
+        <p>Podaljšaj do: @ViewModel.Model.ExtendEndBorrowing.ToString("dd/MM/yyyy")</p>
     </FormFields>
     <FormButtons>
         <IPSButton Color="Color.Warning" Type="IPSBlazor.Components.ButtonType.Submit" OnClick="HandleSave">Podaljšaj</IPSButton>

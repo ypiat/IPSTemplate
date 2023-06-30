@@ -21,8 +21,8 @@
     <FormFields>
         <h5>Želiš vrniti knjigo - @BookName?</h5>
         <br/>
-        <p>Začetek izposoji: @ViewModel.Model.StartBorrowing</p>
-        <p>Konec izposoji: @ViewModel.Model.EndBorrowing</p>
+        <p>Začetek izposoji: @ViewModel.Model.StartBorrowing.ToString("dd/MM/yyyy")</p>
+        <p>Konec izposoji: @ViewModel.Model.EndBorrowing.ToString("dd/MM/yyyy")</p>
     </FormFields>
     <FormButtons>
         <IPSButton Size=ButtonSize.Large Color="Color.Success" Type="IPSBlazor.Components.ButtonType.Submit" OnClick="HandleSave">Vrni</IPSButton>

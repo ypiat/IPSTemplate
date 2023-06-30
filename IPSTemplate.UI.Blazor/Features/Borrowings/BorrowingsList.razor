@@ -9,51 +9,110 @@
 
 
 
-
-
 <IPSPageTop Title="Tekoče izposoje" />
 @if (CurentBorrowings is null)
 {
     <IPSLoader />
     return;
 }
-<IPSCard>
-    <IPSDataList Borders=DataListBorders.All Class="p-3">
-        @if (CurentBorrowings.Count() == 0)
-        {
-            <h4>Ni tekočih izposoj</h4>
-        } 
-        else
-        {
-            <IPSDataItem>
-                <IPSDataItemValue><strong>Številka kopije</strong></IPSDataItemValue>
-                <IPSDataItemValue><strong>Naslov</strong></IPSDataItemValue>
-                <IPSDataItemValue><strong>Start izposoji</strong></IPSDataItemValue>
-                <IPSDataItemValue><strong>Konec izposoji</strong></IPSDataItemValue>
-                <IPSDataItemValue><strong>Preostalih dni</strong></IPSDataItemValue>
-                <IPSDataItemValue><strong>Stanje</strong></IPSDataItemValue>
-                <IPSDataItemValue></IPSDataItemValue>
-            </IPSDataItem>
-            @foreach (TEBorrowingsInfo Borrowing in CurentBorrowings)
-            {
-                <IPSDataItem>
-                    <IPSDataItemValue>@Borrowing.BookCopyBookCopyNumber</IPSDataItemValue>
-                    <IPSDataItemValue>@Borrowing.BookCopyBookName</IPSDataItemValue>
-                    <IPSDataItemValue>@Borrowing.StartBorrowing.ToString("dd/MM/yyyy")</IPSDataItemValue>
-                    <IPSDataItemValue>@Borrowing.EndBorrowing.ToString("dd/MM/yyyy")</IPSDataItemValue>
-                    <IPSDataItemValue>@Borrowing.DaysLeft</IPSDataItemValue>
-                    <IPSDataItemValue>
-                        <IPSBadge Color="Color.Warning">@Borrowing.Status</IPSBadge>
-                    </IPSDataItemValue>
-                    <IPSDataItemValue>
-                        <IPSButton Size=ButtonSize.Small Color="Color.Success" OnClick=@(() => HandleReturn.InvokeAsync(Borrowing))>Vrni</IPSButton>
-                        <IPSButton Size=ButtonSize.Small Color="Color.Warning" OnClick=@(() => HandleExtend.InvokeAsync(Borrowing))>Podaljšaj</IPSButton>
-                    </IPSDataItemValue>
-                </IPSDataItem>
-            }
-        }    
-    </IPSDataList>
-</IPSCard>
+
+<IPSMediaView>
+    <XXLarge>
+        <IPSCard>
+            <IPSDataList Borders=DataListBorders.All Class="p-3">
+                @if (CurentBorrowings.Count() == 0)
+                {
+                    <h4>Ni tekočih izposoj</h4>
+                }
+                else
+                {
+                    <IPSDataItem>
+                        <IPSDataItemValue><strong>Številka kopije</strong></IPSDataItemValue>
+                        <IPSDataItemValue><strong>Naslov</strong></IPSDataItemValue>
+                        <IPSDataItemValue><strong>Start izposoji</strong></IPSDataItemValue>
+                        <IPSDataItemValue><strong>Konec izposoji</strong></IPSDataItemValue>
+                        <IPSDataItemValue><strong>Preostalih dni</strong></IPSDataItemValue>
+                        <IPSDataItemValue><strong>Stanje</strong></IPSDataItemValue>
+                        <IPSDataItemValue></IPSDataItemValue>
+                    </IPSDataItem>
+                    @foreach (TEBorrowingsInfo Borrowing in CurentBorrowings)
+                    {
+                        <IPSDataItem>
+                            <IPSDataItemValue>@Borrowing.BookCopyBookCopyNumber</IPSDataItemValue>
+                            <IPSDataItemValue>@Borrowing.BookCopyBookName</IPSDataItemValue>
+                            <IPSDataItemValue>@Borrowing.StartBorrowing.ToString("dd/MM/yyyy")</IPSDataItemValue>
+                            <IPSDataItemValue>@Borrowing.EndBorrowing.ToString("dd/MM/yyyy")</IPSDataItemValue>
+                            <IPSDataItemValue>@Borrowing.DaysLeft</IPSDataItemValue>
+                            <IPSDataItemValue>
+                                <IPSBadge Color="Color.Warning">@Borrowing.Status</IPSBadge>
+                            </IPSDataItemValue>
+                            <IPSDataItemValue>
+                                <IPSButton Size=ButtonSize.Small Color="Color.Success" OnClick=@(() => HandleReturn.InvokeAsync(Borrowing))>Vrni</IPSButton>
+                                <IPSButton Size=ButtonSize.Small Color="Color.Warning" OnClick=@(() => HandleExtend.InvokeAsync(Borrowing))>Podaljšaj</IPSButton>
+                            </IPSDataItemValue>
+                        </IPSDataItem>
+                    }
+                }
+            </IPSDataList>
+        </IPSCard>
+    </XXLarge>
+    <Default>
+   
+                @if (CurentBorrowings.Count() == 0)
+                {
+                    <IPSDataList Borders=DataListBorders.All Class="p-3">
+                        <h4>Ni tekočih izposoj</h4>
+                    </IPSDataList>
+                }
+                else
+                {
+                    @foreach (TEBorrowingsInfo Borrowing in CurentBorrowings)
+                    {
+                        <IPSCard Class="p-3">
+                            <IPSDataList InlineItems="false">
+                                <IPSDataItem IconClass="fa-solid fa-book">
+                                    <IPSDataItemValue><h4>@Borrowing.BookCopyBookName</h4></IPSDataItemValue>
+                                </IPSDataItem>
+                            </IPSDataList>
+ 
+
+                            <IPSDataList Borders=DataListBorders.All>
+                                <IPSDataItem>
+                                    <IPSDataItemKey>Št. knjige</IPSDataItemKey>
+                                    <IPSDataItemValue>@Borrowing.BookCopyBookCopyNumber</IPSDataItemValue>
+                                </IPSDataItem>
+                                <IPSDataItem>
+                                    <IPSDataItemKey>Začetek izposoji</IPSDataItemKey>
+                                    <IPSDataItemValue>@Borrowing.StartBorrowing.ToString("dd/MM/yyyy")</IPSDataItemValue>
+                                </IPSDataItem>
+                                <IPSDataItem>
+                                    <IPSDataItemKey>Konec izposoji</IPSDataItemKey>
+                                    <IPSDataItemValue>@Borrowing.EndBorrowing.ToString("dd/MM/yyyy")</IPSDataItemValue>
+                                </IPSDataItem>
+                                <IPSDataItem>
+                                    <IPSDataItemKey>Preostalih dni</IPSDataItemKey>
+                                    <IPSDataItemValue>@Borrowing.DaysLeft</IPSDataItemValue>
+                                </IPSDataItem>
+                                <IPSDataItem>
+                                    <IPSDataItemKey>Stanje</IPSDataItemKey>
+                                    <IPSDataItemValue>
+                                        <IPSBadge Color="Color.Warning">@Borrowing.Status</IPSBadge>
+                                    </IPSDataItemValue>
+                                </IPSDataItem>
+                            </IPSDataList>
+                            <br/>
+                            <div style="display: flex; justify-content: end">
+                                <IPSButton Color="Color.Success" OnClick=@(() => HandleReturn.InvokeAsync(Borrowing))>Vrni</IPSButton>
+                                <span style="width:10px"></span>
+                                <IPSButton Color="Color.Warning" OnClick=@(() => HandleExtend.InvokeAsync(Borrowing))>Podaljšaj</IPSButton>
+                            </div>
+                        </IPSCard>
+                    }    
+                }
+           
+    </Default>
+</IPSMediaView>
+
 
 <br />
 <br />
@@ -95,6 +154,3 @@
 
 
 
-@code {
-    
-} 
