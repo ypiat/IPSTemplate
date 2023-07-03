@@ -32,6 +32,15 @@
 
         <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.PublishedYear) />
         <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.Location) />
+        @if(HasQRCode)
+        {
+            <img height="100px" src=@ViewModel.Model.QRCodeUrl />
+        }
+        else
+        {
+            <IPSButton Color="Color.Secondary" OnClick=GenerateQRCode>Generate QRCode</IPSButton>
+
+        }
     </FormFields>
     <FormButtons>
         <IPSFormSaveButton />

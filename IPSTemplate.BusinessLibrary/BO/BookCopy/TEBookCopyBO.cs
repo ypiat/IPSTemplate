@@ -74,6 +74,14 @@ namespace IPSTemplate.BusinessLibrary.BO.BookCopy
             set => SetProperty(LocationProperty, value);
         }
 
+        public static readonly PropertyInfo<string> QRCodeUrlProperty = RegisterProperty<string>(p => p.QRCodeUrl);
+        [Display(Name = "QRCodeUrl")]
+        public string QRCodeUrl
+        {
+            get => GetProperty(QRCodeUrlProperty);
+            set => SetProperty(QRCodeUrlProperty, value);
+        }
+
         public static readonly PropertyInfo<TEBookCopyRL> BookBookCopiesProperty = RegisterProperty<TEBookCopyRL>(p => p.BookBookCopies);
         public TEBookCopyRL BookBookCopies
         {

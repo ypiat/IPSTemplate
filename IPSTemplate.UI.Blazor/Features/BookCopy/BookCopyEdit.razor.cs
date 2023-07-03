@@ -9,6 +9,12 @@ using IPSTemplate.UI.Blazor.Base;
 using IPSTemplate.UI.Blazor.Features.Publisher;
 using Microsoft.AspNetCore.Components.Authorization;
 using Telerik.Blazor.Components;
+using IronBarCode;
+using Microsoft.AspNetCore.Hosting;
+using SixLabors.ImageSharp.Drawing;
+using System.Buffers.Text;
+using System.Net.NetworkInformation;
+using Telerik.SvgIcons;
 
 namespace IPSTemplate.UI.Blazor.Features.BookCopy
 {
@@ -23,12 +29,18 @@ namespace IPSTemplate.UI.Blazor.Features.BookCopy
         [Inject] protected IDataPortalFactory DataPortalFactory { get; set; } = default!;
 
         protected IPSComboBox<Guid?, TEBookInfo>? cbxBook = default!;
-        protected IPSComboBox<Guid?, TEPublisherInfo> cbxPublisher= default!;
+        protected IPSComboBox<Guid?, TEPublisherInfo> cbxPublisher = default!;
 
         [CascadingParameter]
         private Task<AuthenticationState> authenticationStateTask { get; set; } = default!;
 
         [Inject] private NavigationManager NavigationManager { get; set; } = default!;
+
+        private bool HasQRCode { get; set; } = false;
+
+        private string QRCodePath { get; set; } = string.Empty;
+
+        private string TestUrl = string.Empty;
 
 
         protected override async Task OnInitializedAsync()
@@ -42,9 +54,14 @@ namespace IPSTemplate.UI.Blazor.Features.BookCopy
             else
             {
                 await base.OnInitializedAsync();
+            }
 
-            }     
+            if (ViewModel.Model.QRCodeUrl != "")
+            {
+                HasQRCode = true;
+            }
         }
+
 
         async Task CloseEditView()
         {
@@ -59,6 +76,15 @@ namespace IPSTemplate.UI.Blazor.Features.BookCopy
             var publishers = await TEPublisherRL.GetFilteredList(filter ?? "", DataPortalFactory);
             args.Data = publishers;
             args.Total = publishers.Count;
+        }
+
+        private void GenerateQRCode()
+        {
+            var imageUrl = QRCodeWriter.CreateQrCode($"https://localhost:44324/book/copy/borrow/{ItemId}", 500, QRCodeWriter.QrErrorCorrectionLevel.Medium).ToDataUrl();
+
+            ViewModel.Model.QRCodeUrl = imageUrl;
+
+            HasQRCode = true;
         }
     }
 }

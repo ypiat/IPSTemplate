@@ -88,7 +88,7 @@ public partial class BooksGrid
 
     protected void OpenEditCopyView(TEBookCopyInfo selectedItem)
     {
-        _editCopyViewTitle = $"Uredi kopijo knjige - {selectedItem.BookName}";
+        _editCopyViewTitle = $"Uredi kopijo knjige - {selectedItem.BookName}, {selectedItem.BookCopyNumber}";
         _selectedItemId = selectedItem.Id.ToString();
 
         windowEditCopyVisible = true;
@@ -117,40 +117,40 @@ public partial class BooksGrid
         _bookCopyGrid.RebindBookCopyGrid();
     }
 
-    public Color GetColor(TEBookInfo book)
+    public IPSBlazor.Color GetColor(TEBookInfo book)
         
     {
         if (book.GenreColor == "#007dc3")
         {
-            return Color.Primary;
+            return IPSBlazor.Color.Primary;
         }
         if (book.GenreColor == "#adb5bd")
         {
-            return Color.Secondary;
+            return IPSBlazor.Color.Secondary;
         }
         if (book.GenreColor == "#19b698")
         {
-            return Color.Success;
+            return IPSBlazor.Color.Success;
         }
         if (book.GenreColor == "#ea6153")
         {
-            return Color.Danger;
+            return IPSBlazor.Color.Danger;
         }
         if (book.GenreColor == "#f16e3f")
         {
-            return Color.Warning;
+            return IPSBlazor.Color.Warning;
         }
         if (book.GenreColor == "#52c3d3")
         {
-            return Color.Info;
+            return IPSBlazor.Color.Info;
         }
         if (book.GenreColor == "#e9ecef")
         {
-            return Color.Light;
+            return IPSBlazor.Color.Light;
         }
         else
         {
-            return Color.Light;
+            return IPSBlazor.Color.Light;
         }
 
     }

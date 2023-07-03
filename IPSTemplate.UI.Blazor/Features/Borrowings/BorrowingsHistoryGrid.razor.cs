@@ -53,19 +53,19 @@ public partial class BorrowingsHistoryGrid
         args.Total = data.TotalRowCount;
     }
 
-    public Color GetColor(TEBorrowingsInfo borrowing)
+    public IPSBlazor.Color GetColor(TEBorrowingsInfo borrowing)
     {
         if (borrowing.Status == "Vrnjeno")
         {
-            return Color.Success;
+            return IPSBlazor.Color.Success;
         }
         if (borrowing.Status == "V izposoji")
         {
-            return Color.Warning;
+            return IPSBlazor.Color.Warning;
         }
         else
         {
-            return Color.Info;
+            return IPSBlazor.Color.Info;
         }
     }
 }

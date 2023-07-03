@@ -28,40 +28,40 @@ public partial class GenresGrid
 
     public void Rebind() => _genre.Rebind();
 
-    public Color GetColor(TEGenreInfo genre)
+    public IPSBlazor.Color GetColor(TEGenreInfo genre)
 
     {
         if (genre.Color == "#007dc3")
         {
-            return Color.Primary;
+            return IPSBlazor.Color.Primary;
         }
         if (genre.Color == "#adb5bd")
         {
-            return Color.Secondary;
+            return IPSBlazor.Color.Secondary;
         }
         if (genre.Color == "#19b698")
         {
-            return Color.Success;
+            return IPSBlazor.Color.Success;
         }
         if (genre.Color == "#ea6153")
         {
-            return Color.Danger;
+            return IPSBlazor.Color.Danger;
         }
         if (genre.Color == "#f16e3f")
         {
-            return Color.Warning;
+            return IPSBlazor.Color.Warning;
         }
         if (genre.Color == "#52c3d3")
         {
-            return Color.Info;
+            return IPSBlazor.Color.Info;
         }
         if (genre.Color == "#e9ecef")
         {
-            return Color.Light;
+            return IPSBlazor.Color.Light;
         }
         else
         {
-            return Color.Light;
+            return IPSBlazor.Color.Light;
         }
 
     }

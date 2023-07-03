@@ -23,5 +23,7 @@ namespace IPSTemplate.Dal.Models
 
         [MaxLength(100)]
         public string Location { get; set; }
+
+        public string QRCodeUrl { get; set; }
     }
 }

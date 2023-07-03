@@ -62,11 +62,6 @@ namespace IPSTemplate.UI.Blazor.Features.BookCopy
         {
             await base.OnInitializedAsync();
             var user = (await AuthStat).User;
-            //if (user.Identity?.IsAuthenticated == false)
-            //{
-
-            //    NavigationManager.NavigateTo("/account/sign-in");
-            //}
 
             if (user.Identity?.IsAuthenticated == true)
             {
