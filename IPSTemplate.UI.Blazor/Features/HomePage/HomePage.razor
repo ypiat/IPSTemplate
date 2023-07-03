@@ -1,0 +1,60 @@
+﻿
+@using IPSTemplate.BusinessLibrary.BO.Identity.User;
+@using IPSTemplate.Dal.Models.Identity;
+@using Microsoft.AspNetCore.Identity;
+
+@if (User is null)
+{
+    <IPSLoader />
+    return;
+}
+
+
+<IPSColumn Md="3">
+    <IPSCard>
+        <IPSDataList InlineItems="false">
+            <IPSDataItem>
+                <IPSDataItemValue><h3>Moje podatki</h3></IPSDataItemValue>
+            </IPSDataItem>
+        </IPSDataList>
+        <IPSDataList Borders=DataListBorders.All>
+            <IPSDataItem>
+                <IPSDataItemKey>Ime in priimek</IPSDataItemKey>
+                <IPSDataItemValue>@User.DisplayName</IPSDataItemValue>
+            </IPSDataItem>
+            <IPSDataItem>
+                <IPSDataItemKey>Email</IPSDataItemKey>
+                <IPSDataItemValue>@User.Email</IPSDataItemValue>
+            </IPSDataItem>
+            <IPSDataItem>
+                <IPSDataItemKey>Datum rojstva</IPSDataItemKey>
+                @if(@User.DateOfBirth is not null)
+                {
+                    <IPSDataItemValue>@User.ShowDateAs</IPSDataItemValue>
+                }
+                else
+                {
+                    <IPSDataItemValue>/</IPSDataItemValue>
+                } 
+            </IPSDataItem>
+            <IPSDataItem>
+                <IPSDataItemKey>Vloga</IPSDataItemKey>
+                <IPSDataItemValue>@UserRole</IPSDataItemValue>
+            </IPSDataItem>
+        </IPSDataList>
+        <br />
+        <div style="display: flex; justify-content: end">
+            <IPSLink Link="/account/manage"><IPSButton Icon="Icon.Edit">Uredi profil</IPSButton></IPSLink>
+        </div>
+    </IPSCard>
+    <br/>
+    @if(UserRole == "Uporabnik")
+    {
+        <div style="display: flex; justify-content: center">
+            <IPSLink Link="/booksearch"><IPSButton Color="Color.Primary" IconClass="fa-solid fa-search">Iskanje knjig</IPSButton></IPSLink>
+            <span style="width:50px"></span>
+            <IPSLink Link="/borrowing"><IPSButton Color="Color.Primary">Moje izposoje</IPSButton></IPSLink>
+        </div>
+    }
+</IPSColumn>
+

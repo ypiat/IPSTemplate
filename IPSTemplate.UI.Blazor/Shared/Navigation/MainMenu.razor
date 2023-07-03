@@ -2,7 +2,7 @@
 
 <IPSNavMenu>
     <AuthorizeView Roles="Administrator">
-        <IPSNavMenuLink Link="/" IconClass="fa-solid fa-clipboard">@Localizer["Izposoje"]</IPSNavMenuLink>
+        <IPSNavMenuLink Link="/borrowing" IconClass="fa-solid fa-clipboard">Izposoje</IPSNavMenuLink>
         <IPSNavMenuLink Link="/user" IconClass="fa-solid fa-user">Uporabniki</IPSNavMenuLink>
         <hr />
     </AuthorizeView>
@@ -14,7 +14,7 @@
     </AuthorizeView>
 
     <AuthorizeView Roles="Member">
-        <IPSNavMenuLink Link="/" IconClass="fa-solid fa-search">@Localizer["Iskanje knjig"]</IPSNavMenuLink>
+        <IPSNavMenuLink Link="/booksearch" IconClass="fa-solid fa-search">Iskanje knjig</IPSNavMenuLink>
         <hr />
         <IPSNavMenuLink Link="/borrowing" IconClass="fa-solid fa-clipboard">Moje izposoje</IPSNavMenuLink>
     </AuthorizeView>

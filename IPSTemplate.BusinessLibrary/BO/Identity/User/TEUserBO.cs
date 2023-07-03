@@ -140,6 +140,16 @@ namespace IPSTemplate.BusinessLibrary.BO.Identity.User
             get => GetProperty(DateOfBirthProperty);
             set => SetProperty(DateOfBirthProperty, value);
         }
+
+        public string? ShowDateAs
+        {
+            get
+            {
+                return DateOfBirth?.ToString("dd/MM/yyyy");
+            }
+
+        }
+
         #endregion
 
         #region Validation rules
