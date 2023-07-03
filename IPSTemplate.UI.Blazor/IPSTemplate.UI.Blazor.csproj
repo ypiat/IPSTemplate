@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="BarCode" Version="2023.7.2" />
     <PackageReference Include="Csla.Blazor" Version="6.2.2" />
     <PackageReference Include="IPSBlazor" Version="2.3.4" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.10" />
