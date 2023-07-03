@@ -1,4 +1,5 @@
 ﻿using Core.Library.Base;
+using IPSTemplate.BusinessLibrary.BO.Book;
 using IPSTemplate.BusinessLibrary.BO.Identity.User;
 using IPSTemplate.BusinessLibrary.Interfaces;
 using IPSTemplate.Dal.Models.Identity;
@@ -29,7 +30,7 @@ namespace IPSTemplate.UI.Blazor.Features.HomePage
 
         private string UserRole { get; set; } = string.Empty;
 
-        private int UsersCount { get; set; }
+        private int BooksCount { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
@@ -49,6 +50,10 @@ namespace IPSTemplate.UI.Blazor.Features.HomePage
                 {
                     UserRole = "Uporabnik";
                 }
+
+                var request = new CslaRequest { };
+                var books = await TEBookRL.GetBooksListAsync(request, DataPortalFactory);
+                BooksCount = books.Count();
             }
         }
 

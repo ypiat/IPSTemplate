@@ -14,7 +14,7 @@
     <IPSCard>
         <IPSDataList InlineItems="false">
             <IPSDataItem>
-                <IPSDataItemValue><h3>Moje podatki</h3></IPSDataItemValue>
+                <IPSDataItemValue><h3>Moji podatki</h3></IPSDataItemValue>
             </IPSDataItem>
         </IPSDataList>
         <IPSDataList Borders=DataListBorders.All>
@@ -56,5 +56,14 @@
             <IPSLink Link="/borrowing"><IPSButton Color="Color.Primary">Moje izposoje</IPSButton></IPSLink>
         </div>
     }
+
+    <IPSCard>
+        <IPSDataList Borders=DataListBorders.None>
+            <IPSDataItem>
+                <IPSDataItemValue>Knjig v knjižnici:</IPSDataItemValue>
+                <IPSDataItemValue>@BooksCount</IPSDataItemValue>
+            </IPSDataItem>
+        </IPSDataList>
+    </IPSCard>
 </IPSColumn>
 
