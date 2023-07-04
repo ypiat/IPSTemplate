@@ -96,13 +96,11 @@ namespace IPSTemplate.UI.Blazor.Features.Borrowings
             if (IsAlreadyBorrowed)
             {
                 await ItemSaved.InvokeAsync();
-                //await Task.Delay(300);
                 NotificationService.ShowError("Izposoja ni mogoča. Knjiga je že v izposoji.");
             }
             else
             {
                 await ItemSaved.InvokeAsync();
-                //await Task.Delay(300);
                 NotificationService.ShowSuccess("Uspešno ste izposodili knjigo");
             }
 

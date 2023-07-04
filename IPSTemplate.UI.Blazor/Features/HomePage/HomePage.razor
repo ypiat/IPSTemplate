@@ -47,14 +47,17 @@
             <IPSLink Link="/account/manage"><IPSButton Icon="Icon.Edit">Uredi profil</IPSButton></IPSLink>
         </div>
     </IPSCard>
-    <br/>
+
     @if(UserRole == "Uporabnik")
     {
+        <br/>
         <div style="display: flex; justify-content: center">
             <IPSLink Link="/booksearch"><IPSButton Color="Color.Primary" IconClass="fa-solid fa-search">Iskanje knjig</IPSButton></IPSLink>
             <span style="width:50px"></span>
             <IPSLink Link="/borrowing"><IPSButton Color="Color.Primary">Moje izposoje</IPSButton></IPSLink>
         </div>
+        <br/>
+        <br />
     }
 
     <IPSCard>
