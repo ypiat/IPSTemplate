@@ -58,10 +58,18 @@
     }
 
     <IPSCard>
-        <IPSDataList Borders=DataListBorders.None>
+        <IPSDataList Borders=DataListBorders.Inner>
             <IPSDataItem>
                 <IPSDataItemValue>Knjig v knjižnici:</IPSDataItemValue>
                 <IPSDataItemValue>@BooksCount</IPSDataItemValue>
+            </IPSDataItem>
+            <IPSDataItem>
+                <IPSDataItemValue>Uporabnikov:</IPSDataItemValue>
+                <IPSDataItemValue>@UsersCount</IPSDataItemValue>
+            </IPSDataItem>
+            <IPSDataItem>
+                <IPSDataItemValue>Vse izposoje:</IPSDataItemValue>
+                <IPSDataItemValue>@BorrowingsCount</IPSDataItemValue>
             </IPSDataItem>
         </IPSDataList>
     </IPSCard>

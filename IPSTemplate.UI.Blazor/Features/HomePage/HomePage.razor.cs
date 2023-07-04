@@ -1,7 +1,9 @@
 ﻿using Core.Library.Base;
 using IPSTemplate.BusinessLibrary.BO.Book;
+using IPSTemplate.BusinessLibrary.BO.Borrowings;
 using IPSTemplate.BusinessLibrary.BO.Identity.User;
 using IPSTemplate.BusinessLibrary.Interfaces;
+using IPSTemplate.Dal.Models;
 using IPSTemplate.Dal.Models.Identity;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -32,6 +34,10 @@ namespace IPSTemplate.UI.Blazor.Features.HomePage
 
         private int BooksCount { get; set; }
 
+        private int UsersCount { get; set; }
+
+        private int BorrowingsCount { get; set; }
+
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
@@ -52,8 +58,17 @@ namespace IPSTemplate.UI.Blazor.Features.HomePage
                 }
 
                 var request = new CslaRequest { };
+                //get count of books
                 var books = await TEBookRL.GetBooksListAsync(request, DataPortalFactory);
                 BooksCount = books.Count();
+
+                //get count of users
+                var users = await TEUserRL.GetListAsync(DataPortalFactory);
+                UsersCount = users.Count() - 1;
+
+                //get count of borrowings
+                var borrowings = await TEBorrowingsRL.GetListAsync(DataPortalFactory);
+                BorrowingsCount = borrowings.Count();
             }
         }
 
