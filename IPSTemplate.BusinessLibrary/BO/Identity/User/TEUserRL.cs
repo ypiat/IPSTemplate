@@ -31,7 +31,7 @@ namespace IPSTemplate.BusinessLibrary.BO.Identity.User
             return await factory.GetPortal<TEUserRL>().FetchAsync(true);
         }
 
-        public static new async Task<TEUserRL> GetListAsync(MobileCslaRequest req, IDataPortalFactory factory, bool loadRoles = true)
+        public static async Task<TEUserRL> GetListAsync(MobileCslaRequest req, IDataPortalFactory factory, bool loadRoles = true)
         {
             return await factory.GetPortal<TEUserRL>().FetchAsync(req, loadRoles);
         }
