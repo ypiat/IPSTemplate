@@ -31,6 +31,28 @@ namespace IPSTemplate.BusinessLibrary.BO.BookCopy
             set => LoadProperty(BookIDProperty, value);
         }
 
+        public static readonly PropertyInfo<TEBookAuthorEL> BookAuthorsProperty = RegisterProperty<TEBookAuthorEL>(p => p.BookAuthors, RelationshipTypes.LazyLoad);
+        public TEBookAuthorEL BookAuthors
+        {
+            get => LazyGetProperty(BookAuthorsProperty, () => GetAuthors(ApplicationContext.GetRequiredService<IDataPortalFactory>()));
+            set => LoadProperty(BookAuthorsProperty, value);
+        }
+
+        protected TEBookAuthorEL GetAuthors(IDataPortalFactory factory)
+        {
+            return TEBookAuthorEL.GetByBookId(BookID, factory);
+        }
+
+        public static readonly PropertyInfo<TEAuthorRL> AuthorsProperty = RegisterProperty<TEAuthorRL>(p => p.Authors, RelationshipTypes.LazyLoad);
+        public TEAuthorRL Authors
+        {
+            get => LazyGetProperty(AuthorsProperty, () => TEAuthorRL.GetListByIds(BookAuthors.Select(ba => ba.AuthorID), ApplicationContext.GetRequiredService<IDataPortalFactory>()));
+            set => LoadProperty(AuthorsProperty, value);
+        }
+
+        [Display(Name = "Avtor/ji")]
+        public string AuthorNames => String.Join(", ", Authors.Select(a => a.ShowAs));
+
         public static readonly PropertyInfo<int?> PublishedYearProperty = RegisterProperty<int?>(p => p.PublishedYear);
         [Range(1000, 2023)]
         [Display(Name = "Leto izdaje")]

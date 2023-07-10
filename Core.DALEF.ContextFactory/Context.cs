@@ -77,7 +77,6 @@ public class Context : IdentityDbContext<TEIdentityUser, TEIdentityRole, Guid>
     public DbSet<TEBook> TEBook { get; set; }
     public DbSet<TEBookCopy> TEBookCopy { get; set; }
     public DbSet<TEBorrowings> TEBorrowings { get; set; }
-    public DbSet<TEUser> TEUser{ get; set; }
 
 
     #endregion

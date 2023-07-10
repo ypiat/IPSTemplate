@@ -20,9 +20,9 @@
             <IPSDataList InlineItems="false">
                 <IPSDataItem IconClass="fa-solid fa-book">
                     <IPSDataItemValue><h2>@BookCopy.BookName</h2></IPSDataItemValue>
+                    <IPSDataItemKey>@BookCopy.AuthorNames</IPSDataItemKey>
                 </IPSDataItem>
             </IPSDataList>
-            <br />
             <br />
             @if (BookCopy.IsAvailable)
             { 
@@ -32,11 +32,40 @@
                         <IPSDataItemValue>@BookCopy.BookCopyNumber</IPSDataItemValue>
                     </IPSDataItem>
                     <IPSDataItem>
-                        <IPSDataItemKey>Začetek izposoji</IPSDataItemKey>
+                        <IPSDataItemKey>Leto izdaje</IPSDataItemKey>
+                        <IPSDataItemValue>@BookCopy.PublishedYear</IPSDataItemValue>
+                    </IPSDataItem>
+                    <IPSDataItem>
+                        <IPSDataItemKey>Založba</IPSDataItemKey>
+                        @if (BookCopy.PublisherName != "")
+                        {
+                            <IPSDataItemValue>@BookCopy.PublisherName</IPSDataItemValue>
+                        }
+                        else
+                        {
+                            <IPSDataItemValue>/</IPSDataItemValue>
+                        }
+                    </IPSDataItem>
+                    <IPSDataItem>
+                        <IPSDataItemKey>Lokacja</IPSDataItemKey>
+                        @if (BookCopy.Location != "")
+                        {
+                            <IPSDataItemValue>@BookCopy.Location</IPSDataItemValue>
+                        }
+                        else
+                        {
+                            <IPSDataItemValue>/</IPSDataItemValue>
+                        }
+                    </IPSDataItem>
+                </IPSDataList>
+                <br />
+                <IPSDataList>
+                    <IPSDataItem>
+                        <IPSDataItemValue>Začetek izposoji:</IPSDataItemValue>
                         <IPSDataItemValue>@StartBorrowDate.ToString("dd/MM/yyyy")</IPSDataItemValue>
                     </IPSDataItem>
                     <IPSDataItem>
-                        <IPSDataItemKey>Konec izposoji</IPSDataItemKey>
+                        <IPSDataItemValue>Konec izposoji:</IPSDataItemValue>
                         <IPSDataItemValue>@EndBorrowDate.ToString("dd/MM/yyyy")</IPSDataItemValue>
                     </IPSDataItem>      
                 </IPSDataList>
@@ -60,17 +89,44 @@
                         </IPSDataItem>
                     </AuthorizeView>
                     <IPSDataItem>
-                        <IPSDataItemKey>Začetek izposoji</IPSDataItemKey>
-                        <IPSDataItemValue>@StartBorrowDate.ToString("dd/MM/yyyy")</IPSDataItemValue>
+                        <IPSDataItemKey>Leto izdaje</IPSDataItemKey>
+                        <IPSDataItemValue>@BookCopy.PublishedYear</IPSDataItemValue>
                     </IPSDataItem>
+                  
+                        <IPSDataItem>
+                        <IPSDataItemKey>Založba</IPSDataItemKey>
+                        @if (BookCopy.PublisherName != "")
+                        {
+                            <IPSDataItemValue>@BookCopy.PublisherName</IPSDataItemValue>
+                        }
+                        else
+                        {
+                            <IPSDataItemValue>/</IPSDataItemValue>
+                        }
+                    </IPSDataItem>
+                    
                     <IPSDataItem>
-                        <IPSDataItemKey>Konec izposoji</IPSDataItemKey>
-                        <IPSDataItemValue>@EndBorrowDate.ToString("dd/MM/yyyy")</IPSDataItemValue>
+                        <IPSDataItemKey>Lokacja</IPSDataItemKey>
+                        @if (BookCopy.Location != "")
+                        {
+                            <IPSDataItemValue>@BookCopy.Location</IPSDataItemValue>
+                        }
+                        else
+                        {
+                            <IPSDataItemValue>/</IPSDataItemValue>
+                        }
                     </IPSDataItem>
-                    <IPSDataItem>
-                        <IPSDataItemKey>Preostalih dni</IPSDataItemKey>
-                        <IPSDataItemValue>@BookCopyBorrowing.DaysLeft</IPSDataItemValue>
-                    </IPSDataItem>
+                    <br />
+                    <IPSDataList>
+                        <IPSDataItem>
+                            <IPSDataItemValue>Začetek izposoji:</IPSDataItemValue>
+                            <IPSDataItemValue>@StartBorrowDate.ToString("dd/MM/yyyy")</IPSDataItemValue>
+                        </IPSDataItem>
+                        <IPSDataItem>
+                            <IPSDataItemValue>Konec izposoji:</IPSDataItemValue>
+                            <IPSDataItemValue>@EndBorrowDate.ToString("dd/MM/yyyy")</IPSDataItemValue>
+                        </IPSDataItem>
+                    </IPSDataList>
                 </IPSDataList>
                 <br />
                 <br />
