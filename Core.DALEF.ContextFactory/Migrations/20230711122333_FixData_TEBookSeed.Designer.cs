@@ -4,6 +4,7 @@ using Core.DALEF.ContextFactory;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Core.DALEF.ContextFactory.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20230711122333_FixData_TEBookSeed")]
+    partial class FixData_TEBookSeed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -244,7 +246,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             NormalizedEmail = "ADMIN@IPSTEMPLATE.ORG",
                             NormalizedUserName = "ADMINISTRATOR",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "06e85bbf-db8e-4ef0-9dfe-eda0e9cc1735",
+                            SecurityStamp = "0590d4a0-3039-4337-9bee-18bc0e00e9cb",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         },
@@ -261,7 +263,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             NormalizedEmail = "MEMBER@IPSTEMPLATE.ORG",
                             NormalizedUserName = "MEMBER",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f3cd10b3-8ecb-44a3-956f-24b78501bab4",
+                            SecurityStamp = "d974362e-0a85-4ba2-a150-b5250294265b",
                             TwoFactorEnabled = false,
                             UserName = "Member"
                         });
@@ -2411,7 +2413,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             Color = "#19b698",
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = " Osebna rast/Psihologija",
+                            Name = " Osebna rast/psihologija",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
                         },

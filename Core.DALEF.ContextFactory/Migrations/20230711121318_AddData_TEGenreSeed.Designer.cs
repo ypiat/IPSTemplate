@@ -4,6 +4,7 @@ using Core.DALEF.ContextFactory;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Core.DALEF.ContextFactory.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20230711121318_AddData_TEGenreSeed")]
+    partial class AddData_TEGenreSeed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -244,7 +246,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             NormalizedEmail = "ADMIN@IPSTEMPLATE.ORG",
                             NormalizedUserName = "ADMINISTRATOR",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "06e85bbf-db8e-4ef0-9dfe-eda0e9cc1735",
+                            SecurityStamp = "c5cba60e-7f01-4b74-802c-f0d5aa68282c",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         },
@@ -261,7 +263,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             NormalizedEmail = "MEMBER@IPSTEMPLATE.ORG",
                             NormalizedUserName = "MEMBER",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f3cd10b3-8ecb-44a3-956f-24b78501bab4",
+                            SecurityStamp = "135486c9-b439-4559-baf5-83e49b8da2f8",
                             TwoFactorEnabled = false,
                             UserName = "Member"
                         });
@@ -999,7 +1001,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Life and work are intrinsically linked. They are not separate; they are one. If we want to live an extraordinary life, we have to make our work equally extraordinary. When your work resonates with purpose, you jump out of bed every morning, excited by the possibilities the day holds for you. Everything else in your life seems to have a glow about it, and you exude much more personal shine. My aim in writing this book is to help you feel like that every day. To help you make your work work for you. To feel truly free. Reading Free! will remind you that you are fantastic and have the ability to do amazing things; show you that work is your slave, not the other way round; help you make work your ticket to an extraordinary future; and put you in the driving seat and show you a route to freedom.",
-                            GenreID = new Guid("9456a8ff-2722-4ce6-a67a-91c9cfcd60fc"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "Free! Love Your Work, Love Your Life",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1025,7 +1027,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "21 cudovitih nacinov, da prenehate prelagati na jutri, kar lahko storite danes, in v manj casa opravite vec",
-                            GenreID = new Guid("9456a8ff-2722-4ce6-a67a-91c9cfcd60fc"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "Pojej živo žabo",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1038,7 +1040,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Razvijanje vašega vpliva od kjerkoli znotraj posamezne organizacije",
-                            GenreID = new Guid("f3c5b486-d668-4a48-9ec0-66804e40cc0a"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "360° vodja",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1051,7 +1053,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "27 nacinov, kako spremeniti neuspeh v uspeh \r\n\r\nRecepti za ustvarjalno, uspešno in mirno življenje",
-                            GenreID = new Guid("9456a8ff-2722-4ce6-a67a-91c9cfcd60fc"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "Moc neuspeha",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1064,7 +1066,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Preprosta in ucinkovita metoda v 4. korakih, s katero se boste v vsakdanjem življenju lažje sporazumevali in dogovarjali",
-                            GenreID = new Guid("9456a8ff-2722-4ce6-a67a-91c9cfcd60fc"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "Ucinkovito reševanje konfliktov",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1077,7 +1079,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "",
-                            GenreID = new Guid("9147b105-9b2b-4d11-8f19-64d2a588cd44"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "Skrivnost ustvarjalnega tima",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1090,7 +1092,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Postanite uspešnejši in ustvarite življenje, ki si ga želite",
-                            GenreID = new Guid("9456a8ff-2722-4ce6-a67a-91c9cfcd60fc"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "Pozitivna naravnanost in ustvarjalnost pri delu",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1103,7 +1105,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Šest pozitivnih povezav z uspehom",
-                            GenreID = new Guid("9456a8ff-2722-4ce6-a67a-91c9cfcd60fc"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "Pozitivni naboj",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1116,7 +1118,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Postanite sam svoj vodja\r\n\r\nKako v 5 korakih povecati ucinkovitost vašega dela",
-                            GenreID = new Guid("f3c5b486-d668-4a48-9ec0-66804e40cc0a"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "Mravlja in slon",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1129,7 +1131,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Enostavne, znanstven, revolucionaren program za zdravje in uspeh slovitega ameriškega zdravnika",
-                            GenreID = new Guid("9456a8ff-2722-4ce6-a67a-91c9cfcd60fc"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "Psiho-kibernetika",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1142,7 +1144,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Ce ste kot vecina ljudi, uporabljate samo okoli deset odstotkov svojega potenciala, ostalih devetdeset odstotkov pa spada v kategorijo \"lahko bi\"",
-                            GenreID = new Guid("9456a8ff-2722-4ce6-a67a-91c9cfcd60fc"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "Recite DA svojemu potencialu",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1155,7 +1157,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Tudi vi lahko v življenju \"rastete\" - ne pa ga samo preživljate - premagate nemogoce okolišcine in dosežete sreco in uspeh! \r\nDramaticna življenska zgodba Mammie McCullough nazorno dokazuje, da pozitivno mišljenje ni samo nadve ucinkovito, marvec nam prinaša tudi globoko zadošcenje.",
-                            GenreID = new Guid("9456a8ff-2722-4ce6-a67a-91c9cfcd60fc"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "Ce zmorem jaz, zmoreš tudi ti!",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1168,7 +1170,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Kako obvladovati cas in ponovno vzpostaviti ravnotežje v življenju",
-                            GenreID = new Guid("9456a8ff-2722-4ce6-a67a-91c9cfcd60fc"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "Hiti pocasi",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1181,7 +1183,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Znanstveniki so odkrili skrivnost zdravega in trajnega hujšanja, ki sploh nima opravka z dieto!\r\n\r\nLjudje imajo cezmerno telesno težo, ker so ujetniki škodljivih navad. Priricnik Dieta brez diete vam pokaže, kako se lahko znebite skritih navad, da boste shujšali brez truda in obcutka lakote.",
-                            GenreID = new Guid("9456a8ff-2722-4ce6-a67a-91c9cfcd60fc"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "Dieta brez diete",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1194,7 +1196,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "",
-                            GenreID = new Guid("f3c5b486-d668-4a48-9ec0-66804e40cc0a"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "Postanite voditelj",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1207,7 +1209,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Pricujoca knjiga je namenjena vodstvenim delavcem, svetovalcem in podjetnikom, ki želijo postati ucinkoviti vodje in vsem, ki razmišljajo o zamenjavi službe, ki se s težavo soocajo s spremembami in išcejo nove možnosti za razvoj in napredek tako na poslovnem kot osebnem podrocju",
-                            GenreID = new Guid("f3c5b486-d668-4a48-9ec0-66804e40cc0a"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "Ucinkoviti vodja",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1220,7 +1222,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "",
-                            GenreID = new Guid("f3c5b486-d668-4a48-9ec0-66804e40cc0a"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "Digitalna transformacija in poslovne informacijske rešitve",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1233,7 +1235,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Najucinkovitejši pogovor je sestavljen iz 20 % odgovorov in 80 % spraševanja",
-                            GenreID = new Guid("f3c5b486-d668-4a48-9ec0-66804e40cc0a"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "Osnovne vešcine postavljanja vprašanj",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1246,7 +1248,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Nikoli vec ne boste rekli, da imate slab spomin za imena in obraze",
-                            GenreID = new Guid("9456a8ff-2722-4ce6-a67a-91c9cfcd60fc"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "Zapomnite si vsako ime",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1259,7 +1261,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Kratek vodnik ponuda konkretne odgovore, kako:\r\n- Uporabiti štiri edinstvena podrocja custvene inteligence: samozavedanje, samoupravljanje, družbeno zavedanje in upravljanje medosebnih odnosov\r\n- Dvigniti raven custvene inteligence s tehnikami usposabljanja\r\n- Uporabiti custveno inteligenco pri delu za razvoj sposobnosti vodenja in izboljšanje ucinkovitosti timskega dela, kar nam omogoca, da postanemo boljši vodja oziroma bolj priljubljen sodelavec\r\n- Uporabiti custveno inteligenco v praksi izven delovnega okolja z najbližjimi, tako da postanemo boljši partnerji in starši\r\n- Doseci povezavo med custveno inteligenco in dobrim telesnim pocutjem\r\n- Izmeriti trenutno raven custvene inteligence s preizkusom na spletu",
-                            GenreID = new Guid("9456a8ff-2722-4ce6-a67a-91c9cfcd60fc"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "Custvena inteligenca",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1272,7 +1274,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Želja, da bi nas drugi prepoznali, da bi se cutili bolj pomembne in cenjene, najbolj prevladuje. In bolj pomembne ko se drugi pocutijo ob vas, bolj pozitivno se bodo odzvali na vas",
-                            GenreID = new Guid("9456a8ff-2722-4ce6-a67a-91c9cfcd60fc"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "Kako spretno komunicirati z ljudmi",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1285,7 +1287,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Kaj je današnja najvecja težava?\r\nPomanjkanje casa!\r\nO tem govorijo vsi. POmanjkanje casa skrbi vse nas, a doslej ni še nihce ponudil rešitve, kako to težavo odpraviti.\r\n\r\nZakaj ljudem primanjkuje casa?\r\nKer svoj cas v službi menjajo za denar. Denar potrebujejo, zato \"prodajajo\" svoj cas. POtrebujejo vec denarja, zato prodajajo vec casa. Kmalu toliko casa namenijo služenju denarja, da imajo bore malo casa za karkoli drugega.\r\n\r\nKakšna je rešitev?\r\nSvoj cas zacnite menjati za KAPITAL, ki mu potem dopustite, naj dela za vas in vam prinaša prihodke, ki jih potrebujete za uresnicitev svojih sanj. Tako boste imeli vec casa za pomembne stvari, cas za družino in prijatelje, cas za rekreacijo in cas za užvanje življenja.\r\n\r\nBill Quain v svoji knjigi ljudem pojasni, zakaj nimajo casa. Potem pa svojim bralcem predstavi pet preprostih korakov, kako lahko delajo manj, ustvarijo vec in premagajo casovno revšcino.",
-                            GenreID = new Guid("9456a8ff-2722-4ce6-a67a-91c9cfcd60fc"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "Kako premagati casovno revšcino",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1298,7 +1300,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Ta knjiga, od katere se ne boste mogli lociti, vam bo pomagala slediti in uresnicevati vaše sanje. Pat Mesiti vam na zabaven in izzivalen nacin pokaže, kako:\r\n- napacna dojemanja zamenjate z zmagovalnimi pristopi\r\n- pridobite nove prijatelje\r\n- sami dolocite svojo usodo\r\n- presežete meje svojih sposobnosti\r\n- premagate neuspeh\r\n- odkrijete, kaj je pravi uspeh in kako preoblikuje vaš svet",
-                            GenreID = new Guid("9456a8ff-2722-4ce6-a67a-91c9cfcd60fc"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "Sanjaci nikoli ne spijo",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1311,7 +1313,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Življenski nacrt za timske igralce",
-                            GenreID = new Guid("f3c5b486-d668-4a48-9ec0-66804e40cc0a"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "Notranji zmagovalec",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1324,7 +1326,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Skozi situacije iz resnicnega življenja in prek zabavnih osebnih anekdot vam Littauerjevi pokažeta, kako naj bi se najbolje odzvali na reakcijo prijateljev in sodelavcev. Vam ni jasno, zakaj je vaš partner užaljen? Se sprašujete, zakaj se je kolegica tako \"cudno\" oblekla? Vas zanima, koga postaviti na novo delovno mesto? Kakšne oglase napisati za razlicne tipe ljudi? Komu zaupati rutinsko delo? Kdo bo bolje opravil kreativni del naloge? Kako to, da je sodelavec nervozen, ceprav rok za izvedbo projekta potece šele cez en mesec? To je le nekaj vprašanj, na katere boste v knjigi našli številne koristne odgovore",
-                            GenreID = new Guid("9456a8ff-2722-4ce6-a67a-91c9cfcd60fc"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "Osebnostna sestavljanka",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1337,7 +1339,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Je pot...\r\nSo cilji...\r\nSo želje...\r\n\r\nZakaj je motivacija cudež?\r\n\r\nKer z njo uspete...\r\nKer z njo premagate težave...\r\nKer z njo dosežete vaše življenjske cilje...",
-                            GenreID = new Guid("9456a8ff-2722-4ce6-a67a-91c9cfcd60fc"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "Cudež motivacije",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1350,7 +1352,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Chandler in Beckford razgaljata devet najpogostejših (in ponavadi usodnih) poslovnih mitov in ponujata preproste in navdihujoce rešitve za težave, ki si jih samostojni podjetniki ter lastniki majhnih podjetij povzrocajo iz dneva v dan. Presenetljive resnice, ki predstavljajo protistrup tem lažem, so Sam Beckford in vec sto njegovih strank, uspešnih samostojnih podjetnikov ter lastnikov majhnih podjetij, sami preizkusili\r\n\r\nTo sveže, živahno \"sveto pismo za poslovneže\" vam bo razkrilo, kaj in kako morate poceti, da bi vaš posel postal dobickonosen. V knjigi boste  odkrili tudi sestavino, ki v mnogih \"prakticnih\" poslovnih prirocnikih manjka - kako se iz dneva v dan motivirati, da bi te stvari dejansko lahko poceli",
-                            GenreID = new Guid("f3c5b486-d668-4a48-9ec0-66804e40cc0a"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "9 laži, zaradi katerih vaš posel ne uspeva, kot bi lahko... in resnica, ki ga bo osvobodila",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1363,7 +1365,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Namesto da išcete službo, zacnite iskati priložnosti",
-                            GenreID = new Guid("f3c5b486-d668-4a48-9ec0-66804e40cc0a"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "V odvisnosti od službe",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1376,7 +1378,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "30 prodajnih orodij, s katerimi lahko nadzorujete misli vaše stranke, jo motivirate, vplivate nanjo in jo prepricate v nakup.",
-                            GenreID = new Guid("f3c5b486-d668-4a48-9ec0-66804e40cc0a"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "Sprožilci",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1389,7 +1391,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Razmerje med ceno in dobickom in kaj to pomeni za vaše podjetje",
-                            GenreID = new Guid("f3c5b486-d668-4a48-9ec0-66804e40cc0a"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "Cena priložnosti",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1402,7 +1404,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Kako hitro in manj stresno zaslužiti vec",
-                            GenreID = new Guid("f3c5b486-d668-4a48-9ec0-66804e40cc0a"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "Prodajajte odgovorno",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1415,7 +1417,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Pot do vašega osebnega uspeha",
-                            GenreID = new Guid("f3c5b486-d668-4a48-9ec0-66804e40cc0a"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "Zmagovalni odnos",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1428,7 +1430,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Kako posameznike povezati v uspešen tim!",
-                            GenreID = new Guid("f3c5b486-d668-4a48-9ec0-66804e40cc0a"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "Zmagovalci",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1441,7 +1443,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Uspeha ne bo, ce boste nanj cakali. Knjiga vam bo razkrila, kaj morate storiti, da bi se zgodila prave stvari.",
-                            GenreID = new Guid("f3c5b486-d668-4a48-9ec0-66804e40cc0a"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "Brez tveganja ni uspeha",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1454,7 +1456,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "How to handle everything (and everyone) around you when all hell breaks loose, from the international bestselling author of Surrounded by Idiots . Not everything goes the way we want it to - the world or people around us sometimes just spin out of control. Just consider the Covid pandemic for starters. Or how about that mad neighbour you have living next-door to you? Or when work seems to be going down the toilet when the competition keep outsmarting you? So how do you handle everything life throws your way when you'd really prefer to tell everyone to get stuffed?Thomas Erikson will help you turn adversity into success with the help of the behavioural model made famous in Surrounded by Idiots . Starting by reminding us that life is as it is, Erikson helps you see that it is in fact useless to try to control everything happening around you. Instead of protesting when life throws you curveballs, focus instead on how to handle them. Just as you keep the weeds away from the garden to provide space and amazing flowers, you need to find an approach to adversity that works for you and will give you the chance to turn everything into success. Surrounded by Setbacks will help you pinpoint the approach that works for you and will entertain and empower you in equal measure.",
-                            GenreID = new Guid("9456a8ff-2722-4ce6-a67a-91c9cfcd60fc"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "Surrounded by Setbacks",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1467,7 +1469,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "'A very practical, engaging guide to the essential tools which managers at all levels need to be effective themselves and to develop others. Highly recommended.' Stuart Chambers, former CEO of Pilkington plc       Key Management Development Models gives you, at a glance, instant access to a full range of the best models available for developing your management skills and helping others to work and perform at their peak.       For anyone seeking to develop their management skills it can be hard to know where to begin. Key Management Development Models explains the tools in detail - what they are and when and how to use them, with key practical tips. It's like having your very own management development coach on hand explaining all the tools that you will ever need to know. EXPERT GUIDANCE FOR YOUR MANAGEMENT CAREER",
-                            GenreID = new Guid("f3c5b486-d668-4a48-9ec0-66804e40cc0a"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "Key Management Development Models Travel",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -1480,7 +1482,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Kaj vedo in pocnejo odlicni vodje\r\n\r\nV knjigi boste izvedeli:\r\n- kaj morate narediti, da boste resnicno navdihnili in motivirali druge ljudi\r\n- zakaj dobre vodje skrbi prihodnost\r\n- katera tri podrocja zahtevajo stalne izboljšave\r\n- kako lahko znatno okrepite svojo vodstveno kredibilnost - ali pa jo nezavedno unicite\r\n- kateri dve komponenti sta bistveni za resnicen uspeh in vodenje - in še veliko vec.",
-                            GenreID = new Guid("f3c5b486-d668-4a48-9ec0-66804e40cc0a"),
+                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
                             Name = "Skrivnost",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
@@ -2411,7 +2413,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             Color = "#19b698",
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = " Osebna rast/Psihologija",
+                            Name = " Osebna rast/psihologija",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
                         },
