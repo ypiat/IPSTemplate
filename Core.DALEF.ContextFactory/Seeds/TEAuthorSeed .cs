@@ -54,6 +54,17 @@ namespace Core.DALEF.ContextFactory.Seeds
             Add(new() { Id = new Guid("cf9c8d7d-b7ba-4cca-996f-67c06710af99"), FirstName = "Ken", LastName = " Blanchard", Active = true });
             Add(new() { Id = new Guid("718c2ca7-97ae-4059-9ed2-faa12a0f1eb8"), FirstName = "Sheldon", LastName = " Bowles", Active = true });
             Add(new() { Id = new Guid("a4c01ce6-a52e-4c4a-86be-726cf0798b87"), FirstName = "Roger", LastName = " Fritz", Active = true });
+            Add(new() { Id = new Guid("2e3b2c42-9dc6-4149-8dcc-a8c6851f7aca"), FirstName = "Janez", LastName = "Mayer", Active = true });
+            Add(new() { Id = new Guid("c2211dbf-f130-4f08-b39a-665f57e21dad"), FirstName = "Janez", LastName = "Bečaj", Active = true });
+            Add(new() { Id = new Guid("4c8ce6ab-e80f-4681-b323-97b79ed7dafa"), FirstName = "Ana Nuša", LastName = "Kneževič", Active = true });
+            Add(new() { Id = new Guid("31afe055-c651-4730-83a4-ee6a75f3a1a3"), FirstName = "Manca", LastName = "Košir", Active = true });
+            Add(new() { Id = new Guid("948d913e-1c66-4fe9-a3b7-42f02366c181"), FirstName = "Bogomir", LastName = "Kovač", Active = true });
+            Add(new() { Id = new Guid("182f5aff-bdef-4c83-9951-5acb08ce766c"), FirstName = "Lea", LastName = "Pisani", Active = true });
+            Add(new() { Id = new Guid("549a7a20-ca4c-4563-9ff1-2474c7bd878d"), FirstName = "Peter", LastName = "Praper", Active = true });
+            Add(new() { Id = new Guid("c30a5a61-f324-4c35-9ad6-d8fa7a104be6"), FirstName = "Vladislav", LastName = "Rajkovič", Active = true });
+            Add(new() { Id = new Guid("6a574ece-95e2-4a40-bc52-9ed5899bb0aa"), FirstName = "Anton", LastName = "Trstenjak", Active = true });
+            Add(new() { Id = new Guid("dd378ba2-ed55-44fc-b299-c58292b62f07"), FirstName = "Marija", LastName = "Velikonja", Active = true });
+            Add(new() { Id = new Guid("bb9b5013-d721-4c09-a86b-eb30e51d3527"), FirstName = "Thomas", LastName = "Erikson", Active = true });
         }
     }
 }
