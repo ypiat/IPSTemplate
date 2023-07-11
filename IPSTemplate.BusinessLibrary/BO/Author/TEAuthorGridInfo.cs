@@ -21,10 +21,6 @@ namespace IPSTemplate.BusinessLibrary.BO.Author
         [Fetch]
         protected async Task FetchGridInfo(MobileCslaRequest request, [Inject] IDataPortalFactory factory)
         {
-            //string? yearsFilter = (string?)request.Filters.FirstOrDefault(f => f.Member is nameof(TEAuthorInfo.LifeYears))?.Value;
-            //if (yearsFilter is not null)
-            //{
-            //}
             Data = await TEAuthorRL.GetListAsync(request, factory);
             TotalRowCount = Math.Max(0, Data.TotalRowCount);
         }
