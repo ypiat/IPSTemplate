@@ -28,7 +28,6 @@ namespace Core.DALEF.ContextFactory.Seeds
             Add(new() { Id = new Guid("668b0be2-e639-409e-a37c-efd37cb9baa5"), FirstName = "Prof.Ben C. ", LastName = " Fletcher", Active = true });
             Add(new() { Id = new Guid("1d0bff2e-770e-4879-9ed5-ef86122b139d"), FirstName = "dr. Karen ", LastName = " Pine", Active = true });
             Add(new() { Id = new Guid("f562de09-54ff-4819-b154-bb7e753109a0"), FirstName = "dr. Danny", LastName = " Penman", Active = true });
-            Add(new() { Id = new Guid("c11f04c1-4f2f-4652-bf72-efc5a2b27642"), FirstName = "John C.", LastName = " Maxwell", Active = true });
             Add(new() { Id = new Guid("2f644084-5a69-43cb-9ca5-23394463baf7"), FirstName = "Jim", LastName = " Clemmer", Active = true });
             Add(new() { Id = new Guid("64b8e52e-0365-47e2-805c-a173583b847b"), FirstName = "Simona", LastName = " Sternad Zabukovšek", Active = true });
             Add(new() { Id = new Guid("fd68b897-49ff-43a8-9ff8-4d2bdef78f91"), FirstName = "Polona", LastName = " Tominc", Active = true });
@@ -46,15 +45,12 @@ namespace Core.DALEF.ContextFactory.Seeds
             Add(new() { Id = new Guid("b102a246-c9d0-4124-8dd5-63792e079d6c"), FirstName = "Florence", LastName = " Littauer", Active = true });
             Add(new() { Id = new Guid("34f6ed97-96f7-44df-a576-5a0e0f22fb7b"), FirstName = "Marita", LastName = " Littauer", Active = true });
             Add(new() { Id = new Guid("5a8fa816-1db3-4281-9575-eb16a6b1b85a"), FirstName = "George", LastName = " Shinn", Active = true });
-            Add(new() { Id = new Guid("20d9a362-297c-457d-a3a1-87c6790ddf27"), FirstName = "Ken", LastName = " Blanchard", Active = true });
             Add(new() { Id = new Guid("c583f679-ee3f-4b8d-899c-4fc4ba9473ed"), FirstName = "Mark", LastName = " Miller", Active = true });
             Add(new() { Id = new Guid("03f05554-2fa6-4f05-9b1f-07b1e93dc815"), FirstName = "Steve", LastName = " Chandler", Active = true });
             Add(new() { Id = new Guid("84cb355b-9f39-4afd-8176-3db1fcbd9e26"), FirstName = "Sam", LastName = " Beckford", Active = true });
             Add(new() { Id = new Guid("679cff41-cbd8-4a24-b245-be846df6d70b"), FirstName = "Burke", LastName = " Hedges", Active = true });
             Add(new() { Id = new Guid("72f8409a-310f-4dd4-8997-13c290f9450b"), FirstName = "Joseph", LastName = " Sugarman", Active = true });
-            Add(new() { Id = new Guid("dabbbe73-6176-4d55-bcb2-ce799985ac93"), FirstName = "dr.Bill", LastName = " Quain", Active = true });
             Add(new() { Id = new Guid("9937be0c-d710-42e1-84d4-08a51417d67b"), FirstName = "Todd", LastName = " Duncan", Active = true });
-            Add(new() { Id = new Guid("d27c0fa7-23be-495a-aa2e-dba7a0d88be9"), FirstName = "John C.", LastName = " Maxwell", Active = true });
             Add(new() { Id = new Guid("cf9c8d7d-b7ba-4cca-996f-67c06710af99"), FirstName = "Ken", LastName = " Blanchard", Active = true });
             Add(new() { Id = new Guid("718c2ca7-97ae-4059-9ed2-faa12a0f1eb8"), FirstName = "Sheldon", LastName = " Bowles", Active = true });
             Add(new() { Id = new Guid("a4c01ce6-a52e-4c4a-86be-726cf0798b87"), FirstName = "Roger", LastName = " Fritz", Active = true });

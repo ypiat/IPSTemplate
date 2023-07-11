@@ -4,6 +4,7 @@ using Core.DALEF.ContextFactory;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Core.DALEF.ContextFactory.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20230711085836_Add_TEGenreSeed")]
+    partial class Add_TEGenreSeed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -244,7 +246,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             NormalizedEmail = "ADMIN@IPSTEMPLATE.ORG",
                             NormalizedUserName = "ADMINISTRATOR",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b0650582-6c94-4d12-bcd5-93d2bd3e26e8",
+                            SecurityStamp = "ef2c9a2a-379b-4ff4-a92f-6d0b9eb816d4",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         },
@@ -261,7 +263,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             NormalizedEmail = "MEMBER@IPSTEMPLATE.ORG",
                             NormalizedUserName = "MEMBER",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c13c3aff-2ebc-4621-9759-b8f1ead0e967",
+                            SecurityStamp = "4119417a-d3bd-42af-9295-0b52d2ff32f1",
                             TwoFactorEnabled = false,
                             UserName = "Member"
                         });
@@ -529,6 +531,17 @@ namespace Core.DALEF.ContextFactory.Migrations
                         },
                         new
                         {
+                            Id = new Guid("c11f04c1-4f2f-4652-bf72-efc5a2b27642"),
+                            Active = true,
+                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "John C.",
+                            LastName = " Maxwell",
+                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
+                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
                             Id = new Guid("2f644084-5a69-43cb-9ca5-23394463baf7"),
                             Active = true,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -716,6 +729,17 @@ namespace Core.DALEF.ContextFactory.Migrations
                         },
                         new
                         {
+                            Id = new Guid("20d9a362-297c-457d-a3a1-87c6790ddf27"),
+                            Active = true,
+                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Ken",
+                            LastName = " Blanchard",
+                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
+                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
                             Id = new Guid("c583f679-ee3f-4b8d-899c-4fc4ba9473ed"),
                             Active = true,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -771,12 +795,34 @@ namespace Core.DALEF.ContextFactory.Migrations
                         },
                         new
                         {
+                            Id = new Guid("dabbbe73-6176-4d55-bcb2-ce799985ac93"),
+                            Active = true,
+                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "dr.Bill",
+                            LastName = " Quain",
+                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
+                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
                             Id = new Guid("9937be0c-d710-42e1-84d4-08a51417d67b"),
                             Active = true,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Todd",
                             LastName = " Duncan",
+                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
+                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            Id = new Guid("d27c0fa7-23be-495a-aa2e-dba7a0d88be9"),
+                            Active = true,
+                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "John C.",
+                            LastName = " Maxwell",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
                         },
@@ -868,502 +914,6 @@ namespace Core.DALEF.ContextFactory.Migrations
                     b.HasIndex("GenreID");
 
                     b.ToTable("TEBook");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("9a27d8d9-b415-489b-bd35-dc1730200dbf"),
-                            Active = true,
-                            BookIndex = 100,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Life and work are intrinsically linked. They are not separate; they are one. If we want to live an extraordinary life, we have to make our work equally extraordinary. When your work resonates with purpose, you jump out of bed every morning, excited by the possibilities the day holds for you. Everything else in your life seems to have a glow about it, and you exude much more personal shine. My aim in writing this book is to help you feel like that every day. To help you make your work work for you. To feel truly free. Reading Free! will remind you that you are fantastic and have the ability to do amazing things; show you that work is your slave, not the other way round; help you make work your ticket to an extraordinary future; and put you in the driving seat and show you a route to freedom.",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "Free! Love Your Work, Love Your Life",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("febca16c-9fce-4d75-b7d1-177bfa143db1"),
-                            Active = true,
-                            BookIndex = 200,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Even bad code can function. But if code isn&rsquo;t clean, it can bring a development organization to its knees. Every year, countless hours and significant resources are lost because of poorly written code. But it doesn&rsquo;t have to be that way. Noted software expert Robert C. Martin presents a revolutionary paradigm with  Clean Code: A Handbook of Agile Software Craftsmanship . Martin has teamed up with his colleagues from Object Mentor to distill their best agile practice of cleaning code &ldquo;on the fly&rdquo; into a book that will instill within you the values of a software craftsman and make you a better programmer&mdash;but only if you work at it. What kind of work will you be doing? You&rsquo;ll be reading code&mdash;lots of code. And you will be challenged to think about what&rsquo;s right about that code, and what&rsquo;s wrong with it. More importantly, you will be challenged to reassess your professional values and your commitment to your craft.   Clean Code  is divided into three parts. The first describes the principles, patterns, and practices of writing clean code. The second part consists of several case studies of increasing complexity. Each case study is an exercise in cleaning up code&mdash;of transforming a code base that has some problems into one that is sound and efficient. The third part is the payoff: a single chapter containing a list of heuristics and &ldquo;smells&rdquo; gathered while creating the case studies. The result is a knowledge base that describes the way we think when we write, read, and clean code. Readers will come away from this book understanding  How to tell the difference between good and bad code How to write good code and how to transform bad code into good code How to create good names, good functions, good objects, and good classes How to format code for maximum readability How to implement complete error handling without obscuring code logic How to unit test and practice test-driven development This book is a must for any developer, software engineer, project manager, team lead, or systems analyst with an interest in producing better code.",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "Clean Code: A Handbook of Agile Software Craftsmanship",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("3678e8e4-7716-42ae-98a2-277adab4bccc"),
-                            Active = true,
-                            BookIndex = 300,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "21 cudovitih nacinov, da prenehate prelagati na jutri, kar lahko storite danes, in v manj casa opravite vec",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "Pojej živo žabo",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("c5fa5dfb-44a3-4ddb-90c6-2f9617221bdd"),
-                            Active = true,
-                            BookIndex = 400,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Razvijanje vašega vpliva od kjerkoli znotraj posamezne organizacije",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "360° vodja",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("8feb709d-b1e1-40e6-9b47-c4b8d9d23412"),
-                            Active = true,
-                            BookIndex = 500,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "27 nacinov, kako spremeniti neuspeh v uspeh \r\n\r\nRecepti za ustvarjalno, uspešno in mirno življenje",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "Moc neuspeha",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("e4f1011a-d6b3-4d12-908d-9ba618a3f3ab"),
-                            Active = true,
-                            BookIndex = 600,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Preprosta in ucinkovita metoda v 4. korakih, s katero se boste v vsakdanjem življenju lažje sporazumevali in dogovarjali",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "Ucinkovito reševanje konfliktov",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("d8c6cf0d-16b7-4197-bd3b-70faf2341b6e"),
-                            Active = true,
-                            BookIndex = 700,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "Skrivnost ustvarjalnega tima",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("a4c539aa-ad89-437c-8767-ff5bebaf83a7"),
-                            Active = true,
-                            BookIndex = 800,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Postanite uspešnejši in ustvarite življenje, ki si ga želite",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "Pozitivna naravnanost in ustvarjalnost pri delu",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("a2d96655-ab60-46cb-af2b-d31144f6b91d"),
-                            Active = true,
-                            BookIndex = 900,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Šest pozitivnih povezav z uspehom",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "Pozitivni naboj",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("081bc263-1bfb-4c65-aeb5-5725bc134903"),
-                            Active = true,
-                            BookIndex = 1000,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Postanite sam svoj vodja\r\n\r\nKako v 5 korakih povecati ucinkovitost vašega dela",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "Mravlja in slon",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("aa849042-ecd7-476d-b296-610c83240ad0"),
-                            Active = true,
-                            BookIndex = 1100,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Enostavne, znanstven, revolucionaren program za zdravje in uspeh slovitega ameriškega zdravnika",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "Psiho-kibernetika",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("868852d4-8bb6-473e-963f-3d2588e3c068"),
-                            Active = true,
-                            BookIndex = 1200,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Ce ste kot vecina ljudi, uporabljate samo okoli deset odstotkov svojega potenciala, ostalih devetdeset odstotkov pa spada v kategorijo \"lahko bi\"",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "Recite DA svojemu potencialu",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("e3553e15-459c-4585-9790-00421af356e1"),
-                            Active = true,
-                            BookIndex = 1300,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Tudi vi lahko v življenju \"rastete\" - ne pa ga samo preživljate - premagate nemogoce okolišcine in dosežete sreco in uspeh! \r\nDramaticna življenska zgodba Mammie McCullough nazorno dokazuje, da pozitivno mišljenje ni samo nadve ucinkovito, marvec nam prinaša tudi globoko zadošcenje.",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "Ce zmorem jaz, zmoreš tudi ti!",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("7a042797-0838-4b93-8779-51e4364d3cc4"),
-                            Active = true,
-                            BookIndex = 1400,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Kako obvladovati cas in ponovno vzpostaviti ravnotežje v življenju",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "Hiti pocasi",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("c6686738-c897-4e32-9c3f-7e0ac9d25f64"),
-                            Active = true,
-                            BookIndex = 1500,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Znanstveniki so odkrili skrivnost zdravega in trajnega hujšanja, ki sploh nima opravka z dieto!\r\n\r\nLjudje imajo cezmerno telesno težo, ker so ujetniki škodljivih navad. Priricnik Dieta brez diete vam pokaže, kako se lahko znebite skritih navad, da boste shujšali brez truda in obcutka lakote.",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "Dieta brez diete",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("f11b616b-51c9-47bd-9d82-794b056781f4"),
-                            Active = true,
-                            BookIndex = 1600,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "Postanite voditelj",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("1bdbc2a2-488a-412e-b047-82de20caab26"),
-                            Active = true,
-                            BookIndex = 1700,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Pricujoca knjiga je namenjena vodstvenim delavcem, svetovalcem in podjetnikom, ki želijo postati ucinkoviti vodje in vsem, ki razmišljajo o zamenjavi službe, ki se s težavo soocajo s spremembami in išcejo nove možnosti za razvoj in napredek tako na poslovnem kot osebnem podrocju",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "Ucinkoviti vodja",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("1c4445be-66eb-4f6c-9c29-511247ddeacf"),
-                            Active = true,
-                            BookIndex = 1800,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "Digitalna transformacija in poslovne informacijske rešitve",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("85f2bbf0-ab49-4153-beb9-226af992767b"),
-                            Active = true,
-                            BookIndex = 1900,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Najucinkovitejši pogovor je sestavljen iz 20 % odgovorov in 80 % spraševanja",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "Osnovne vešcine postavljanja vprašanj",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("d14ba13b-e446-422a-a6cb-cbe0ef355d0b"),
-                            Active = true,
-                            BookIndex = 2000,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Nikoli vec ne boste rekli, da imate slab spomin za imena in obraze",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "Zapomnite si vsako ime",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("cd461206-e127-4b46-931f-f448623ea7b0"),
-                            Active = true,
-                            BookIndex = 2100,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Kratek vodnik ponuda konkretne odgovore, kako:\r\n- Uporabiti štiri edinstvena podrocja custvene inteligence: samozavedanje, samoupravljanje, družbeno zavedanje in upravljanje medosebnih odnosov\r\n- Dvigniti raven custvene inteligence s tehnikami usposabljanja\r\n- Uporabiti custveno inteligenco pri delu za razvoj sposobnosti vodenja in izboljšanje ucinkovitosti timskega dela, kar nam omogoca, da postanemo boljši vodja oziroma bolj priljubljen sodelavec\r\n- Uporabiti custveno inteligenco v praksi izven delovnega okolja z najbližjimi, tako da postanemo boljši partnerji in starši\r\n- Doseci povezavo med custveno inteligenco in dobrim telesnim pocutjem\r\n- Izmeriti trenutno raven custvene inteligence s preizkusom na spletu",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "Custvena inteligenca",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("c676c6ba-a951-426c-bd8e-503609aecbe3"),
-                            Active = true,
-                            BookIndex = 2200,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Želja, da bi nas drugi prepoznali, da bi se cutili bolj pomembne in cenjene, najbolj prevladuje. In bolj pomembne ko se drugi pocutijo ob vas, bolj pozitivno se bodo odzvali na vas",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "Kako spretno komunicirati z ljudmi",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("b6acf3f2-affc-4429-9232-5cc4e950f2da"),
-                            Active = true,
-                            BookIndex = 2300,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Kaj je današnja najvecja težava?\r\nPomanjkanje casa!\r\nO tem govorijo vsi. POmanjkanje casa skrbi vse nas, a doslej ni še nihce ponudil rešitve, kako to težavo odpraviti.\r\n\r\nZakaj ljudem primanjkuje casa?\r\nKer svoj cas v službi menjajo za denar. Denar potrebujejo, zato \"prodajajo\" svoj cas. POtrebujejo vec denarja, zato prodajajo vec casa. Kmalu toliko casa namenijo služenju denarja, da imajo bore malo casa za karkoli drugega.\r\n\r\nKakšna je rešitev?\r\nSvoj cas zacnite menjati za KAPITAL, ki mu potem dopustite, naj dela za vas in vam prinaša prihodke, ki jih potrebujete za uresnicitev svojih sanj. Tako boste imeli vec casa za pomembne stvari, cas za družino in prijatelje, cas za rekreacijo in cas za užvanje življenja.\r\n\r\nBill Quain v svoji knjigi ljudem pojasni, zakaj nimajo casa. Potem pa svojim bralcem predstavi pet preprostih korakov, kako lahko delajo manj, ustvarijo vec in premagajo casovno revšcino.",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "Kako premagati casovno revšcino",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("c05bc45d-013a-497a-83f5-1ca7418f1011"),
-                            Active = true,
-                            BookIndex = 2400,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Ta knjiga, od katere se ne boste mogli lociti, vam bo pomagala slediti in uresnicevati vaše sanje. Pat Mesiti vam na zabaven in izzivalen nacin pokaže, kako:\r\n- napacna dojemanja zamenjate z zmagovalnimi pristopi\r\n- pridobite nove prijatelje\r\n- sami dolocite svojo usodo\r\n- presežete meje svojih sposobnosti\r\n- premagate neuspeh\r\n- odkrijete, kaj je pravi uspeh in kako preoblikuje vaš svet",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "Sanjaci nikoli ne spijo",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("ff9354d2-ace1-4de9-8cf9-42d204a50923"),
-                            Active = true,
-                            BookIndex = 2500,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Življenski nacrt za timske igralce",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "Notranji zmagovalec",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("86eee0ac-d137-49ef-827d-3e44d61c5a64"),
-                            Active = true,
-                            BookIndex = 2600,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Skozi situacije iz resnicnega življenja in prek zabavnih osebnih anekdot vam Littauerjevi pokažeta, kako naj bi se najbolje odzvali na reakcijo prijateljev in sodelavcev. Vam ni jasno, zakaj je vaš partner užaljen? Se sprašujete, zakaj se je kolegica tako \"cudno\" oblekla? Vas zanima, koga postaviti na novo delovno mesto? Kakšne oglase napisati za razlicne tipe ljudi? Komu zaupati rutinsko delo? Kdo bo bolje opravil kreativni del naloge? Kako to, da je sodelavec nervozen, ceprav rok za izvedbo projekta potece šele cez en mesec? To je le nekaj vprašanj, na katere boste v knjigi našli številne koristne odgovore",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "Osebnostna sestavljanka",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("a50e2b66-93b3-4a7c-9642-52bfe9959a7e"),
-                            Active = true,
-                            BookIndex = 2700,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Je pot...\r\nSo cilji...\r\nSo želje...\r\n\r\nZakaj je motivacija cudež?\r\n\r\nKer z njo uspete...\r\nKer z njo premagate težave...\r\nKer z njo dosežete vaše življenjske cilje...",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "Cudež motivacije",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("4acd1fab-00d4-4d57-9ab8-978bb6eb07ac"),
-                            Active = true,
-                            BookIndex = 2800,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Chandler in Beckford razgaljata devet najpogostejših (in ponavadi usodnih) poslovnih mitov in ponujata preproste in navdihujoce rešitve za težave, ki si jih samostojni podjetniki ter lastniki majhnih podjetij povzrocajo iz dneva v dan. Presenetljive resnice, ki predstavljajo protistrup tem lažem, so Sam Beckford in vec sto njegovih strank, uspešnih samostojnih podjetnikov ter lastnikov majhnih podjetij, sami preizkusili\r\n\r\nTo sveže, živahno \"sveto pismo za poslovneže\" vam bo razkrilo, kaj in kako morate poceti, da bi vaš posel postal dobickonosen. V knjigi boste  odkrili tudi sestavino, ki v mnogih \"prakticnih\" poslovnih prirocnikih manjka - kako se iz dneva v dan motivirati, da bi te stvari dejansko lahko poceli",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "9 laži, zaradi katerih vaš posel ne uspeva, kot bi lahko... in resnica, ki ga bo osvobodila",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("1ad5e814-119c-4323-a613-87e99873e67f"),
-                            Active = true,
-                            BookIndex = 2900,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Namesto da išcete službo, zacnite iskati priložnosti",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "V odvisnosti od službe",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("54e2f7dc-0de3-4afa-9266-28638a0738c1"),
-                            Active = true,
-                            BookIndex = 3000,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "30 prodajnih orodij, s katerimi lahko nadzorujete misli vaše stranke, jo motivirate, vplivate nanjo in jo prepricate v nakup.",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "Sprožilci",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("5d9ccdeb-153e-4c8b-ba53-67cb2299c689"),
-                            Active = true,
-                            BookIndex = 3100,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Razmerje med ceno in dobickom in kaj to pomeni za vaše podjetje",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "Cena priložnosti",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("09c427f8-e752-4754-a3a2-7318ee63564b"),
-                            Active = true,
-                            BookIndex = 3200,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Kako hitro in manj stresno zaslužiti vec",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "Prodajajte odgovorno",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("beafa43f-5215-4f51-91e8-5d6c0aca2dad"),
-                            Active = true,
-                            BookIndex = 3300,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Pot do vašega osebnega uspeha",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "Zmagovalni odnos",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("640a6b5a-feea-4312-9d87-567fd465adf1"),
-                            Active = true,
-                            BookIndex = 3400,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Kako posameznike povezati v uspešen tim!",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "Zmagovalci",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("4fe5155b-a047-4a08-b7d9-baf24ea6a581"),
-                            Active = true,
-                            BookIndex = 3500,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Uspeha ne bo, ce boste nanj cakali. Knjiga vam bo razkrila, kaj morate storiti, da bi se zgodila prave stvari.",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "Brez tveganja ni uspeha",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("a770ffb6-a764-446b-b9ff-6cd966c92147"),
-                            Active = true,
-                            BookIndex = 3600,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "How to handle everything (and everyone) around you when all hell breaks loose, from the international bestselling author of Surrounded by Idiots . Not everything goes the way we want it to - the world or people around us sometimes just spin out of control. Just consider the Covid pandemic for starters. Or how about that mad neighbour you have living next-door to you? Or when work seems to be going down the toilet when the competition keep outsmarting you? So how do you handle everything life throws your way when you'd really prefer to tell everyone to get stuffed?Thomas Erikson will help you turn adversity into success with the help of the behavioural model made famous in Surrounded by Idiots . Starting by reminding us that life is as it is, Erikson helps you see that it is in fact useless to try to control everything happening around you. Instead of protesting when life throws you curveballs, focus instead on how to handle them. Just as you keep the weeds away from the garden to provide space and amazing flowers, you need to find an approach to adversity that works for you and will give you the chance to turn everything into success. Surrounded by Setbacks will help you pinpoint the approach that works for you and will entertain and empower you in equal measure.",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "Surrounded by Setbacks",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("96856727-b094-4e6f-941c-d15bf44d766f"),
-                            Active = true,
-                            BookIndex = 3700,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "'A very practical, engaging guide to the essential tools which managers at all levels need to be effective themselves and to develop others. Highly recommended.' Stuart Chambers, former CEO of Pilkington plc       Key Management Development Models gives you, at a glance, instant access to a full range of the best models available for developing your management skills and helping others to work and perform at their peak.       For anyone seeking to develop their management skills it can be hard to know where to begin. Key Management Development Models explains the tools in detail - what they are and when and how to use them, with key practical tips. It's like having your very own management development coach on hand explaining all the tools that you will ever need to know. EXPERT GUIDANCE FOR YOUR MANAGEMENT CAREER",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "Key Management Development Models Travel",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("9527dea2-51f6-44d9-a681-8bc846b9c557"),
-                            Active = true,
-                            BookIndex = 3800,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Kaj vedo in pocnejo odlicni vodje\r\n\r\nV knjigi boste izvedeli:\r\n- kaj morate narediti, da boste resnicno navdihnili in motivirali druge ljudi\r\n- zakaj dobre vodje skrbi prihodnost\r\n- katera tri podrocja zahtevajo stalne izboljšave\r\n- kako lahko znatno okrepite svojo vodstveno kredibilnost - ali pa jo nezavedno unicite\r\n- kateri dve komponenti sta bistveni za resnicen uspeh in vodenje - in še veliko vec.",
-                            GenreID = new Guid("e74ec0d0-4f62-424a-a876-1ed6815e9de5"),
-                            Name = "Skrivnost",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        });
                 });
 
             modelBuilder.Entity("IPSTemplate.Dal.Models.TEBookAuthor", b =>

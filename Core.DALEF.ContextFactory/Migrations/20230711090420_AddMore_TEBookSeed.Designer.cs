@@ -4,6 +4,7 @@ using Core.DALEF.ContextFactory;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Core.DALEF.ContextFactory.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20230711090420_AddMore_TEBookSeed")]
+    partial class AddMore_TEBookSeed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -244,7 +246,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             NormalizedEmail = "ADMIN@IPSTEMPLATE.ORG",
                             NormalizedUserName = "ADMINISTRATOR",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b0650582-6c94-4d12-bcd5-93d2bd3e26e8",
+                            SecurityStamp = "d1970ff4-2f8f-4781-98c6-220a3d244e19",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         },
@@ -261,7 +263,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             NormalizedEmail = "MEMBER@IPSTEMPLATE.ORG",
                             NormalizedUserName = "MEMBER",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c13c3aff-2ebc-4621-9759-b8f1ead0e967",
+                            SecurityStamp = "cb383e78-5e70-4f8b-a2ea-eced8c4ae5c7",
                             TwoFactorEnabled = false,
                             UserName = "Member"
                         });
@@ -529,6 +531,17 @@ namespace Core.DALEF.ContextFactory.Migrations
                         },
                         new
                         {
+                            Id = new Guid("c11f04c1-4f2f-4652-bf72-efc5a2b27642"),
+                            Active = true,
+                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "John C.",
+                            LastName = " Maxwell",
+                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
+                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
                             Id = new Guid("2f644084-5a69-43cb-9ca5-23394463baf7"),
                             Active = true,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -716,6 +729,17 @@ namespace Core.DALEF.ContextFactory.Migrations
                         },
                         new
                         {
+                            Id = new Guid("20d9a362-297c-457d-a3a1-87c6790ddf27"),
+                            Active = true,
+                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Ken",
+                            LastName = " Blanchard",
+                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
+                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
                             Id = new Guid("c583f679-ee3f-4b8d-899c-4fc4ba9473ed"),
                             Active = true,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -771,12 +795,34 @@ namespace Core.DALEF.ContextFactory.Migrations
                         },
                         new
                         {
+                            Id = new Guid("dabbbe73-6176-4d55-bcb2-ce799985ac93"),
+                            Active = true,
+                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "dr.Bill",
+                            LastName = " Quain",
+                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
+                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
                             Id = new Guid("9937be0c-d710-42e1-84d4-08a51417d67b"),
                             Active = true,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Todd",
                             LastName = " Duncan",
+                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
+                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            Id = new Guid("d27c0fa7-23be-495a-aa2e-dba7a0d88be9"),
+                            Active = true,
+                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "John C.",
+                            LastName = " Maxwell",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
                         },
