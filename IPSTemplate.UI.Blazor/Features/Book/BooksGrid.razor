@@ -47,21 +47,16 @@
         <IPSGridColumn Id="CopyAmount" Title="Število kopij" Width="100px">
             <Template>
                 @{
-                    var books = (TEBookInfo)context;
-                    var counter = books.BookCopies.Count();
+                    var book = (TEBookInfo)context;
+                    var counter = book.BookCopies.Count();
                     <IPSBadge Rounded Color="Color.Light">@counter</IPSBadge>
                 }
             </Template>
         </IPSGridColumn>
-        
-        
-            <IPSGridCommandColumn Width="100px">
-                <IPSButton OnClick=@(() => EditClicked.InvokeAsync((TEBookInfo)context)) Icon=Icon.Pencil />
-                <IPSButton OnClick=@(() => AddClicked.InvokeAsync((TEBookInfo)context)) Icon=Icon.Add />
-            </IPSGridCommandColumn>
-        
-            
-
+        <IPSGridCommandColumn Width="100px">
+            <IPSButton OnClick=@(() => EditClicked.InvokeAsync((TEBookInfo)context)) Icon=Icon.Pencil />
+            <IPSButton OnClick=@(() => AddClicked.InvokeAsync((TEBookInfo)context)) Icon=Icon.Add />
+        </IPSGridCommandColumn>
     </GridColumns>  
         <DetailTemplate>
                 <BookCopyGrid Book=book CopyEditClicked=OpenEditCopyView BorrowClicked=OpenBorrowView @ref=_bookCopyGrid />

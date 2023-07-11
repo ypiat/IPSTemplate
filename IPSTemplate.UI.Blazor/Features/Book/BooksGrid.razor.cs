@@ -73,6 +73,8 @@ public partial class BooksGrid
         {
             IsMember = true;
         }
+
+        await base.OnInitializedAsync();
     }
 
 

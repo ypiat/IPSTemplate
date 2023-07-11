@@ -64,7 +64,7 @@
         <IPSDataList >
             <IPSDataItem>
                 <IPSDataItemKey>Opis</IPSDataItemKey>
-                @if (@Book.Description == null)
+                @if (@Book.Description == null || @Book.Description == "")
                 {
                     <IPSDataItemValue>/</IPSDataItemValue>
                 }
