@@ -54,9 +54,29 @@ namespace IPSTemplate.BusinessLibrary.BO.Author
         public static readonly PropertyInfo<string> LifeYearsProperty = RegisterProperty<string>(p => p.LifeYears);
         [Display(Name = "Leta življenja")]
         [CustomFilter(Property = new[] { nameof(BirthYear) })]
-        public string LifeYears => String.Format($"{BirthYear} - {DeathYear}");
+        public string LifeYears 
+        { 
+             get {
+                if (BirthYear is null && DeathYear is null)
+                {
+                    return String.Format("/");
+                }
+                else if (BirthYear is null)
+                {
+                return String.Format($"/ - {DeathYear}");
+                }
+                else if (DeathYear is null)
+                {
+                    return String.Format($"{BirthYear} - /");
+                }
+                else
+                {
+                    return String.Format($"{BirthYear} - {DeathYear}");
+                }
+             } 
+        }
 
-        public static readonly PropertyInfo<string> CountryProperty = RegisterProperty<string>(p => p.Country);
+    public static readonly PropertyInfo<string> CountryProperty = RegisterProperty<string>(p => p.Country);
         [Display(Name = "Country")]
         public string Country
         {
@@ -67,7 +87,16 @@ namespace IPSTemplate.BusinessLibrary.BO.Author
         [CustomFilter(Property = new[] { nameof(Country) })]
         public string UserFriendlyCountryName
         {
-            get => TECountries.GetUserFriendlyName(Country);
+            get { 
+                if (Country is null || Country == "")
+                {
+                    return String.Format("/");
+                }
+                else
+                {
+                    return TECountries.GetUserFriendlyName(Country);
+                }
+            }       
         }
 
 
