@@ -4,6 +4,7 @@ using Core.DALEF.ContextFactory;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Core.DALEF.ContextFactory.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20230711061718_Add_ActiveEqualsTrue_in_TEAuthorSeed")]
+    partial class Add_ActiveEqualsTrue_in_TEAuthorSeed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -244,7 +246,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             NormalizedEmail = "ADMIN@IPSTEMPLATE.ORG",
                             NormalizedUserName = "ADMINISTRATOR",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9fdc146e-48c7-42be-a5b4-391c8fcd2059",
+                            SecurityStamp = "eb6413a5-7cfa-42d4-ab9a-e3142f438a94",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         },
@@ -261,7 +263,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             NormalizedEmail = "MEMBER@IPSTEMPLATE.ORG",
                             NormalizedUserName = "MEMBER",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "5d6ab3f2-3338-46e7-9e2a-a313ed1f5afa",
+                            SecurityStamp = "94ed4f59-0cf5-44e1-8d45-fbecae10198c",
                             TwoFactorEnabled = false,
                             UserName = "Member"
                         });
@@ -1200,48 +1202,6 @@ namespace Core.DALEF.ContextFactory.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TEPublisher");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("1f855264-06ea-45d1-a83d-75ace379a617"),
-                            Active = true,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Penguin UK",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("e5122ef3-0fe3-41bc-9d9d-b2bad13b8e94"),
-                            Active = true,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Pearson Education, Limited",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("920ff788-b598-4f89-aa66-beeec3c0e64e"),
-                            Active = true,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Prentice Hall",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("d6c559d6-373d-4a53-9a46-f5635a4e42f9"),
-                            Active = true,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Založba Tuma",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>

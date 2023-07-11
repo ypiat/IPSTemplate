@@ -4,6 +4,7 @@ using Core.DALEF.ContextFactory;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Core.DALEF.ContextFactory.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20230710130346_Add_TEAuthorSeed")]
+    partial class Add_TEAuthorSeed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -244,7 +246,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             NormalizedEmail = "ADMIN@IPSTEMPLATE.ORG",
                             NormalizedUserName = "ADMINISTRATOR",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9fdc146e-48c7-42be-a5b4-391c8fcd2059",
+                            SecurityStamp = "7600a2b0-4712-4a03-97cc-6984c77960c3",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         },
@@ -261,7 +263,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                             NormalizedEmail = "MEMBER@IPSTEMPLATE.ORG",
                             NormalizedUserName = "MEMBER",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "5d6ab3f2-3338-46e7-9e2a-a313ed1f5afa",
+                            SecurityStamp = "e80d9455-967d-48ee-b1f8-42518f399aa9",
                             TwoFactorEnabled = false,
                             UserName = "Member"
                         });
@@ -321,7 +323,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("4bd02036-6a0f-4526-9a3d-ac479296e4c8"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Chris",
@@ -332,7 +334,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("6dd90191-35f9-4bb6-9a6e-48d3875caa9f"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "David",
@@ -343,7 +345,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("d35d1b53-cd0e-4b42-9819-98e21fa6d2af"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Robert C.",
@@ -354,7 +356,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("cb20cbcd-d000-4842-95f9-7a13fdedc908"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Brian",
@@ -365,7 +367,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("9847031e-413b-4641-8e30-542996ec4483"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "John C.",
@@ -376,7 +378,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("5bf8e384-ad9d-4382-b984-7cb6762135b7"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Charles C.",
@@ -387,7 +389,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("43110a64-ff40-4c5b-941f-ba5459e08ff6"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Kare",
@@ -398,7 +400,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("ed071b6f-4d39-45f5-b656-879c8d1cd4be"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "dr. Dennis E.",
@@ -409,7 +411,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("8c52345c-b12c-476d-8457-e7a413ee0c85"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Beverly",
@@ -420,7 +422,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("de0034e8-61f6-4cfb-bb00-550e18e35813"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Vince",
@@ -431,7 +433,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("1e854d42-5abc-4cb8-8612-3604f1d6338f"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Maxwell",
@@ -442,29 +444,29 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("a3b46595-20c6-456b-9a58-6137f8974ed9"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Skip ",
-                            LastName = " Ross",
+                            LastName = " Ross ",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
                         },
                         new
                         {
                             Id = new Guid("6befae2b-6824-4da0-adc1-eb8c5a11e5ae"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Carole C. ",
-                            LastName = "Carlson",
+                            LastName = " Carlson",
                             UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
                             UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
                         },
                         new
                         {
                             Id = new Guid("3e0e45b6-f023-4f67-8a5e-73e94eb6f873"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Mamie ",
@@ -475,7 +477,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("3e1d4bd1-a459-4f34-9b44-f6df55f8d981"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Lothar J.",
@@ -486,7 +488,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("ae11c234-4cd2-4e62-a21a-1eb31d250fb3"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Ann ",
@@ -497,7 +499,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("668b0be2-e639-409e-a37c-efd37cb9baa5"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Prof.Ben C. ",
@@ -508,7 +510,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("1d0bff2e-770e-4879-9ed5-ef86122b139d"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "dr. Karen ",
@@ -519,7 +521,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("f562de09-54ff-4819-b154-bb7e753109a0"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "dr. Danny",
@@ -530,7 +532,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("c11f04c1-4f2f-4652-bf72-efc5a2b27642"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "John C.",
@@ -541,7 +543,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("2f644084-5a69-43cb-9ca5-23394463baf7"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Jim",
@@ -552,7 +554,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("64b8e52e-0365-47e2-805c-a173583b847b"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Simona",
@@ -563,7 +565,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("fd68b897-49ff-43a8-9ff8-4d2bdef78f91"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Polona",
@@ -574,7 +576,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("7ea4a0e0-9b31-4ad7-b245-6fc340ddfe2e"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Tjaša",
@@ -585,7 +587,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("880d61ba-fd72-42fe-a96e-83093461228c"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Samo",
@@ -596,7 +598,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("8908c397-5f49-454b-83c8-5b6d93bacab8"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Dr.Marilee",
@@ -607,7 +609,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("1c828dbc-f44b-41c8-b29e-1412d0fcb749"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Benjamin",
@@ -618,7 +620,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("b69672d6-5c2c-4f60-b0e7-12d8a763e4b4"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Travis",
@@ -629,7 +631,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("6be06e09-e930-490a-9382-11ef9785e516"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Jean",
@@ -640,7 +642,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("22ec1668-ef8e-4c98-afcf-92c3703d278c"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Allan",
@@ -651,7 +653,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("5ce3747a-ab03-49b8-8282-17c73bafd79b"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Barbara",
@@ -662,7 +664,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("377329f3-1449-44ec-96ed-963991ae4144"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "dr.Bill",
@@ -673,7 +675,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("2d2e421b-4148-4a1d-8635-ee84c339c74e"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Pat",
@@ -684,7 +686,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("497a44de-28f3-40ed-b3b2-0352bbf537f3"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Pat",
@@ -695,7 +697,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("b102a246-c9d0-4124-8dd5-63792e079d6c"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Florence",
@@ -706,7 +708,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("34f6ed97-96f7-44df-a576-5a0e0f22fb7b"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Marita",
@@ -717,7 +719,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("5a8fa816-1db3-4281-9575-eb16a6b1b85a"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "George",
@@ -728,7 +730,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("20d9a362-297c-457d-a3a1-87c6790ddf27"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Ken",
@@ -739,7 +741,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("c583f679-ee3f-4b8d-899c-4fc4ba9473ed"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Mark",
@@ -750,7 +752,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("03f05554-2fa6-4f05-9b1f-07b1e93dc815"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Steve",
@@ -761,7 +763,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("84cb355b-9f39-4afd-8176-3db1fcbd9e26"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Sam",
@@ -772,7 +774,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("679cff41-cbd8-4a24-b245-be846df6d70b"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Burke",
@@ -783,7 +785,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("72f8409a-310f-4dd4-8997-13c290f9450b"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Joseph",
@@ -794,7 +796,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("dabbbe73-6176-4d55-bcb2-ce799985ac93"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "dr.Bill",
@@ -805,7 +807,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("9937be0c-d710-42e1-84d4-08a51417d67b"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Todd",
@@ -816,7 +818,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("d27c0fa7-23be-495a-aa2e-dba7a0d88be9"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "John C.",
@@ -827,7 +829,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("cf9c8d7d-b7ba-4cca-996f-67c06710af99"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Ken",
@@ -838,7 +840,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("718c2ca7-97ae-4059-9ed2-faa12a0f1eb8"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Sheldon",
@@ -849,7 +851,7 @@ namespace Core.DALEF.ContextFactory.Migrations
                         new
                         {
                             Id = new Guid("a4c01ce6-a52e-4c4a-86be-726cf0798b87"),
-                            Active = true,
+                            Active = false,
                             DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Roger",
@@ -1200,48 +1202,6 @@ namespace Core.DALEF.ContextFactory.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TEPublisher");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("1f855264-06ea-45d1-a83d-75ace379a617"),
-                            Active = true,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Penguin UK",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("e5122ef3-0fe3-41bc-9d9d-b2bad13b8e94"),
-                            Active = true,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Pearson Education, Limited",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("920ff788-b598-4f89-aa66-beeec3c0e64e"),
-                            Active = true,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Prentice Hall",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            Id = new Guid("d6c559d6-373d-4a53-9a46-f5635a4e42f9"),
-                            Active = true,
-                            DateChanged = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Založba Tuma",
-                            UserChangedID = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserCreatedID = new Guid("00000000-0000-0000-0000-000000000000")
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>

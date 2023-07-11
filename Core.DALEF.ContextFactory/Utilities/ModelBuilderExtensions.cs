@@ -28,6 +28,8 @@ internal static class ModelBuilderExtensions
         modelBuilder.Entity<TEIdentityUser>().HasData(new TEIdentityUserSeed());
         modelBuilder.Entity<TEIdentityRole>().HasData(new TEIdentityRoleSeed());
         modelBuilder.Entity<IdentityUserRole<Guid>>().HasData(new TEIdentityUserRoleSeed());
+        modelBuilder.Entity<TEAuthor>().HasData(new TEAuthorSeed());
+        modelBuilder.Entity<TEPublisher>().HasData(new TEPublisherSeed());
 
         if (EnvironmentHelper.IsDevelopment())
         {
