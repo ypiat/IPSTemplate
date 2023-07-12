@@ -49,18 +49,21 @@ namespace IPSTemplate.BusinessLibrary.BO.Book
         }
 
         [CustomFilter(Property = new[] { nameof(Language) })]
-        public string UserFriendlyLanguageName
+        public string UserFriendlyLanguageName => TELanguages.GetUserFriendlyName(Language);
+
+
+        public string LanguageShowAs
         {
             get
             {
-                if (Language == null || Language == "") 
+                if (UserFriendlyLanguageName == "")
                 {
                     return "/";
                 }
                 else
                 {
                     return TELanguages.GetUserFriendlyName(Language);
-                } 
+                }
             }
         }
 
@@ -108,6 +111,30 @@ namespace IPSTemplate.BusinessLibrary.BO.Book
                 else
                 {
                     return Description.ToString();
+                }
+            }
+        }
+
+        public static readonly PropertyInfo<bool> ActiveProperty = RegisterProperty<bool>(p => p.Active);
+        [Display(Name = "Aktivnost")]
+        public bool Active
+        {
+            get => GetProperty(ActiveProperty);
+            set => LoadProperty(ActiveProperty, value);
+        }
+
+        [Display(Name = "Aktivnost")]
+        public string? ActiveShowAs
+        {
+            get
+            {
+                if (Active)
+                {
+                    return "aktivna";
+                }
+                else
+                {
+                    return "ni aktivna";
                 }
             }
         }

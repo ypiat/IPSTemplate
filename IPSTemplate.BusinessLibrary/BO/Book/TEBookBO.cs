@@ -56,8 +56,6 @@ namespace IPSTemplate.BusinessLibrary.BO.Book
             get => GetProperty(DescriptionProperty);
             set => SetProperty(DescriptionProperty, value);
         }
-
-
         public static readonly PropertyInfo<TEBookAuthorEL> AuthorsProperty = RegisterProperty<TEBookAuthorEL>(p => p.Authors, RelationshipTypes.LazyLoad);
         public TEBookAuthorEL Authors
         {
