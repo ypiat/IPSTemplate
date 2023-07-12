@@ -35,7 +35,7 @@
         <IPSCheckBox Label="Aktivna (je pripravljena za prikaz in uporabo)" Property=@ViewModel.GetProperty(() => ViewModel.Model.Active) />
         @if(HasQRCode)
         {
-            <img height="100px" src=@ViewModel.Model.QRCodeUrl />
+            <img height="200px" src=@ViewModel.Model.QRCodeUrl />
         }
         else
         {

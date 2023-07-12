@@ -94,7 +94,29 @@ namespace IPSTemplate.BusinessLibrary.BO.BookCopy
             set => LoadProperty(LocationProperty, value);
         }
 
+        public static readonly PropertyInfo<bool> ActiveProperty = RegisterProperty<bool>(p => p.Active);
+        [Display(Name = "Aktivnost")]
+        public bool Active
+        {
+            get => GetProperty(ActiveProperty);
+            set => LoadProperty(ActiveProperty, value);
+        }
 
+        [Display(Name = "Aktivnost")]
+        public string? ActiveShowAs
+        {
+            get
+            {
+                if (Active)
+                {
+                    return "aktivna";
+                }
+                else
+                {
+                    return "ni aktivna";
+                }
+            }
+        }
 
         public string Status
         {

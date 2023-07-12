@@ -23,6 +23,7 @@ namespace IPSTemplate.BusinessLibrary.BO.BookCopy
         protected async Task FetchGridInfo(MobileCslaRequest request, [Inject] IDataPortalFactory factory)
         {
             request.Include = new MobileList<string>() { "Book", "Publisher" };
+            request.IncludeInactive = true;
             Data = await TEBookCopyRL.GetListAsync(request, factory);
             TotalRowCount = Math.Max(0, Data.TotalRowCount);
         }
