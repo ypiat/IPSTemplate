@@ -51,7 +51,17 @@ namespace IPSTemplate.BusinessLibrary.BO.Book
         [CustomFilter(Property = new[] { nameof(Language) })]
         public string UserFriendlyLanguageName
         {
-            get => TELanguages.GetUserFriendlyName(Language);
+            get
+            {
+                if (Language == null || Language == "") 
+                {
+                    return "/";
+                }
+                else
+                {
+                    return TELanguages.GetUserFriendlyName(Language);
+                } 
+            }
         }
 
         public static readonly PropertyInfo<int?> PageAmountProperty = RegisterProperty<int?>(p => p.PageAmount);
@@ -62,12 +72,44 @@ namespace IPSTemplate.BusinessLibrary.BO.Book
             set => LoadProperty(PageAmountProperty, value);
         }
 
+        [Display(Name = "Število strani")]
+        public string? PageAmountShowAs
+        {
+            get
+            {
+                if (PageAmount is null)
+                {
+                    return "/";
+                }
+                else
+                {
+                    return PageAmount.ToString();
+                }
+            }
+        }
+
         public static readonly PropertyInfo<string> DescriptionProperty = RegisterProperty<string>(p => p.Description);
         [Display(Name = "Opis")]
         public string Description
         {
             get => GetProperty(DescriptionProperty);
             set => LoadProperty(DescriptionProperty, value);
+        }
+
+        [Display(Name = "Opis")]
+        public string? DescriptionShowAs
+        {
+            get
+            {
+                if (Description is null  || Description == "")
+                {
+                    return "/";
+                }
+                else
+                {
+                    return Description.ToString();
+                }
+            }
         }
 
         public static readonly PropertyInfo<bool> ActiveProperty = RegisterProperty<bool>(p => p.Active);

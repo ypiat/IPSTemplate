@@ -45,13 +45,9 @@
         <IPSButton Icon=Icon.Add Color="Color.Secondary" OnClick="(() => windowGenreVisible = true)">Dodaj žanr</IPSButton>
         <IPSRow>
             <IPSNumericTextBox Property=@ViewModel.GetProperty(() => ViewModel.Model.PageAmount) ColumnWidth="6" />
-            @if(IsAddNew)
-            {
-                <IPSNumericTextBox Property=@ViewModel.GetProperty(() => ViewModel.Model.BookIndex) ColumnWidth="6" />
-            }
-
         </IPSRow>
         <IPSTextArea Property=@ViewModel.GetProperty(() => ViewModel.Model.Description)></IPSTextArea>
+        <IPSCheckBox Label="Aktivna (je pripravljena za prikaz in uporabo)" Property=@ViewModel.GetProperty(() => ViewModel.Model.Active) />
     </FormFields>
     <FormButtons>
         <IPSFormSaveButton />

@@ -57,13 +57,6 @@ namespace IPSTemplate.BusinessLibrary.BO.Book
             set => SetProperty(DescriptionProperty, value);
         }
 
-        public static readonly PropertyInfo<bool> ActiveProperty = RegisterProperty<bool>(p => p.Active);
-        [Display(Name = "Aktivnost")]
-        public bool Active
-        {
-            get => GetProperty(ActiveProperty);
-            set => SetProperty(ActiveProperty, value);
-        }
 
         public static readonly PropertyInfo<TEBookAuthorEL> AuthorsProperty = RegisterProperty<TEBookAuthorEL>(p => p.Authors, RelationshipTypes.LazyLoad);
         public TEBookAuthorEL Authors
@@ -137,7 +130,6 @@ namespace IPSTemplate.BusinessLibrary.BO.Book
         protected override void AddBusinessRules()
         {
             BusinessRules.AddRule(new HasAtLeastOneAuthorRule(AuthorIdsProperty));
-            BusinessRules.AddRule(new IsIndexUniqueRule(BookIndexProperty));
             base.AddBusinessRules();
         }
 
@@ -152,7 +144,7 @@ namespace IPSTemplate.BusinessLibrary.BO.Book
             protected override void Execute(IRuleContext context)
             {
                 TEBookAuthorEL? authors = null;
-                //if (!context.TryGetInputValue(AuthorsProperty, ref authors))
+                if (!context.TryGetInputValue(AuthorsProperty, ref authors))
                 {
                     return;
                 }
@@ -163,36 +155,6 @@ namespace IPSTemplate.BusinessLibrary.BO.Book
                 }
             }
         }
-
-        private class IsIndexUniqueRule : BusinessRule
-        {
-            public IsIndexUniqueRule(Csla.Core.IPropertyInfo bookIndexProperty) : base(bookIndexProperty)
-            {
-                InputProperties.Add(PrimaryProperty);
-                InputProperties.Add(BooksProperty);
-            }
-
-            protected override void Execute(IRuleContext context)
-           {
-                TEBookRL? books = null;
-                int bookIndex = 0;
-                if (!context.TryGetInputValue(BooksProperty, ref books))
-                {
-                    return;
-                }
-
-                if (!context.TryGetInputValue(BookIndexProperty, ref bookIndex))
-                {
-                    return;
-                }
-
-                if (books.Select(p => p.BookIndex).ToList().Contains(bookIndex))
-                {
-                    context.AddErrorResult("Ta index že obstaja! Izberite drug.");
-                }
-            }
-        }
-
         #endregion
 
         #region Client-side methods

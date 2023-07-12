@@ -41,9 +41,9 @@
                 </Template>
             </IPSGridColumn>
             <IPSGridColumn Id="Author" Title="Avtor/ji" Field=@nameof(TEBookInfo.AuthorNames) Width="250px" Filterable=false />
-            <IPSGridColumn Id="Description" Field=@nameof(TEBookInfo.Description) Width="200px" Filterable=false />   
+            <IPSGridColumn Id="Description" Field=@nameof(TEBookInfo.DescriptionShowAs) Width="200px" Filterable=false />   
             <IPSGridColumn Id="Language" Title="Jezik" Field=@nameof(TEBookInfo.UserFriendlyLanguageName) Width="200px" Filterable=false />
-        <IPSGridColumn Id="PageAmount" Field=@nameof(TEBookInfo.PageAmount) Filterable=false Width="100px" />
+        <IPSGridColumn Id="PageAmount" Field=@nameof(TEBookInfo.PageAmountShowAs) Filterable=false Width="100px" />
         <IPSGridColumn Id="CopyAmount" Title="Število kopij" Width="100px">
             <Template>
                 @{

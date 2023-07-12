@@ -44,7 +44,11 @@ namespace IPSTemplate.UI.Blazor.Features.Book
                 NavigationManager.NavigateTo("/");
             }
             await base.OnInitializedAsync();
-            ViewModel.Model.BookIndex = ViewModel.Model.GenerateBookIndex;
+            if (IsAddNew)
+            {
+                ViewModel.Model.BookIndex = ViewModel.Model.GenerateBookIndex;
+                ViewModel.Model.Active = true;
+            }
         }
 
 
