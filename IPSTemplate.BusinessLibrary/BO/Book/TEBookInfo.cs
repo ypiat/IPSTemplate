@@ -112,14 +112,6 @@ namespace IPSTemplate.BusinessLibrary.BO.Book
             }
         }
 
-        public static readonly PropertyInfo<bool> ActiveProperty = RegisterProperty<bool>(p => p.Active);
-        [Display(Name = "Aktivnost")]
-        public bool Active
-        {
-            get => GetProperty(ActiveProperty);
-            set => LoadProperty(ActiveProperty, value);
-        }
-
         public static readonly PropertyInfo<TEBookAuthorEL> BookAuthorsProperty = RegisterProperty<TEBookAuthorEL>(p => p.BookAuthors, RelationshipTypes.LazyLoad);
         public TEBookAuthorEL BookAuthors
         {
