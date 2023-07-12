@@ -32,6 +32,7 @@
 
         <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.PublishedYear) />
         <IPSFormField Property=@ViewModel.GetProperty(() => ViewModel.Model.Location) />
+        <IPSCheckBox Label="Aktivna (je pripravljena za prikaz in uporabo)" Property=@ViewModel.GetProperty(() => ViewModel.Model.Active) />
         @if(HasQRCode)
         {
             <img height="100px" src=@ViewModel.Model.QRCodeUrl />
