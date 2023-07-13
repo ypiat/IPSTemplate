@@ -33,6 +33,7 @@ internal static class ModelBuilderExtensions
         modelBuilder.Entity<TEGenre>().HasData(new TEGenreSeed());
         modelBuilder.Entity<TEBook>().HasData(new TEBookSeed());
         modelBuilder.Entity<TEBookAuthor>().HasData(new TEBookAuthorSeed());
+        modelBuilder.Entity<TEBookCopy>().HasData(new TEBookCopySeed());
 
         if (EnvironmentHelper.IsDevelopment())
         {
