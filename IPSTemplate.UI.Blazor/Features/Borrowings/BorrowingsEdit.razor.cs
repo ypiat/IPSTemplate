@@ -101,7 +101,7 @@ namespace IPSTemplate.UI.Blazor.Features.Borrowings
             else
             {
                 await ItemSaved.InvokeAsync();
-                NotificationService.ShowSuccess("Uspešno ste izposodili knjigo");
+                NotificationService.ShowSuccess($"Uspešno ste izposodili knjigo!");
             }
 
 

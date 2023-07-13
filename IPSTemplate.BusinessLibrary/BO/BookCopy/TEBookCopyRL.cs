@@ -49,6 +49,7 @@ namespace IPSTemplate.BusinessLibrary.BO.BookCopy
                 Include = new string[] { "Book", "Publisher" },
                 Predicate = PredicateBuilder.True<TEBookCopy>().And(p => p.BookID == id)
             };
+            request.IncludeInactive = true;
 
             Fetch(request, repository, factory, childFactory);
         }

@@ -59,7 +59,7 @@ namespace IPSTemplate.UI.Blazor.Features.Book
             };
 
             ListViewData = await TEBookRL.GetBooksListAsync(request, DataPortalFactory);
-            FilteredList = ListViewData;
+            FilteredList = ListViewData.OrderBy(p=>p.Name);
         }
 
         protected async Task GetGenres()
@@ -78,7 +78,7 @@ namespace IPSTemplate.UI.Blazor.Features.Book
         private void FilterBooks()
         {
             ShowMessage = false;
-            FilteredList = ListViewData;
+            FilteredList = ListViewData.OrderBy(p => p.Name);
 
             if (FilterNameText != string.Empty)
             {

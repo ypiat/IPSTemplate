@@ -34,6 +34,7 @@ namespace IPSTemplate.UI.Blazor.Features.Book
         BorrowingsEdit _borrowView = default!;
 
         BookCopyList _list = default!;
+        private bool ShowAlert { get; set; } = false;
 
         protected override async Task OnInitializedAsync()
         {
@@ -73,7 +74,7 @@ namespace IPSTemplate.UI.Blazor.Features.Book
         private void CloseBorrowView()
         {
             windowBorrowVisible = false;
-            NavigationManager.NavigateTo("/borrowing");
+            ShowAlert = true;
         }
     }
 }

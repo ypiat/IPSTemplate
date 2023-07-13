@@ -38,10 +38,6 @@ namespace IPSTemplate.UI.Blazor.Features.BookCopy
 
         private bool HasQRCode { get; set; } = false;
 
-        private string QRCodePath { get; set; } = string.Empty;
-
-        private string QRCodeText { get; set; } = string.Empty;
-
 
         protected override async Task OnInitializedAsync()
         {
@@ -59,10 +55,6 @@ namespace IPSTemplate.UI.Blazor.Features.BookCopy
             if (ViewModel.Model.QRCodeUrl != "")
             {
                 HasQRCode = true;
-            }
-            else
-            {
-                QRCodeText = ViewModel.Model.BookCopyNumber.ToString();
             }
         }
 
@@ -84,7 +76,8 @@ namespace IPSTemplate.UI.Blazor.Features.BookCopy
 
         private void GenerateQRCode()
         {
-            var imageUrl = QRCodeWriter.CreateQrCode($"https://localhost:44324/book/copy/borrow/{ItemId}", 500, QRCodeWriter.QrErrorCorrectionLevel.Medium).AddAnnotationTextAboveBarcode(QRCodeText).ToDataUrl();
+            var qrCodeText = ViewModel.Model.BookCopyNumber.ToString();
+            var imageUrl = QRCodeWriter.CreateQrCode($"https://localhost:44324/book/copy/borrow/{ItemId}", 500, QRCodeWriter.QrErrorCorrectionLevel.Medium).AddAnnotationTextAboveBarcode(qrCodeText).ToDataUrl();
 
             ViewModel.Model.QRCodeUrl = imageUrl;
 

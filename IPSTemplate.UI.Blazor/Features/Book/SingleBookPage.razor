@@ -6,13 +6,15 @@
 
 
 
-<IPSPageTop  TitleIconClass="fa-solid fa-font-awesome" BackUrl="/" />
+<IPSPageTop TitleIconClass="fa-solid fa-font-awesome" BackUrl="/booksearch" />
 
 @if (Book is null)
 {
     <IPSLoader />
     return;
 }
+
+
 <IPSCard Class="p-3">
         <IPSColumn Md="5" ColumnWidth="fit-content">
             <IPSDataList InlineItems="false">
@@ -75,6 +77,10 @@
             </IPSDataItem>
         </IPSDataList>
     </IPSColumn>
+    @if (ShowAlert)
+    {
+        <IPSAlert Color=@Color.Info>Preglejte svoje izposoje - <IPSLink Link="/borrowing"><b>Moje izposoje</b></IPSLink></IPSAlert>
+    }
     @if(Book.BookCopies.Count() != 0)
     {
         <BookCopyList Book=@Book BorrowClicked=OpenBorrowView @ref=_list/>

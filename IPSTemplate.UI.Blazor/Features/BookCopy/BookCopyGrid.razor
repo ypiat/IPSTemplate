@@ -47,14 +47,22 @@
                 var bookCopy = (TEBookCopyInfo)context;
                 var buttonText = "Izposodi";
                 var color = Color.Success;
+                var IsDisabled = false;
                 @if (!bookCopy.IsAvailable)
                 {
                     buttonText = "Ni na voljo";
                     color = Color.Secondary;
+                    IsDisabled = true;
+                }
+                else if (!bookCopy.Active)
+                {
+                    buttonText = "Ni aktivna";
+                    color = Color.Secondary;
+                    IsDisabled = true;
                 }
             }
             <IPSButton Size=ButtonSize.Small OnClick=@(() => CopyEditClicked.InvokeAsync((TEBookCopyInfo)context)) Icon=Icon.Pencil />
-            <IPSButton Size=ButtonSize.Small Color=@color OnClick=@(() => BorrowClicked.InvokeAsync((TEBookCopyInfo)context)) Disabled=@(!bookCopy.IsAvailable)>@buttonText</IPSButton>
+            <IPSButton Size=ButtonSize.Small Color=@color OnClick=@(() => BorrowClicked.InvokeAsync((TEBookCopyInfo)context)) Disabled=IsDisabled>@buttonText</IPSButton>
         </IPSGridCommandColumn>
     </GridColumns>
 </IPSGrid>
